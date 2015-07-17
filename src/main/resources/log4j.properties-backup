@@ -1,0 +1,47 @@
+#ALL,TRACE,DEBUG,INFO,WARNING,ERROR,FITAL,OFF
+log4j.rootLogger=All,ROOT
+
+log4j.appender.ROOT=org.apache.log4j.ConsoleAppender
+#log4j.appender.ROOT.Threshold=OFF
+log4j.appender.ROOT.Encoding=UTF-8
+log4j.appender.ROOT.ImmediateFlush=true
+log4j.appender.ROOT.target=System.out
+log4j.appender.ROOT.layout=org.apache.log4j.PatternLayout
+log4j.appender.ROOT.layout.ConversionPattern=Logger-->%5p{%F:%L}-%m%n
+
+log4j.logger.testLog=ALL,testLog,dailly_rolling,html
+#存在层级过滤机制,后面同名并列
+log4j.appender.testLog=org.apache.log4j.FileAppender
+log4j.appender.testLog.Append=false
+log4j.appender.testLog.File=../logs/testLOG.log
+log4j.appender.testLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.testLog.layout.ConversionPattern=Logger-->%5p{%F:%L}-%m%n
+
+log4j.appender.dailly_rolling=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.dailly_rolling.File=../logs/ROOT.log
+log4j.appender.dailly_rolling.Threshold=ERROR
+log4j.appender.dailly_rolling.DatePattern=.yyyy-MM-dd
+log4j.appender.dailly_rolling.layout=org.apache.log4j.PatternLayout
+log4j.appender.dailly_rolling.layout.ConversionPattern=Log:%10d %10F %10L %10t %10p %10m%n
+
+log4j.appender.html=org.apache.log4j.FileAppender
+log4j.appender.html.File=../logs/log.html
+log4j.appender.html.Append=false
+log4j.appender.html.layout=org.apache.log4j.HTMLLayout
+#log4j.appender.html.layout=org.apache.log4j.xml.XMLLayout
+
+log4j.category.define=INFO,defineLog
+log4j.appender.defineLog=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.defineLog.File=../logs/defineLog.log
+log4j.appender.defineLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.defineLog.layout.ConversionPattern=Logger-->%5p{%F:%L}-%m%n
+
+# %m 输出代码中指定的消息  %M
+# %p 输出优先级,即DEBUG，INFO，WARN，ERROR，FATAL
+# %r 输出自应用启动到输出该log信息耗费的毫秒数
+# %c logger所在类   %C  %F,java文件名称
+# %t 输出产生该日志事件的线程名
+# %n 输出一个回车换行符,Windows为"rn"，Unix为"n"
+# %d 输出日志时间,比如:%d{yyyy MMM dd HH:mm:ss,SSS},输出:2007年5月17日 19:30:00,000
+# %l 输出日志事件的发生位置,包括类目名、发生的线程,以及在代码中的行数
+# %% 输出百分号 10p 右对齐 -10p 左对齐 .4p 最大宽度4，从右计数
