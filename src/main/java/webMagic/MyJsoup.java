@@ -1,4 +1,4 @@
-package jsoupDemo;
+package webMagic;
 
 
 import org.jsoup.Jsoup;

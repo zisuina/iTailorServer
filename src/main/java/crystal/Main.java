@@ -14,7 +14,7 @@ public class Main {
 //
         //                 System.out.println(today+" "+cityName+"的天气情况是："+temperature);
         Match a = new Match();
-        a.IfBodyType("A", "Autumn", "OL风格", 162, "椭圆脸");
+        a.IfBodyType("A","Autumn","OL风格",162,"椭圆脸");
 
     }
 }

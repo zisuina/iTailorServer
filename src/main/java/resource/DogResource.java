@@ -71,6 +71,6 @@ public class DogResource {
 
         String mt = new MimetypesFileTypeMap().getContentType(file);
         System.out.println("mt:" + mt);
-        return Response.ok(file, mt).header("", "").build();
+        return Response.ok(file, mt).header("ContentType", "image/*").build();
     }
 }
