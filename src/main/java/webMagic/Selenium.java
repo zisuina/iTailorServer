@@ -16,6 +16,7 @@ public class Selenium {
 //        webDriver.get("http://huaban.com/");
         webDriver.get("https://s.taobao.com/search?q=youku");
         WebElement webElement = webDriver.findElement(By.xpath("/html"));
+
         System.out.println(webElement.getAttribute("outerHTML"));
 
 
