@@ -25,7 +25,7 @@ public class ImageShowServlet extends HttpServlet {
         response.setContentType("image/jpeg");
         OutputStream os = response.getOutputStream();
 //        File file = new File(".\\images\\Linus.jpg");
-        File file = new File(".\\images\\123.jpg");
+        File file = new File(".\\src\\main\\webapp\\images\\123.jpg");
         FileInputStream fips = new FileInputStream(file);
         byte[] btImg = readStream(fips);
         os.write(btImg);
