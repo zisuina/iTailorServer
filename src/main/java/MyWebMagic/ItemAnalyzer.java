@@ -7,6 +7,8 @@ import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by liker on 19/07/2015 0019.
@@ -66,12 +68,29 @@ public class ItemAnalyzer implements PageProcessor {
     }
 
     //    //*[@id="J_AttrUL"]
-    public static void main(String[] args) {
+    public void run(String link) {
         Spider spider = Spider.create(new ItemAnalyzer());
-        spider.addUrl("https://detail.tmall.com/item.htm?id=520452595021");
+//        String link = "https://detail.tmall.com/item.htm?id=44820264243";
+//        String link = "https://detail.tmall.com/item.htm?&id=45514355197";
+
+        String regex = "id=[0-9]{1,}";
+        Pattern pat = Pattern.compile(regex);
+        Matcher matcher = pat.matcher(link);
+
+        if(matcher.find()){
+            String id = matcher.group(0);
+            System.out.println(id);
+            //        spider.addUrl("https://detail.tmall.com/item.htm?id=520452595021");
+//        spider.addUrl("https://detail.tmall.com/item.htm?id=44736991158");
+            spider.addUrl("https://detail.tmall.com/item.htm?"+id);
 //        spider.addUrl("https://detail.tmall.com/item.htm?id=45841654739");
 //        spider.addUrl("https://detail.tmall.com/item.htm?id=520347727231");
-        spider.thread(1);
-        spider.start();
+            spider.thread(1);
+            spider.start();
+        }else{
+            System.out.println("Bad Link!");
+        }
+
+
     }
 }
