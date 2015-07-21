@@ -47,9 +47,16 @@ public class Item {
             shopName = html.xpath("//*[@id=\"shopExtra\"]/div[1]/a/strong/text()").toString();
             itemName = html.xpath("//*[@id=\"J_DetailMeta\"]/div[1]/div[1]/div/div[1]/h1/text()").toString();
             keyName = html.xpath("//*[@id=\"J_DetailMeta\"]/div[1]/div[1]/div/div[1]/p/text()").toString();
+            //*[@id="J_PromoPrice"]/dd/div
+            //*[@id="J_PromoPrice"]/dd/div/span
+
+//            System.out.println("price:"+html.xpath("//*[@id=\"J_PromoPrice\"]/dd/div/span").toString());
+            System.out.println("price:" + html.css("#J_PromoPrice > dd > div > span").toString());
+
+
 //            currentPrice = Float.parseFloat(html.xpath("//*[@id=\"J_PromoPrice\"]/dd/div/span/text()").toString());
 //            brand = html.xpath("//*[@id=\"J_BrandAttr\"]/div/a/text()").toString();
-            itemDescription = new ItemDescription(this.getDescriptionMap(page));
+//            itemDescription = new ItemDescription(this.getDescriptionMap(page));
 //            saleQuantity = Integer.parseInt(html.xpath(" //*[@id=\"J_TabBar\"]/li[3]/a/span/em/text()").toString());
 ////            colorSizeQuantityMap = this.getSizeQuantityMap(html);
             System.out.println(shopName);
@@ -57,8 +64,22 @@ public class Item {
             System.out.println(keyName);
 //            System.out.println(currentPrice);
 //            System.out.println(brand);
-            System.out.println(itemDescription);
+//            System.out.println(itemDescription);
 //            System.out.println(saleQuantity);
+
+//            HttpClient client = new HttpClient();
+//            HttpMethod method = new PostMethod(indexUrl);
+//            client.executeMethod(method);
+//            method = new PostMethod("http://要抓取的地址");
+//            client.executeMethod(method);
+//            // 返回的信息
+//            // 程序运行到这里时，就读取了索引页的源代码，然后去除空白的换行
+//            String letterContent = method.getResponseBodyAsString().replaceAll("\r\n", "");
+//            // 这个方法是去解析这一页内容的
+//            // 这里是默认执行的第一页.
+//            handleFirstIndex(client, method, letterContent,indexUrl);
+//            // 释放连接
+//            method.releaseConnection();
         }
 
 //        Map<String, Map<String, Integer>> getSizeQuantityMap(Html html) {
