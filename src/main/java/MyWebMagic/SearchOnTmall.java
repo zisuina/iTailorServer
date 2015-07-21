@@ -41,7 +41,7 @@ public class SearchOnTmall implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        String searchkey = "性感";
+        String searchkey = "连衣裙";
         Spider spider = Spider.create(new SearchOnTmall());
         spider.addUrl("https://list.tmall.com/search_product.htm?q=" + searchkey);
         spider.thread(1);

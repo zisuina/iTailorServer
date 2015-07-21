@@ -26,7 +26,7 @@ public class ImageGet {
             String name = String.valueOf(Math.random() * 100);
             System.out.println(name);
 
-            File ImageFile = new File(".\\src\\main\\webapp\\images\\" + name + ".jpg");//存到本地硬盘名为“captain”
+            File ImageFile = new File(".\\src\\main\\webapp\\images\\" + name + ".png");//存到本地硬盘名为“captain”
             FileOutputStream outstream = new FileOutputStream(ImageFile);
             outstream.write(data);
             outstream.close();
