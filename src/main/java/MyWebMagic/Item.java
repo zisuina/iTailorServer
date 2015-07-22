@@ -1,11 +1,23 @@
 package MyWebMagic;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.json.JSONException;
+import org.json.JSONObject;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -106,6 +118,47 @@ public class Item {
                 result.put(key[0], key[1]);
             }
             return result;
+        }
+
+        public float getTmallRealPrice(String itemId, String skuId) throws IOException, JSONException {
+            HttpClientBuilder builder = HttpClients.custom();
+            builder.setUserAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36");
+            CloseableHttpClient httpClient = builder.build();
+            HttpGet httpGet = new HttpGet("https://mdskip.taobao.com/core/initItemDetail.htm?itemId=" + itemId);
+            httpGet.addHeader("scheme", "https");
+            httpGet.addHeader("version", "HTTP/1.1");
+            httpGet.addHeader("accept", "*/*");
+            httpGet.addHeader("accept-encoding", "gzip, deflate, sdch");
+            httpGet.addHeader("accept-language", "en,zh-CN;q=0.8,zh;q=0.6");
+            httpGet.addHeader("cache-control", "no-cache");
+            httpGet.addHeader("Referer", "https://detail.tmall.com/item.htm?id=" + itemId);
+            CloseableHttpResponse response = httpClient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            OutputStream out = new ByteArrayOutputStream();
+            if (entity != null) {
+                InputStream instream = entity.getContent();
+                int len;
+                byte[] tmp = new byte[2048];
+                while ((len = instream.read(tmp)) != -1) {
+                    out.write(tmp, 0, len);
+                }
+                instream.close();
+            } else {
+                out.write(new byte[]{'{', '}'});
+            }
+            out.close();
+            String context = out.toString();
+            String realPrice = new JSONObject(context)
+                    .getJSONObject("defaultModel")
+                    .getJSONObject("itemPriceResultDO")
+                    .getJSONObject("priceInfo")
+                    .getJSONObject(skuId)
+                    .getJSONArray("promotionList")
+                    .getJSONObject(0)
+                    .getString("price");
+            response.close();
+            httpClient.close();
+            return Float.parseFloat(realPrice);
         }
 
         @Override
