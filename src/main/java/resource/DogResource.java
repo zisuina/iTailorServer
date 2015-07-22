@@ -31,6 +31,7 @@ public class DogResource {
 //    @Consumes(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.TEXT_PLAIN)
     public String saveDog(final String dog) {
+        System.out.println(dog);
         return dog;
     }
 

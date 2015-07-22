@@ -1,4 +1,4 @@
-package MyWebMagic;
+package enums;
 
 /**
  * Created by liker on 22/07/2015 0022.
