@@ -1,7 +1,7 @@
 package resource.example;
 
-import entity.Dog;
-import util.BaseDAO;
+import dao.BaseDAO;
+import bean.Dog;
 
 import javax.servlet.http.HttpServlet;
 

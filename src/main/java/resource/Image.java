@@ -1,7 +1,7 @@
 package resource;
 
-import bean.community.User;
-import bean.community.share.Tag;
+import community.User;
+import community.share.Tag;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

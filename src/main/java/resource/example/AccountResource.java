@@ -1,10 +1,10 @@
 package resource.example;
 
-import entity.Account;
+import securities.Account;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.HibernateSessionFactory;
+import util.hibernate.HibernateSessionFactory;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

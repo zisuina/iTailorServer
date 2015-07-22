@@ -1,10 +1,10 @@
-import entity.Dog;
-import entity.Image;
+import bean.Dog;
+import bean.Image;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.HibernateSessionFactory;
+import util.hibernate.HibernateSessionFactory;
 
 import java.util.List;
 import java.util.Map;

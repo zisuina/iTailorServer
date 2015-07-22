@@ -1,4 +1,4 @@
-import util.testLog2;
+package util;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
  * Created by liker on 08/07/2015 0008.
  * Group iTailor.hunters.neu.edu.cn
  */
-public class testLog {
-    public static void main(String[] args) {
-        Logger logger = Logger.getLogger(testLog.class);
+public class testLog2 {
+    public void show() {
+        Logger logger = Logger.getLogger(testLog2.class);
 //        ALL,TRACE,DEBUG,INFO,WARNING,ERROR,FITAL,OFF
         logger.trace("TRACE message.");
         logger.debug("DEBUG message.");
@@ -22,7 +22,5 @@ public class testLog {
         if(logger.isEnabledFor(Level.ERROR)){
             logger.error("WARNING message when warn is enable");
         }
-        testLog2 tl = new testLog2();
-        tl.show();
     }
 }

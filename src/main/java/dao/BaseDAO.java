@@ -1,7 +1,7 @@
 package dao;
 
 import org.hibernate.Session;
-import util.HibernateSessionFactory;
+import util.hibernate.HibernateSessionFactory;
 
 import java.io.Serializable;
 import java.util.List;

@@ -2,23 +2,29 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/bean/community" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/bean/BodyStatus.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/bean/Resource.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/bean/bean" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/bean/enumeration" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/bean/security" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/community" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/dao" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/elements/BodyStatus.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/dao/JDBCTransaction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/elements/Clothing.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/elements/Comment.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/elements/Diorama.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/elements/Resource.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/elements/User.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/enums/ClothingSpectrum.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/enums/Mood.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/enums/ResourceType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinColor.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinSpectrum.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/UserType.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/exception/Jaxrs2GuideNotFoundException.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/BodyStatus.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/Image.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/securities/Email.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/securities/LoginRecord.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/ImageCompressUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/webMagic/GithubRepo.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/webMagic/GithubRepoPageProcessor.java" charset="UTF-8" />

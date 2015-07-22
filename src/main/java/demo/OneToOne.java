@@ -2,7 +2,7 @@ package demo;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.HibernateSessionFactory;
+import util.hibernate.HibernateSessionFactory;
 
 /**
  * Created by liker on 14/07/2015 0014.

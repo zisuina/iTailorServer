@@ -1,8 +1,8 @@
 package resource;
 
-import entity.Dog;
-import entity.JsonDog;
-import util.BaseDAO;
+import dao.BaseDAO;
+import bean.Dog;
+import bean.JsonDog;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.ServletContext;
