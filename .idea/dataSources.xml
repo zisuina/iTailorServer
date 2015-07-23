@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1451157852">
+    <data-source source="LOCAL" name="MySQL - dog@localhost" uuid="b777c5b5-77d3-4bc3-bba1-a955c22b4610">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/dog</jdbc-url>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+        <property name="autoReconnect" value="true" />
+        <property name="failOverReadOnly" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+  </component>
+</project>

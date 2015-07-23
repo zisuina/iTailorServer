@@ -1,4 +1,4 @@
-package securities;
+package bean;
 
 import javax.persistence.*;
 
@@ -12,6 +12,22 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "password")
+    private String pwd;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private BaseUser baseUser;
+
+
+    public Account(String name, String pwd) {
+        this.name = name;
+        this.pwd = pwd;
+    }
+
+    public Account() {
+    }
 
     public String getName() {
         return name;
@@ -29,17 +45,7 @@ public class Account {
         this.pwd = pwd;
     }
 
-    @Column(name = "name")
-
-    private String name;
-    @Column(name = "password")
-    private String pwd;
-
-    public Account(String name, String pwd) {
-        this.name = name;
-        this.pwd = pwd;
-    }
-
-    public Account() {
+    public int getId() {
+        return id;
     }
 }

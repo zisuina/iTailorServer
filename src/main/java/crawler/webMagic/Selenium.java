@@ -1,4 +1,4 @@
-package webMagic;
+package crawler.webMagic;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -1,4 +1,4 @@
-package webMagic;
+package crawler.webMagic;
 
 /**
  * Created by liker on 21/07/2015 0021.

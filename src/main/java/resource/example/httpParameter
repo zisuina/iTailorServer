@@ -1,0 +1,6 @@
+
+    @Path，标注资源类或者方法的相对路径 　　
+    @GET，@PUT，@POST，@DELETE，标注方法是HTTP请求的类型。 　　
+    @Produces，标注返回的MIME媒体类型 　　
+    @Consumes，标注可接受请求的MIME媒体类型
+    @PathParam，@QueryParam，@HeaderParam，@CookieParam，@MatrixParam，@FormParam,分别标注方法的参数来自于HTTP请求的不同位置，例如@PathParam来自于URL的路径，@QueryParam来自于URL的查询参数，@HeaderParam来自于HTTP请求的头信息，@CookieParam来自于HTTP请求的Cookie。

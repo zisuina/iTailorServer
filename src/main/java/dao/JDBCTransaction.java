@@ -69,10 +69,10 @@ public class JDBCTransaction {
             connection = getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                System.out.println(resultSet.findColumn("id"));
-                System.out.println(resultSet.getString("password"));
-            }
+//            while (resultSet.next()) {
+//                System.out.println(resultSet.findColumn("id"));
+//                System.out.println(resultSet.getString("password"));
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

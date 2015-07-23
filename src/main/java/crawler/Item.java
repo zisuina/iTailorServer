@@ -164,9 +164,9 @@ public class Item {
             for (String skuid : skuIds) {
                 try {
                     priceMap.put(skuid, getTmallRealPrice(itemId, skuid));
-//                    System.out.println(skuid+":"+getTmallRealPrice(itemId,skuid));
+                    System.out.println(skuid + ":" + getTmallRealPrice(itemId, skuid));
                 } catch (Exception e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             }
             return priceMap;
@@ -232,6 +232,8 @@ public class Item {
                         int sell = getSellCount(itemId);
                         skuItems.add(new SkuItem(sku, size, color, stock, sell, price));
                         System.out.println(sku + " : " + size + " : " + color + ":" + price + " : " + stock + " : " + sell);
+                        System.out.println("----------");
+                        getPriceMap();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -242,10 +244,10 @@ public class Item {
     }
 
     public static void main(String[] args) {
-//        Item item = new Item("43663164301");
+        Item item = new Item("43663164301");
 //        Item item = new Item("37521992837");
 //        Item item = new Item("43873949784");
-        Item item = new Item("43671643681");
+//        Item item = new Item("43671643681");
         item.maintain();
     }
 

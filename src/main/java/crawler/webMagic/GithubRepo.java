@@ -1,4 +1,4 @@
-package webMagic;
+package crawler.webMagic;
 
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.ConsolePageModelPipeline;

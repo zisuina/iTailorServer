@@ -23,8 +23,9 @@
         <property name="current_session_context_class">thread</property>
         <mapping class="bean.Dog"/>
         <mapping class="bean.Image"/>
-        <mapping class="securities.Account"/>
+        <mapping class="bean.Account"/>
         <mapping class="demo.Department"/>
         <mapping class="demo.Manager"/>
+        <mapping class="bean.BaseUser"/>
     </session-factory>
 </hibernate-configuration>

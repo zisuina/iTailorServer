@@ -1,4 +1,4 @@
-package bean.security;
+package resource.finished;
 
 import java.sql.Timestamp;
 
@@ -7,7 +7,8 @@ import java.sql.Timestamp;
  * Tag iTailor.hunters.neu.edu.cn
  */
 public class LoginRecord {
+    private int id;
     private String ip;
-    private String udid;
     private Timestamp timestamp;
+    private String machineID;
 }

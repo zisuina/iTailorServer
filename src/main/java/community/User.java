@@ -26,7 +26,7 @@ public class User {
     private int closetId;
     private int watchlistId;
     private Stack<Push> messagesQueue;
-//    private ArrayList<bean.security.LoginRecord> loginRecords;
+//    private ArrayList<bean.resource.finished.LoginRecord> loginRecords;
     private TimeLine timeLine;
     private ArrayList<Tag> tags = new ArrayList<Tag>();
     private ArrayList<User> friends = new ArrayList<User>();

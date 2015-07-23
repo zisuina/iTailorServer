@@ -1,4 +1,4 @@
-package webMagic;
+package crawler.webMagic;
 
 
 import org.jsoup.Jsoup;
