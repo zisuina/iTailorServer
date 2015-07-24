@@ -19,8 +19,12 @@
     <file url="file://$PROJECT_DIR$/src/main/java/exception/Jaxrs2GuideNotFoundException.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/BodyStatus.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/Image.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/resource/finished/AirApplication.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/finished/LoginRecord.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/resource/user/Example.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/security/Email.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/util/BaseDAO.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/log4j.properties" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp" charset="GBK" />
   </component>
 </project>
