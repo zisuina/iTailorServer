@@ -1,5 +1,4 @@
 package util;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -48,7 +47,8 @@ public class HibernateSessionFactory {
      * @throws HibernateException
      */
     public static Session getSession() throws HibernateException {
-        Session session = threadLocal.get();
+//        Session session = (Session) threadLocal.get();
+        Session session =  threadLocal.get();
 
         if (session == null || !session.isOpen()) {
             if (sessionFactory == null) {
@@ -82,6 +82,7 @@ public class HibernateSessionFactory {
      * @throws HibernateException
      */
     public static void closeSession() throws HibernateException {
+//        Session session = (Session) threadLocal.get();
         Session session = threadLocal.get();
         threadLocal.set(null);
 

@@ -30,7 +30,7 @@ public class BaseDAO<T> {
 
     public void create(T object) {
 
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Session session =  HibernateSessionFactory.getSessionFactory().openSession();
         try {
             session.beginTransaction();
             session.persist(object);
