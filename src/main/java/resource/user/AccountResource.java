@@ -12,7 +12,7 @@ import java.util.List;
  * Created by liker on 10/07/2015 0010.
  * Group iTailor.hunters.neu.edu.cn
  */
-@Path("account")
+@Path("accounts")
 public class AccountResource {
 
     @GET

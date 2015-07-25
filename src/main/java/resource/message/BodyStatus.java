@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * Group iTailor.hunters.neu.edu.cn
  */
 @XmlRootElement(name = "body")
-public class Body {
+public class BodyStatus {
     @XmlElement(name = "userID")
     private String userID;
     @XmlElement(name = "timestamp")
@@ -55,6 +55,6 @@ public class Body {
     @XmlElement(name = "mood")
     private int mood;
 
-    public Body() {
+    public BodyStatus() {
     }
 }

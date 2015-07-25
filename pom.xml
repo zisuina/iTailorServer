@@ -116,11 +116,17 @@
             <artifactId>webmagic-extension</artifactId>
             <version>0.5.2</version>
         </dependency>
-        <!--org.message-->
+        <!--org.json-->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20141113</version>
+        </dependency>
+        <!--net.coobird-->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.8</version>
         </dependency>
 
     </dependencies>

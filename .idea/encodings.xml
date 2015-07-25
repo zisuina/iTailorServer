@@ -2,15 +2,59 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/community" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Cloth.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Cloth.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Dress.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Dress.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/HumanData.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/HumanData.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/IGA.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/IGA.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/InnerClass_Test.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/InnerClass_Test.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Match.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Match.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Men.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Men.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Pants.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Pants.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Skirt.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Skirt.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Weather.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/Weather.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/women.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/costume/crystal/women.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/Item.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/ItemDescription.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/SearchOnTmall.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/SkuItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/demo" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/entity/Resource.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/ClothingSpectrum.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/Mood.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/ResourceType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/Size.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinColor.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinSpectrum.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/UserType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/exception/Jaxrs2GuideNotFoundException.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recognize" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/user/Example.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/user/RegistrationResource.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/BaseDAO.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/util/EmailVerification.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/util/dao" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/util/encryption" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/util/file" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/util/hibernate" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/wardrobe" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/log4j.properties" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/test/java/resource/util/testLog2.java" charset="GBK" />
   </component>
 </project>

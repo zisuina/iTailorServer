@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 @Path("registration")
 public class RegistrationResource {
     private static final Logger LOGGER = Logger.getLogger(RegistrationResource.class);
+//    {"nickname":"liker","email":"liker.xu@foxmail.com","password":"hunters","machID":"linux-android"}
 
     @PUT
     @Produces(MediaType.TEXT_PLAIN)

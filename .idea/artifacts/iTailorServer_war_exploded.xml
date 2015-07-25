@@ -76,6 +76,7 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.37" />
           <element id="library" level="project" name="Maven: org.json:json:20141113" />
+          <element id="library" level="project" name="Maven: net.coobird:thumbnailator:0.4.8" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -8,7 +8,7 @@
             com.mysql.jdbc.Driver
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://192.168.0.102:3306/dog?characterEncoding=UTF-8
+            jdbc:mysql://192.168.0.102:3306/hunters?characterEncoding=UTF-8
         </property>
         <property name="connection.username">hunters</property>
         <property name="connection.password">hunters</property>

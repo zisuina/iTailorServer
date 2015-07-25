@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * Created by liker on 24/07/2015 0024.
  * Group iTailor.hunters.neu.edu.cn
  */
-@XmlRootElement(name = "favour")
+@XmlRootElement(name = "comment")
 public class Comment {
     @XmlElement(name = "initiativeID")
     private int initiativeID;
