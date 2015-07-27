@@ -17,6 +17,7 @@ public class AccountResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
     public Account get(@QueryParam("email") final String name) {
         if (name == null || !EmailVerification.isValid(name) || name.isEmpty()) {
             return null;
@@ -72,7 +73,7 @@ public class AccountResource {
         return false;
     }
 
-    //修改
+    //add
     @PUT
     @Produces(MediaType.TEXT_PLAIN)
     public boolean put(@QueryParam("email") final String name,

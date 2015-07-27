@@ -1,7 +1,7 @@
 package resource.user;
 
 import entity.Account;
-import entity.BaseUser;
+import entity.User;
 import org.apache.log4j.Logger;
 import resource.message.Registration;
 import util.BaseDAO;
@@ -26,9 +26,9 @@ public class RegistrationResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public String put(Registration jsonObject) {
         Account account = new Account(jsonObject.getEmail(),jsonObject.getPassword());
-        BaseUser baseUser = new BaseUser(jsonObject.getNickname(),account);
-        BaseDAO<BaseUser> accountDAO2 = new BaseDAO<>();
-        accountDAO2.create(baseUser);
+        User user = new User(jsonObject.getNickname(),account);
+        BaseDAO<User> accountDAO2 = new BaseDAO<>();
+        accountDAO2.create(user);
         BaseDAO<Account> accountDAO = new BaseDAO<>();
         accountDAO.create(account);
         return "Yes,we save it!";

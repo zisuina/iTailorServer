@@ -2,7 +2,7 @@ package util;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-
+import util.hibernate.HibernateSessionFactory;
 import java.io.Serializable;
 import java.util.List;
 
@@ -34,6 +34,7 @@ public class BaseDAO<T> {
         try {
             session.beginTransaction();
             session.persist(object);
+            System.out.println("FINEEEEEEEEEEEEEEEEEEE");
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();

@@ -17,8 +17,8 @@ public class Account {
     @Column(name = "password")
     private String pwd;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "baseUser", referencedColumnName = "account")
-    private BaseUser baseUser;
+    @JoinColumn(name = "user", referencedColumnName = "account")
+    private User user;
 
 
     public Account(String name, String pwd) {

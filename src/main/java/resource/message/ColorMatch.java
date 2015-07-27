@@ -1,5 +1,7 @@
 package resource.message;
 
+import entity.Color;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 

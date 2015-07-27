@@ -1,24 +1,67 @@
 package entity;
 
+import javax.persistence.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by liker on 24/07/2015 0024.
  * Group iTailor.hunters.neu.edu.cn
  */
+@Entity
+@Table(name = "colors")
 public class Colors {
-    private int variety = 99;
-    private String[] colors = {"黑色", "象牙黑", "灰色", "冷灰", "石板灰", "暖灰色", "白色", "古董白", "天蓝色", "白烟", "白杏仁", "穗丝白", "蛋壳色", "花白", "浅灰", "苍白",
-            "蜜露橙", "象牙白", "亚麻色", "海白色", "旧布黄", "海贝壳色", "雪白", "红色", "砖红", "镉红", "珊瑚色", "耐火砖色", "印度红", "栗色", "粉红",
-            "草莓色", "橙红色", "番茄红", "桔红", "晶红色", "黄色", "香蕉色", "镉黄", "粉橙色", "粉金色", "金黄色", "黄花色", "瓜色", "橙色", "镉橙", "胡萝卜色",
-            "桔黄", "淡黄色", "棕色", "米色", "锻浓黄土色", "锻棕土色", "巧克力色", "肉色", "黄褐色", "玫瑰红", "肖贡土色", "棕土色", "乌贼墨棕", "赫色",
-            "马棕色", "沙棕色", "棕褐色", "蓝色", "钴色", "道奇蓝", "暗蓝", "锰蓝", "深蓝色", "孔雀蓝", "土耳其玉色", "浅灰蓝色", "品蓝", "石板蓝", "天蓝",
-            "青色", "绿土", "靛青", "碧绿色", "青绿色", "绿色", "黄绿色", "钴绿色", "翠绿色", "森林绿", "草地绿", "酸橙绿", "薄荷色", "草绿色", "暗绿色",
-            "海绿色", "嫩绿色", "紫色", "紫罗兰色", "浅紫色", "湖紫色", "淡紫色", "梅红色"};
+    private int id;
+    private Set<Color> colors;
 
-    public String[] getColors() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public int getId() {
+        return id;
+
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumns(value = {@JoinColumn(name = "color_id")})
+    public Set<Color> getColors() {
         return colors;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Colors().getColors().length);
+    public void setColors(Set<Color> colors) {
+        this.colors = colors;
+    }
+
+    public Colors() {
+        colors = new HashSet<>();
+    }
+
+    public boolean loadColorsFromFile(String url) {
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(url), "UTF-8"));
+            String str = null;
+            while ((str = br.readLine()) != null) {
+                String[] temp = str.split("\t", 5);
+                Color color = new Color();
+                color.setName_ch(temp[0]);
+                color.setRed(Integer.parseInt(temp[1]));
+                color.setGreen(Integer.parseInt(temp[2]));
+                color.setBlue(Integer.parseInt(temp[3]));
+                color.setName_en(temp[4]);
+                colors.add(color);
+            }
+            br.close();
+            System.out.println(colors.size());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

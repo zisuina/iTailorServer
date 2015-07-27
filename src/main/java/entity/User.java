@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "user")
-public class BaseUser {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -24,12 +24,12 @@ public class BaseUser {
 //    @JoinColumns(value = {@JoinColumn(name = "loginRecords", referencedColumnName = "id")})
 //    private ArrayList<LoginRecord> loginRecords;
 
-    public BaseUser(String nickname, Account account) {
+    public User(String nickname, Account account) {
         this.nickname = nickname;
         this.account = account;
     }
 
-    public BaseUser() {
+    public User() {
     }
 
     public int getId() {

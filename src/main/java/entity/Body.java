@@ -1,7 +1,5 @@
 package entity;
 
-import resource.message.BodyStatus;
-
 import javax.persistence.*;
 import java.util.List;
 
