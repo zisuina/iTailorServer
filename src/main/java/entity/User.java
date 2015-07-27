@@ -1,7 +1,10 @@
 package entity;
 
 
+import enums.UserType;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by liker on 23/07/2015 0023.
@@ -19,6 +22,12 @@ public class User {
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "account")
     private Account account;
+
+    private UserType userType;
+
+    private Wardrobe rootWardrobe;
+    private List<PushMessage> pushMessageList;
+
 
 //    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 //    @JoinColumns(value = {@JoinColumn(name = "loginRecords", referencedColumnName = "id")})

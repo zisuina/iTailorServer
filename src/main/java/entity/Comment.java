@@ -20,6 +20,7 @@ public class Comment {
     private int context;//点赞可为特殊context
     @XmlElement(name = "timestamp")
     private Timestamp timestamp;
+    private int thumbNum;//点赞数
     public Comment() {
     }
 }

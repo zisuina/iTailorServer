@@ -1,22 +1,20 @@
 package entity;
 
-import java.io.File;
-import java.net.URL;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by liker on 19/06/2015 0019.
  */
 public class Resource {
-//    private ResourceType type;
     private int resourceId;
     private int userId;
     private int commentId;
-    private URL location;
-    private File file;
-    private Date date;
-    private URL orignalURL;
-//    private Comment comment;
+    private String location;
+    private float sizeKB;
+    private Timestamp timestamp;
+    private String source;
+    private List<Comment> comments;
     private String description;
-    private int likeNum;
+    private int thumbNum;
 }
