@@ -1,4 +1,4 @@
-package entity;
+package hibernate.recommendation;
 
 import javax.persistence.*;
 import java.util.List;

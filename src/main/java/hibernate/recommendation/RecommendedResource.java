@@ -1,4 +1,4 @@
-package entity;
+package hibernate.recommendation;
 
 /**
  * Created by liker on 27/07/2015 0027.

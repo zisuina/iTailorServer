@@ -1,6 +1,6 @@
 package resource.user;
 
-import entity.Color;
+import hibernate.elements.Color;
 import util.BaseDAO;
 
 import javax.ws.rs.GET;

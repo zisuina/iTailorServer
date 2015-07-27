@@ -1,10 +1,7 @@
-package entity;
+package hibernate.recommendation;
 
-
-import enums.UserType;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by liker on 23/07/2015 0023.
@@ -19,24 +16,24 @@ public class User {
     @Column(name = "nickname")
     private String nickname;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "account")
-    private Account account;
+//    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "account")
+//    private Account account;
 
-    private UserType userType;
-
-    private Wardrobe rootWardrobe;
-    private List<PushMessage> pushMessageList;
+//    private UserType userType;
+//
+//    private Wardrobe rootWardrobe;
+//    private List<Message> pushMessageList;
 
 
 //    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 //    @JoinColumns(value = {@JoinColumn(name = "loginRecords", referencedColumnName = "id")})
 //    private ArrayList<LoginRecord> loginRecords;
 
-    public User(String nickname, Account account) {
-        this.nickname = nickname;
-        this.account = account;
-    }
+//    public User(String nickname, Account account) {
+//        this.nickname = nickname;
+//        this.account = account;
+//    }
 
     public User() {
     }
@@ -54,12 +51,12 @@ public class User {
         this.nickname = nickname;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
 
 }

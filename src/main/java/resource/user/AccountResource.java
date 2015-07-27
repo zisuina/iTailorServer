@@ -1,6 +1,6 @@
 package resource.user;
 
-import entity.Account;
+import hibernate.community.Account;
 import util.BaseDAO;
 import util.EmailVerification;
 
@@ -25,9 +25,9 @@ public class AccountResource {
         BaseDAO<Account> accountDAO = new BaseDAO<>();
         List<Account> accountList = accountDAO.list("select t from Account as t");
         for (Account one : accountList) {
-            if (one.getName().equals(name)) {
-                return new Account(one.getName(), "no-way");
-            }
+//            if (one.getName().equals(name)) {
+//                return new Account(one.getName(), "no-way");
+//            }
         }
         return null;
     }
@@ -44,11 +44,11 @@ public class AccountResource {
         BaseDAO<Account> accountDAO = new BaseDAO<>();
         List<Account> accountList = accountDAO.list("select t from Account as t");
         for (Account one : accountList) {
-            if (one.getName().equals(name)) {
-                return false;
-            }
+//            if (one.getName().equals(name)) {
+//                return false;
+//            }
         }
-        accountDAO.create(new Account(name, pwd == null ? "" : pwd));
+//        accountDAO.create(new Account(name, pwd == null ? "" : pwd));
         return true;
     }
 
@@ -63,12 +63,12 @@ public class AccountResource {
         BaseDAO<Account> accountDAO = new BaseDAO<>();
         List<Account> accountList = accountDAO.list("select t from Account as t");
         for (Account one : accountList) {
-            if (one.getName().equals(name)) {
-                if (one.getPwd().isEmpty() || one.getPwd().equals(pwd)) {
-                    accountDAO.delete(one);
-                    return true;
-                }
-            }
+//            if (one.getName().equals(name)) {
+//                if (one.getPwd().isEmpty() || one.getPwd().equals(pwd)) {
+//                    accountDAO.delete(one);
+//                    return true;
+//                }
+//            }
         }
         return false;
     }
@@ -86,13 +86,13 @@ public class AccountResource {
         BaseDAO<Account> accountDAO = new BaseDAO<>();
         List<Account> accountList = accountDAO.list("select t from Account as t");
         for (Account one : accountList) {
-            if (one.getName().equals(name)) {
-                if (one.getPwd().isEmpty() || one.getPwd().equals(pwd)) {
-                    one.setPwd(newpwd == null ? "" : newpwd);
-                    accountDAO.update(one);
-                    return true;
-                }
-            }
+//            if (one.getName().equals(name)) {
+//                if (one.getPwd().isEmpty() || one.getPwd().equals(pwd)) {
+//                    one.setPwd(newpwd == null ? "" : newpwd);
+//                    accountDAO.update(one);
+//                    return true;
+//                }
+//            }
         }
         return false;
     }

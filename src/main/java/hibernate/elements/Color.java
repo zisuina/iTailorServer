@@ -1,4 +1,4 @@
-package entity;
+package hibernate.elements;
 
 import javax.persistence.*;
 
