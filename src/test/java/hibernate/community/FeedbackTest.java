@@ -10,7 +10,6 @@ import util.BaseDAO;
 public class FeedbackTest {
     @Test
     public void testHibernate() {
-        Account account = new Account("liker.xu@foxmail.com","66666");
-        new BaseDAO<Feedback>().create(new Feedback("hello hibernate",account));
+        new BaseDAO<Feedback>().create(new Feedback());
     }
 }

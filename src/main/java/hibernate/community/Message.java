@@ -9,38 +9,61 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "messages")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private int messageID;
-    private String context;
-    private Timestamp timestamp;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "senderAccount", nullable = false)
     private Account senderAccount;
-    public Message(String context, Account sender) {
-        this.context = context;
-        this.timestamp = new Timestamp(System.currentTimeMillis());
-        this.senderAccount = sender;
-    }
+    private String context;
+    private Timestamp createdTime;
+
     public Message() {
+        this.createdTime = new Timestamp(System.currentTimeMillis());
     }
+
+    //    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    public int getMessageID() {
+        return messageID;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID")
+    public Account getSenderAccount() {
+        return senderAccount;
+    }
+
+
+    public Message(String context, Account senderAccount) {
+        this.context = context;
+        this.createdTime = new Timestamp(System.currentTimeMillis());
+        this.senderAccount = senderAccount;
+    }
+
+    public void setMessageID(int messageID) {
+        this.messageID = messageID;
+    }
+
     public String getContext() {
         return context;
     }
+
     public void setContext(String context) {
         this.context = context;
     }
+
+    @Column(name = "createdTime")
     public Timestamp getTimestamp() {
-        return timestamp;
+        return createdTime;
     }
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+
+    public void setTimestamp(Timestamp createdTime) {
+        this.createdTime = createdTime;
     }
-    public Account getSender() {
-        return senderAccount;
-    }
-    public void setSender(Account sender) {
-        this.senderAccount = sender;
+
+    public void setSenderAccount(Account senderAccount) {
+        this.senderAccount = senderAccount;
     }
 }

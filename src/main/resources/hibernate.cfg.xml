@@ -21,7 +21,6 @@
         <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <property name="current_session_context_class">thread</property>
-        <!--<mapping class="hibernate.community.Account"/>-->
         <!--<mapping class="hibernate.recommendation.User"/>-->
         <!--<mapping class="hibernate.elements.Colors"/>-->
         <!--<mapping class="hibernate.elements.Color"/>-->
@@ -31,6 +30,8 @@
         <mapping class="hibernate.community.Comment"/>
         <mapping class="hibernate.community.Feedback"/>
         <mapping class="hibernate.community.Group"/>
+        <mapping class="hibernate.community.ShareItem"/>
+        <mapping class="hibernate.community.LoginRecord"/>
 
     </session-factory>
 </hibernate-configuration>

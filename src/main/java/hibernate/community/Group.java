@@ -11,12 +11,27 @@ import java.util.Set;
 @Entity
 @Table(name = "groups")
 public class Group {
-
-    private int groupID;
-    private Set<Account> accountList = new HashSet<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private int groupID;
+
+//    @ManyToMany(mappedBy = "groups",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER,
+//            targetEntity = Account.class)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "account_groups",
+            joinColumns = {@JoinColumn(name = "groupID", referencedColumnName = "groupID")},
+            inverseJoinColumns = {@JoinColumn(name = "accountID", referencedColumnName ="accountID")})
+    private Set<Account> accountList = new HashSet<>();
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "controlID")
+    private AccessControl accessControl;
+
+    public Group() {
+    }
+
     public int getGroupID() {
         return groupID;
     }
@@ -25,23 +40,14 @@ public class Group {
         this.groupID = groupID;
     }
 
-    private AccessControl accessControl;
-
-
-    public Group() {
-    }
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "controlID")
     public AccessControl getAccessControl() {
         return accessControl;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID")
     public Set<Account> getAccountList() {
         return accountList;
     }
+
     public void setAccessControl(AccessControl accessControl) {
         this.accessControl = accessControl;
     }

@@ -7,19 +7,20 @@ import javax.persistence.*;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
+@Table(name = "feedback")
 public class Feedback extends Message{
-    private boolean isAccepted;
-
+    @Column(name = "isAccepted")
+    private boolean accepted;
     public Feedback(String context, Account sender) {
         super(context, sender);
     }
     public Feedback() {
     }
-
     public boolean isAccepted() {
-        return isAccepted;
+        return accepted;
     }
-    public void setIsAccepted(boolean isAccepted) {
-        this.isAccepted = isAccepted;
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
+
 }
