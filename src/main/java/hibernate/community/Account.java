@@ -1,6 +1,8 @@
 package hibernate.community;
 
 
+import hibernate.recommendation.User;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,37 +17,32 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int accountID;
-    //    @Column(name = "email", unique = true, nullable = false, updatable = false)
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, updatable = false)
     private String email;
-    private String password;
-    //    private User user;
+    private String password = "";
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "userID_FK", nullable = false, updatable = false)
+    private User user = new User();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<Feedback> feedbacks = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<Message> messageList = new ArrayList<>();
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "account_groups",
             joinColumns = {@JoinColumn(name = "accountID_FK", referencedColumnName = "accountID")},
             inverseJoinColumns = {@JoinColumn(name = "groupID_FK", referencedColumnName = "groupID")})
     private List<Group> groups = new ArrayList<>();
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "timeLineID_FK", nullable = false)
     private TimeLine timeLine = new TimeLine();
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<ShareItem> shareItems = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<LoginRecord> loginRecords = new ArrayList<>();
-
     private boolean sync;
 
     public Account(String email, String password) {
@@ -135,4 +132,14 @@ public class Account {
     public void setSync(boolean sync) {
         this.sync = sync;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }

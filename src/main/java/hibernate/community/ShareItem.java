@@ -1,5 +1,7 @@
 package hibernate.community;
 
+import hibernate.recommendation.Resource;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -15,7 +17,11 @@ public class ShareItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int shareItemID;
-    //    private Resource resource;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "resourceID_FK", nullable = false)
+    private Resource resource = new Resource();
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "shareItemID_FK", nullable = false)
     private List<Comment> comments = new ArrayList<>();
@@ -48,5 +54,13 @@ public class ShareItem {
 
     public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 }

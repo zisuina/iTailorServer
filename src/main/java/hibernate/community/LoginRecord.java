@@ -14,8 +14,8 @@ public class LoginRecord {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int loginRecordID;
     private Timestamp createdTime;
-    private String UDID;
-    private String ip;
+    private String UDID = "";
+    private String ip = "127.0.0.1";
 
     public LoginRecord() {
         this.createdTime = new Timestamp(System.currentTimeMillis());

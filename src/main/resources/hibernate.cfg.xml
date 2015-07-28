@@ -33,6 +33,8 @@
         <mapping class="hibernate.community.ShareItem"/>
         <mapping class="hibernate.community.LoginRecord"/>
         <mapping class="hibernate.community.TimeLine"/>
+        <mapping class="hibernate.recommendation.User"/>
+        <mapping class="hibernate.recommendation.Resource"/>
 
     </session-factory>
 </hibernate-configuration>

@@ -17,7 +17,7 @@ public class Message {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK", nullable = false)
     private Account senderAccount;
-    private String context;
+    private String context = "";
     private Timestamp createdTime;
 
     public Message() {
