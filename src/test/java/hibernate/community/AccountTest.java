@@ -8,51 +8,57 @@ import util.BaseDAO;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class AccountTest {
-//    @Test
-//    public void testHibernate() {
-//        Account account = new Account("liker.xu@foxmail.com", "liker12134");
-//        LoginRecord loginRecord = new LoginRecord();
-//        loginRecord.setIp("192.168.0.108");
-//        loginRecord.setUDID("4567654345677654456");
-//        account.getLoginRecords().add(loginRecord);
-//        new BaseDAO<Account>().create(account);
-//    }
-//    @Test
-//    public void testHibernateBasic() {
-//        Account account = new Account("liker.xu@foxmail.com", "liker12134");
-//        new BaseDAO<Account>().create(account);
-//    }
     @Test
-    public void testHibernateSuper() {
+    public void testHibernate() {
         Account account = new Account("liker.xu@foxmail.com", "liker12134");
         LoginRecord loginRecord = new LoginRecord();
         loginRecord.setIp("192.168.0.108");
         loginRecord.setUDID("4567654345677654456");
         account.getLoginRecords().add(loginRecord);
-        Message message = new Message();
-        message.setContext("this is just a message");
-        account.getMessageList().add(message);
-        ShareItem shareItem = new ShareItem();
-        Comment comment = new Comment();
-        comment.setContext("this is a comment message.");
-        comment.setThumbNum(10);
-        shareItem.getComments().add(comment);
-        account.getShareItems().add(shareItem);
-        AccessControl accessControl = new AccessControl(true,false);
+        new BaseDAO<Account>().create(account);
+    }
+    @Test
+    public void testHibernateBasic() {
+        Account account = new Account("liker.xu@foxmail.com", "liker12134");
+        new BaseDAO<Account>().create(account);
+    }
+    @Test
+    public void testHibernateFinal() {
+        AccessControl accessControl = new AccessControl(false,false);
+
+        LoginRecord loginRecord = new LoginRecord();
+        loginRecord.setIp("192.168.0.108");
+        loginRecord.setUDID("4567654345677654456");
+
+        Account account = new Account("liker.xu@foxmail.com","66666");
+        Account account2 = new Account("thea.zhu@foxmail.com","88888");
+
+        account.getLoginRecords().add(loginRecord);
+
         Group group = new Group();
         group.setAccessControl(accessControl);
-        Account account2 = new Account("thea.zhu@foxmail.com", "thea12134");
         group.getAccountList().add(account2);
         account.getGroups().add(group);
-        Feedback feedback = new Feedback();
-        feedback.setContext("this is a feedback message.");
-        feedback.setAccepted(true);
+
+        TimeLine timeLine = new TimeLine();
+        account.setTimeLine(timeLine);
+
+        ShareItem shareItem = new ShareItem();
+        account.getShareItems().add(shareItem);
+
+        timeLine.getShareItems().add(shareItem);
+
+        Message message = new Message("message",account2);
+        account.getMessageList().add(message);
+
+        Comment comment = new Comment("comment",account);
+        shareItem.getComments().add(comment);
+
+        Feedback feedback = new Feedback("feedback",account2);
         account.getFeedbacks().add(feedback);
-        Feedback feedback2 = new Feedback();
-        feedback2.setContext("this is an unaccepted feedback message.");
-        feedback2.setAccepted(false);
-        account.getFeedbacks().add(feedback2);
+
         new BaseDAO<Account>().create(account);
+
     }
 
 }

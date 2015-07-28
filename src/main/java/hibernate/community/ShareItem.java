@@ -12,18 +12,20 @@ import java.util.List;
 @Entity
 @Table(name = "shareItems")
 public class ShareItem {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int shareItemID;
     //    private Resource resource;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "shareItemID_FK", nullable = false)
     private List<Comment> comments = new ArrayList<>();
+
     private Timestamp createdTime;
 
     public ShareItem() {
         this.createdTime = new Timestamp(System.currentTimeMillis());
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getShareItemID() {
         return shareItemID;
     }
@@ -32,8 +34,6 @@ public class ShareItem {
         this.shareItemID = shareItemID;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "shareItemID")
     public List<Comment> getComments() {
         return comments;
     }
@@ -41,12 +41,12 @@ public class ShareItem {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    @Column(name = "createdTime")
-    public Timestamp getTimestamp() {
+
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
-    public void setTimestamp(Timestamp createdTime) {
+    public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
     }
 }

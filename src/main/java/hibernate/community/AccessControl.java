@@ -1,6 +1,5 @@
 package hibernate.community;
 
-
 import javax.persistence.*;
 
 /**
@@ -8,7 +7,7 @@ import javax.persistence.*;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "access_control")
+@Table(name = "access_Control")
 public class AccessControl {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,19 +27,24 @@ public class AccessControl {
         this.send = true;
         this.receive = true;
     }
+
     public AccessControl(boolean receive, boolean send) {
         this.receive = receive;
         this.send = send;
     }
+
     public void setReceive(boolean receive) {
         this.receive = receive;
     }
+
     public void setSend(boolean send) {
         this.send = send;
     }
+
     public boolean isReceive() {
         return receive;
     }
+
     public boolean isSend() {
         return send;
     }

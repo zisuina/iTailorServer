@@ -11,8 +11,11 @@ import java.sql.Timestamp;
 @Table(name = "messages")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Message {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int messageID;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID_FK", nullable = false)
     private Account senderAccount;
     private String context;
     private Timestamp createdTime;
@@ -21,20 +24,13 @@ public class Message {
         this.createdTime = new Timestamp(System.currentTimeMillis());
     }
 
-    //    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     public int getMessageID() {
         return messageID;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID")
     public Account getSenderAccount() {
         return senderAccount;
     }
-
 
     public Message(String context, Account senderAccount) {
         this.context = context;
@@ -54,12 +50,11 @@ public class Message {
         this.context = context;
     }
 
-    @Column(name = "createdTime")
-    public Timestamp getTimestamp() {
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
-    public void setTimestamp(Timestamp createdTime) {
+    public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
     }
 

@@ -12,24 +12,41 @@ import java.util.List;
 @Entity
 @Table(name = "accounts")
 public class Account {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int accountID;
+    //    @Column(name = "email", unique = true, nullable = false, updatable = false)
+    @Column(name = "email", unique = true)
     private String email;
     private String password;
-    //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user", referencedColumnName = "account")
-//    private User user;
-
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "feedback_accountID")
+    //    private User user;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID_FK")
     private List<Feedback> feedbacks = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID_FK")
     private List<Message> messageList = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "account_groups",
+            joinColumns = {@JoinColumn(name = "accountID_FK", referencedColumnName = "accountID")},
+            inverseJoinColumns = {@JoinColumn(name = "groupID_FK", referencedColumnName = "groupID")})
     private List<Group> groups = new ArrayList<>();
-    //    private Map<Group,AccessControl> groupAccessControlMap;
-//    private TimeLine timeLine;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "timeLineID_FK", nullable = false)
+    private TimeLine timeLine = new TimeLine();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID_FK")
     private List<ShareItem> shareItems = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID_FK")
     private List<LoginRecord> loginRecords = new ArrayList<>();
-//    private Map<String,Boolean> applicationSettings;
+
+    private boolean sync;
 
     public Account(String email, String password) {
         this.email = email;
@@ -39,8 +56,6 @@ public class Account {
     public Account() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getAccountID() {
         return accountID;
     }
@@ -49,12 +64,14 @@ public class Account {
         this.accountID = accountID;
     }
 
-    //    @Column(name = "email")
     public String getEmail() {
         return email;
     }
 
-    //    @Column(name = "password")
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -63,33 +80,14 @@ public class Account {
         this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID")
-    public List<LoginRecord> getLoginRecords() {
-        return loginRecords;
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 
-    public void setLoginRecords(List<LoginRecord> loginRecords) {
-        this.loginRecords = loginRecords;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "account_groups",
-            joinColumns = {@JoinColumn(name = "accountID", referencedColumnName = "accountID")},
-            inverseJoinColumns = {@JoinColumn(name = "groupID", referencedColumnName = "groupID")})
-    public List<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
-    }
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID")
     public List<Message> getMessageList() {
         return messageList;
     }
@@ -98,8 +96,22 @@ public class Account {
         this.messageList = messageList;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID")
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
+    public TimeLine getTimeLine() {
+        return timeLine;
+    }
+
+    public void setTimeLine(TimeLine timeLine) {
+        this.timeLine = timeLine;
+    }
+
     public List<ShareItem> getShareItems() {
         return shareItems;
     }
@@ -107,13 +119,20 @@ public class Account {
     public void setShareItems(List<ShareItem> shareItems) {
         this.shareItems = shareItems;
     }
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID")
-    public List<Feedback> getFeedbacks() {
-        return feedbacks;
+
+    public List<LoginRecord> getLoginRecords() {
+        return loginRecords;
     }
 
-    public void setFeedbacks(List<Feedback> feedbacks) {
-        this.feedbacks = feedbacks;
+    public void setLoginRecords(List<LoginRecord> loginRecords) {
+        this.loginRecords = loginRecords;
+    }
+
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
     }
 }

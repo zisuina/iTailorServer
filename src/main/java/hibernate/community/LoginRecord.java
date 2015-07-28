@@ -8,9 +8,10 @@ import java.sql.Timestamp;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "login_records")
+@Table(name = "login_Records")
 public class LoginRecord {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int loginRecordID;
     private Timestamp createdTime;
     private String UDID;
@@ -19,8 +20,7 @@ public class LoginRecord {
     public LoginRecord() {
         this.createdTime = new Timestamp(System.currentTimeMillis());
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public int getLoginRecordID() {
         return loginRecordID;
     }
@@ -28,12 +28,12 @@ public class LoginRecord {
     public void setLoginRecordID(int loginRecordID) {
         this.loginRecordID = loginRecordID;
     }
-    @Column(name = "createdTime")
-    public Timestamp getTimestamp() {
+
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
-    public void setTimestamp(Timestamp createdTime) {
+    public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
     }
 

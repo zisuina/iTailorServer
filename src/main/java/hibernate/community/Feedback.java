@@ -8,17 +8,21 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "feedback")
-public class Feedback extends Message{
+public class Feedback extends Message {
     @Column(name = "isAccepted")
-    private boolean accepted;
+    private boolean accepted = false;
+
     public Feedback(String context, Account sender) {
         super(context, sender);
     }
+
     public Feedback() {
     }
+
     public boolean isAccepted() {
         return accepted;
     }
+
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
     }

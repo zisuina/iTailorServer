@@ -10,9 +10,6 @@ import util.BaseDAO;
 public class MessageTest {
     @Test
     public void testHibernateToSaveSender(){
-
-//        SimpleHibernateUtil simpleHibernateUtil = new SimpleHibernateUtil();
-
         Account account = new Account();
         account.setEmail("liker.xu@foxmail.com");
         Message message = new Message("hello world",account);
