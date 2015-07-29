@@ -1,6 +1,6 @@
 package hibernate.recommendation;
 
-import hibernate.elements.ClothingComponent;
+import hibernate.elements.Element;
 import hibernate.elements.ClothingShape;
 import hibernate.elements.Color;
 import hibernate.elements.Style;
@@ -18,5 +18,5 @@ public class TwoDimensionResource extends Resource {
     private Material material;
     private ClothingShape shape;
     private float price;
-    private Set<ClothingComponent> clothingComponents;
+    private Set<Element> elements;
 }

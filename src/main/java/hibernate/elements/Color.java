@@ -7,19 +7,19 @@ import javax.persistence.*;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "color")
-public class Color {
+@Table(name = "colors")
+public class Color extends Element{
 
-    private int id;
-    private String name_ch;
-    private String name_en;
+//    private int colorID;
+    private String name_ch = "";
+    private String name_en = "";
     private int red;
     private int green;
     private int blue;
     private int hue;//色相
     private int saturation;//饱和度
     private int lightness;//明度
-    private String hex;
+    private String hex = "";
 
     public Color() {
     }
@@ -28,17 +28,6 @@ public class Color {
         this.name_ch = name_ch;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Column(name = "name_ch")
     public String getName_ch() {
         return name_ch;
     }
@@ -47,7 +36,6 @@ public class Color {
         this.name_ch = name_ch;
     }
 
-    @Column(name = "name_en")
     public String getName_en() {
         return name_en;
     }
@@ -56,7 +44,6 @@ public class Color {
         this.name_en = name_en;
     }
 
-    @Column(name = "red")
     public int getRed() {
         return red;
     }
@@ -65,7 +52,6 @@ public class Color {
         this.red = red;
     }
 
-    @Column(name = "green")
     public int getGreen() {
         return green;
     }
@@ -74,7 +60,6 @@ public class Color {
         this.green = green;
     }
 
-    @Column(name = "blue")
     public int getBlue() {
         return blue;
     }
@@ -83,7 +68,6 @@ public class Color {
         this.blue = blue;
     }
 
-    @Column(name = "hue")
     public int getHue() {
         return hue;
     }
@@ -92,7 +76,6 @@ public class Color {
         this.hue = hue;
     }
 
-    @Column(name = "saturation")
     public int getSaturation() {
         return saturation;
     }
@@ -101,7 +84,6 @@ public class Color {
         this.saturation = saturation;
     }
 
-    @Column(name = "lightness")
     public int getLightness() {
         return lightness;
     }
@@ -110,7 +92,6 @@ public class Color {
         this.lightness = lightness;
     }
 
-    @Column(name = "hex")
     public String getHex() {
         return hex;
     }

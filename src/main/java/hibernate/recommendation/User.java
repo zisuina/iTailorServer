@@ -2,6 +2,8 @@ package hibernate.recommendation;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by liker on 23/07/2015 0023.
@@ -13,9 +15,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userID;
-//    @Column(name = "nickname",unique = true)
-    @Column(name = "nickname")
     private String nickname = "";
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "preferenceID_FK", nullable = false, updatable = false)
+    private PreferenceMatrix preferenceMatrix = new PreferenceMatrix();
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "userID")
+//    @OrderBy("resourceId")
+    private List<Resource> resourceList = new ArrayList<>();
 
 //    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 //    @JoinColumn(name = "account")
@@ -68,4 +75,20 @@ public class User {
 //        this.account = account;
 //    }
 
+
+    public PreferenceMatrix getPreferenceMatrix() {
+        return preferenceMatrix;
+    }
+
+    public void setPreferenceMatrix(PreferenceMatrix preferenceMatrix) {
+        this.preferenceMatrix = preferenceMatrix;
+    }
+
+    public List<Resource> getResourceList() {
+        return resourceList;
+    }
+
+    public void setResourceList(List<Resource> resourceList) {
+        this.resourceList = resourceList;
+    }
 }

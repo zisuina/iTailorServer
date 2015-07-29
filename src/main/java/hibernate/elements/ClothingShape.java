@@ -5,4 +5,6 @@ package hibernate.elements;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class ClothingShape {
+    public ClothingShape() {
+    }
 }

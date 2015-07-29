@@ -8,17 +8,21 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "resources")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Resource {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int resourceId;
-    private int userId;
-    private int commentId;
-    private String location = "";
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "userID_FK")
+    private User userID;
+
+    private String location = "undefine";
     private float sizeKB = 0.0f;
     private Timestamp timestamp;
-    private String source= "";
-    private String description = "";
+    private String source= "undefine";
+    private String description = "undefine";
     private int thumbNum = 0;
 
     public Resource() {
@@ -26,7 +30,6 @@ public class Resource {
     }
 
     public int getResourceId() {
-
         return resourceId;
     }
 
@@ -34,20 +37,12 @@ public class Resource {
         this.resourceId = resourceId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(int commentId) {
-        this.commentId = commentId;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     public String getLocation() {
