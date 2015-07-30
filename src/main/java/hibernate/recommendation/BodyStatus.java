@@ -14,28 +14,27 @@ public class BodyStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int bodyStatusID;
-
     private Timestamp timestamp;
-    private String skin = "";
-    private int height;
-    private int waistHeight;
-    private int crotchHeight;
-    private int bust;
-    private int waist;
-    private int hips;
-    private int armLength;
-    private int legLength;
-    private int crossShoulder;
-    private int calfGirth;
-    private int thighCircumference;
-    private float headBodyRatio;
-    private float bodyProportion;
-    private float footLength;
-    private int physicalAge;
-    private int heartRate;
-    private int wristGirth;
-    private int fatRatio;
-    private int mood;
+    private String skin = "undefine";
+    private int height = 0;
+    private int waistHeight = 0;
+    private int crotchHeight = 0;
+    private int bust = 0;
+    private int waist = 0;
+    private int hips = 0;
+    private int armLength = 0;
+    private int legLength = 0;
+    private int crossShoulder = 0;
+    private int calfGirth = 0;
+    private int thighCircumference = 0;
+    private float headBodyRatio = 0;
+    private float bodyProportion = 0;
+    private float footLength = 0;
+    private int physicalAge = 0;
+    private int heartRate = 0;
+    private int wristGirth = 0;
+    private int fatRatio = 0;
+    private int mood = 0;
 
     public BodyStatus() {
         this.timestamp = new Timestamp(System.currentTimeMillis());

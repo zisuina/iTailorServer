@@ -5,5 +5,7 @@ package exception;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class HibernateFailException extends Exception {
-
+    public HibernateFailException() {
+        super("Import database failure!");
+    }
 }

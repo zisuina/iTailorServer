@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FavorPriceRange extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "priceRangeID_FK")
-    private PriceRange priceRange = new PriceRange();
+    private PriceRange priceRange;
     public FavorPriceRange() {
     }
 

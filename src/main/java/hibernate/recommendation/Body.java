@@ -20,7 +20,6 @@ public class Body {
     private List<BodyStatus> bodyStatusList = new ArrayList<>();
 
     public Body() {
-        this.bodyID = 0;
     }
 
     public int getBodyID() {

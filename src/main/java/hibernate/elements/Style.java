@@ -10,6 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "styles")
 public class Style extends Element{
+//    private int elementID;
+//    private String name = "";
+//    private String description = "";
     public Style() {
     }
 }

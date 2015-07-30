@@ -24,7 +24,7 @@ public class AccountTest {
     }
     @Test
     public void testHibernateFinal() {
-        AccessControl accessControl = new AccessControl(false,false);
+        AccessControl accessControl = new AccessControl(1,false,false);
 
         LoginRecord loginRecord = new LoginRecord();
         loginRecord.setIp("192.168.0.108");

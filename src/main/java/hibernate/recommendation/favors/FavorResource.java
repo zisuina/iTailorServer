@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FavorResource extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "resourceID_FK")
-    private Resource resource = new Resource();
+    private Resource resource;
     public FavorResource() {
     }
 

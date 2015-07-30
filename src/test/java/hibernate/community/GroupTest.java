@@ -11,7 +11,7 @@ public class GroupTest {
     @Test
     public void testHibernate() {
         Group group = new Group();
-        AccessControl accessControl = new AccessControl(true, true);
+        AccessControl accessControl = new AccessControl(1,true, true);
         Account account = new Account("liker.xu@foxmail.com", "888888");
         group.getAccountList().add(account);
         group.setAccessControl(accessControl);

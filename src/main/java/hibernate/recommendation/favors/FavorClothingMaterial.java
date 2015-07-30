@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Table(name = "Favor_Clothing_Materials")
 public class FavorClothingMaterial extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "clothingMaterialID_FK",columnDefinition = "int default 0")
-    private ClothingMaterial clothingMaterial= new ClothingMaterial();
+    @JoinColumn(name = "clothingMaterialID_FK")
+    private ClothingMaterial clothingMaterial;
     public FavorClothingMaterial() {
     }
 

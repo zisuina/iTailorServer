@@ -1,6 +1,9 @@
 package hibernate.community;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by liker on 27/07/2015 0027.
@@ -10,25 +13,19 @@ import javax.persistence.*;
 @Table(name = "access_Control")
 public class AccessControl {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int controlID;
+    @Column(name = "receive", updatable = false)
     private boolean receive;
+    @Column(name = "send", updatable = false)
     private boolean send;
-
-    public int getControlID() {
-        return controlID;
-    }
-
-    public void setControlID(int controlID) {
-        this.controlID = controlID;
-    }
 
     public AccessControl() {
         this.send = true;
         this.receive = true;
     }
 
-    public AccessControl(boolean receive, boolean send) {
+    public AccessControl(int controlID, boolean receive, boolean send) {
+        this.controlID = controlID;
         this.receive = receive;
         this.send = send;
     }
@@ -48,4 +45,16 @@ public class AccessControl {
     public boolean isSend() {
         return send;
     }
+
+    public int getControlID() {
+        return controlID;
+    }
+
+    public void setControlID(int controlID) {
+        this.controlID = controlID;
+    }
+
+
+
+
 }

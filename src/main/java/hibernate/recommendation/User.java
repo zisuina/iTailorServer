@@ -18,7 +18,7 @@ public class User {
     private String nickname = "";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "preferenceID_FK", nullable = false, updatable = false)
-    private PreferenceMatrix preferenceMatrix = new PreferenceMatrix();
+    private PreferenceMatrix preferenceMatrix;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "userID")
 //    @OrderBy("resourceId")

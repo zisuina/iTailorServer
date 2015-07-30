@@ -11,5 +11,6 @@ import javax.persistence.Table;
 @Table(name = "clothing_materials")
 public class ClothingMaterial extends Element{
     public ClothingMaterial() {
+
     }
 }

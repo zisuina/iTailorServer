@@ -9,13 +9,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "favor_elements")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class FavorElement{
+public class FavorElement {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int favorElementID;
-
-
-    private int favorDegree;
+    private int favorDegree = 0;
 
     public int getFavorElementID() {
         return favorElementID;

@@ -34,7 +34,6 @@ public class BaseDAO<T> {
         try {
             session.beginTransaction();
             session.persist(object);
-            System.out.println("FINEEEEEEEEEEEEEEEEEEE");
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();

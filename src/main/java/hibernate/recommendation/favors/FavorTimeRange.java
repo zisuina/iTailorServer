@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FavorTimeRange extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "timeRangeID_FK")
-    private TimeRange timeRange = new TimeRange();
+    private TimeRange timeRange;
     public FavorTimeRange() {
     }
 

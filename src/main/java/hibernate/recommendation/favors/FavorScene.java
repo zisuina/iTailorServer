@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FavorScene extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sceneID_FK")
-    private Scene scene = new Scene();
+    private Scene scene;
 
     public FavorScene() {
     }

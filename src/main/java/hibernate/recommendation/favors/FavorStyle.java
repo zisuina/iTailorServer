@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class FavorStyle extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "styleID_FK")
-    private Style style = new Style();
+    private Style style;
 
     public FavorStyle() {
     }

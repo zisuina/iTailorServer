@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class FavorColor extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "colorID_FK")
-    private Color color = new Color();
+    private Color color;
     public FavorColor() {
     }
 
