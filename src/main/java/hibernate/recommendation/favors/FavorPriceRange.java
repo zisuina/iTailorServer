@@ -1,4 +1,4 @@
-package hibernate.recommendation.favorelements;
+package hibernate.recommendation.favors;
 
 import hibernate.elements.PriceRange;
 import hibernate.recommendation.FavorElement;

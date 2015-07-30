@@ -2,7 +2,7 @@ package hibernate.recommendation;
 
 import hibernate.community.*;
 import hibernate.elements.Color;
-import hibernate.recommendation.favorelements.FavorColor;
+import hibernate.recommendation.favors.FavorColor;
 import org.junit.Test;
 import util.BaseDAO;
 
@@ -70,6 +70,17 @@ public class PreferenceMatrixTest {
         preferenceMatrix.getColorPreference().add(favorColor2);
         preferenceMatrix.getColorPreference().add(favorColor3);
         user.setPreferenceMatrix(preferenceMatrix);
+
+        Body body = new Body();
+        BodyStatus bodyStatus = new BodyStatus();
+        bodyStatus.setHeight(178);
+        body.getBodyStatusList().add(bodyStatus);
+        account.getUser().setBody(body);
+
+//        ClothingImage clothingImage = new ClothingImage();
+//        clothingImage.setColor(color2);
+//
+//        account.getUser().getResourceList().add(clothingImage);
 
         new BaseDAO<Account>().create(account);
 

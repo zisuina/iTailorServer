@@ -18,9 +18,9 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="connection.pool_size">1</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
-        <!--<property name="current_session_context_class">thread</property>-->
+        <property name="current_session_context_class">thread</property>
         <!--<mapping class="hibernate.recommendation.User"/>-->
         <!--<mapping class="hibernate.elements.Colors"/>-->
         <!--<mapping class="hibernate.elements.Color"/>-->
@@ -37,14 +37,26 @@
         <mapping class="hibernate.recommendation.Resource"/>
         <mapping class="hibernate.recommendation.PreferenceMatrix"/>
         <mapping class="hibernate.recommendation.FavorElement"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorStyle"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorScene"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorClothingMaterial"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorPriceRange"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorResource"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorTimeRange"/>
-        <mapping class="hibernate.recommendation.favorelements.FavorColor"/>
+        <mapping class="hibernate.recommendation.favors.FavorStyle"/>
+        <mapping class="hibernate.recommendation.favors.FavorScene"/>
+        <mapping class="hibernate.recommendation.favors.FavorClothingMaterial"/>
+        <mapping class="hibernate.recommendation.favors.FavorPriceRange"/>
+        <mapping class="hibernate.recommendation.favors.FavorResource"/>
+        <mapping class="hibernate.recommendation.favors.FavorTimeRange"/>
+        <mapping class="hibernate.recommendation.favors.FavorColor"/>
         <mapping class="hibernate.elements.Element"/>
         <mapping class="hibernate.elements.Color"/>
+        <mapping class="hibernate.elements.TimeRange"/>
+        <mapping class="hibernate.elements.Style"/>
+        <mapping class="hibernate.elements.PriceRange"/>
+        <mapping class="hibernate.elements.Element"/>
+        <mapping class="hibernate.elements.Scene"/>
+        <mapping class="hibernate.elements.ClothingMaterial"/>
+        <mapping class="hibernate.elements.ClothingShape"/>
+        <mapping class="hibernate.recommendation.Body"/>
+        <mapping class="hibernate.recommendation.BodyStatus"/>
+        <mapping class="hibernate.recommendation.ClothingImage"/>
+        <mapping class="hibernate.recommendation.RecommendedResource"/>
+        <mapping class="hibernate.recommendation.Wardrobe"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,7 @@
 package hibernate.recommendation;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,14 +9,34 @@ import java.util.List;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "body")
+@Table(name = "bodies")
 public class Body {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @Column(name = "userID")
-    private int userID;
-    @Column(name = "bodyStatusList")
-    private List<BodyStatus> bodyStatusList;
+    private int bodyID;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "bodyID_FK")
+    private List<BodyStatus> bodyStatusList = new ArrayList<>();
+
+    public Body() {
+        this.bodyID = 0;
+    }
+
+    public int getBodyID() {
+        return bodyID;
+    }
+
+    public void setBodyID(int bodyID) {
+        this.bodyID = bodyID;
+    }
+
+
+    public List<BodyStatus> getBodyStatusList() {
+        return bodyStatusList;
+    }
+
+    public void setBodyStatusList(List<BodyStatus> bodyStatusList) {
+        this.bodyStatusList = bodyStatusList;
+    }
 }

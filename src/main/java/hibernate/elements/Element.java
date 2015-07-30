@@ -17,6 +17,7 @@ public class Element {
 //    private String type = "";
 
     public Element() {
+        this.elementID = 0;
     }
 
     public int getElementID() {

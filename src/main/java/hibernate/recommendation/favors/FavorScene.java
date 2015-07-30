@@ -1,4 +1,4 @@
-package hibernate.recommendation.favorelements;
+package hibernate.recommendation.favors;
 
 import hibernate.elements.Scene;
 import hibernate.recommendation.FavorElement;
@@ -15,6 +15,7 @@ public class FavorScene extends FavorElement {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sceneID_FK")
     private Scene scene = new Scene();
+
     public FavorScene() {
     }
 

@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "feedback")
+@Table(name = "feedbacks")
 public class Feedback extends Message {
     @Column(name = "isAccepted")
     private boolean accepted = false;

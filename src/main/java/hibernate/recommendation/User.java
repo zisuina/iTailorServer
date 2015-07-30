@@ -24,24 +24,18 @@ public class User {
 //    @OrderBy("resourceId")
     private List<Resource> resourceList = new ArrayList<>();
 
-//    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "account")
-//    private Account account;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "bodyID_FK")
+    private Body body;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "wardrobeID_FK")
+    private Wardrobe rootWardrobe;
+
 
 //    private UserType userType;
-//
-//    private Wardrobe rootWardrobe;
-//    private List<Message> pushMessageList;
 
 
-//    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-//    @JoinColumns(value = {@JoinColumn(name = "loginRecords", referencedColumnName = "id")})
-//    private ArrayList<LoginRecord> loginRecords;
-
-//    public User(String nickname, Account account) {
-//        this.nickname = nickname;
-//        this.account = account;
-//    }
 
     public User() {
         this.nickname = "anonymous";
@@ -67,15 +61,6 @@ public class User {
         this.nickname = nickname;
     }
 
-//    public Account getAccount() {
-//        return account;
-//    }
-//
-//    public void setAccount(Account account) {
-//        this.account = account;
-//    }
-
-
     public PreferenceMatrix getPreferenceMatrix() {
         return preferenceMatrix;
     }
@@ -90,5 +75,21 @@ public class User {
 
     public void setResourceList(List<Resource> resourceList) {
         this.resourceList = resourceList;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public Wardrobe getRootWardrobe() {
+        return rootWardrobe;
+    }
+
+    public void setRootWardrobe(Wardrobe rootWardrobe) {
+        this.rootWardrobe = rootWardrobe;
     }
 }

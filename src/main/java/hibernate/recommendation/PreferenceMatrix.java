@@ -1,6 +1,6 @@
 package hibernate.recommendation;
 
-import hibernate.recommendation.favorelements.*;
+import hibernate.recommendation.favors.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;

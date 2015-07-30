@@ -17,7 +17,6 @@ public class Resource {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "userID_FK")
     private User userID;
-
     private String location = "undefine";
     private float sizeKB = 0.0f;
     private Timestamp timestamp;

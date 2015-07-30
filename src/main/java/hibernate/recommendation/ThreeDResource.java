@@ -1,4 +1,4 @@
-package hibernate.elements;
+package hibernate.recommendation;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,8 +8,8 @@ import javax.persistence.Table;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "priceRanges")
-public class PriceRange extends Element{
-    public PriceRange() {
+@Table(name = "threeD_Resources")
+public class ThreeDResource extends Resource {
+    public ThreeDResource() {
     }
 }
