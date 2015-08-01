@@ -66,7 +66,7 @@ public class AccountTest {
     @Test
     public void testInitToken() throws Exception {
         Account account = new Account("liker.xu@foxmail.com", "liker12134");
-        assertEquals("2362F03C235BFF4937E5343D3B2AD00A", account.getToken());
+        assertEquals("2362F03C235BFF4937E5343D3B2AD00A", account.getAuthenticate());
     }
 
 

@@ -24,6 +24,7 @@ public class Group {
 //    @JoinColumn(name = "controlID_FK", nullable = false)
     @JoinColumn(name = "controlID_FK")
     private AccessControl accessControl = new AccessControl();
+    private String groupName = "undefine";
 
     public Group() {
     }
@@ -50,5 +51,13 @@ public class Group {
 
     public void setAccessControl(AccessControl accessControl) {
         this.accessControl = accessControl;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }

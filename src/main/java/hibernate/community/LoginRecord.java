@@ -17,6 +17,13 @@ public class LoginRecord {
     private String UDID = "";
     private String ip = "127.0.0.1";
 
+
+    public LoginRecord(String UDID, String ip) {
+        this.UDID = UDID;
+        this.ip = ip;
+        this.createdTime = new Timestamp(System.currentTimeMillis());
+    }
+
     public LoginRecord() {
         this.createdTime = new Timestamp(System.currentTimeMillis());
     }

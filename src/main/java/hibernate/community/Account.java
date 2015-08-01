@@ -51,7 +51,7 @@ public class Account {
     private boolean sync;
     private boolean logIn;
     @Transient
-    private String token;
+    private String authenticate;
 
     public Account(String email, String password) {
         this.email = email;
@@ -157,16 +157,21 @@ public class Account {
         this.logIn = logIn;
     }
 
-
-    public String getToken() {
+    public String getAuthenticate() {
         return MD5.getMD5(this.email + "itailor" + this.password);
     }
 
-    public void setToken(String token) {
-        this.token = MD5.getMD5(this.email + "itailor" + this.password);
+    public void setAuthenticate(String authenticate) {
+        this.authenticate = MD5.getMD5(this.email + "itailor" + this.password);
     }
 
-    public void initToken() {
-        this.token = MD5.getMD5(this.email + "itailor" + this.password);
+    public void login(){
+        this.logIn = true;
+        this.authenticate = MD5.getMD5(this.email + "itailor" + this.password);
+    }
+
+    public void logout(){
+        this.logIn = false;
+        this.authenticate = "undefine";
     }
 }

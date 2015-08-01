@@ -15,7 +15,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userID;
-    private String nickname = "";
+    private String nickname = "undefine";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @JoinColumn(name = "preferenceID_FK", nullable = false, updatable = false)
     @JoinColumn(name = "preferenceID_FK")
