@@ -3,6 +3,8 @@ package hibernate.community;
 import org.junit.Test;
 import util.BaseDAO;
 
+import static junit.framework.TestCase.assertEquals;
+
 /**
  * Created by liker on 27/07/2015 0027.
  * Group iTailor.hunters.neu.edu.cn
@@ -60,5 +62,12 @@ public class AccountTest {
         new BaseDAO<Account>().create(account);
 
     }
+
+    @Test
+    public void testInitToken() throws Exception {
+        Account account = new Account("liker.xu@foxmail.com", "liker12134");
+        assertEquals("2362F03C235BFF4937E5343D3B2AD00A", account.getToken());
+    }
+
 
 }

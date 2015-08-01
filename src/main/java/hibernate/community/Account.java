@@ -2,6 +2,7 @@ package hibernate.community;
 
 
 import hibernate.recommendation.User;
+import util.encryption.MD5;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,8 +22,10 @@ public class Account {
     private String email;
     private String password = "";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "userID_FK", nullable = false, updatable = false)
-    private User user = new User();
+//    @JoinColumn(name = "userID_FK", nullable = false, updatable = false)
+    @JoinColumn(name = "userID_FK")
+//    private User user = new User();
+    private User user;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<Feedback> feedbacks = new ArrayList<>();
@@ -35,8 +38,10 @@ public class Account {
             inverseJoinColumns = {@JoinColumn(name = "groupID_FK", referencedColumnName = "groupID")})
     private List<Group> groups = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "timeLineID_FK", nullable = false)
-    private TimeLine timeLine = new TimeLine();
+//    @JoinColumn(name = "timeLineID_FK", nullable = false)
+    @JoinColumn(name = "timeLineID_FK")
+//    private TimeLine timeLine = new TimeLine();
+    private TimeLine timeLine;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<ShareItem> shareItems = new ArrayList<>();
@@ -44,6 +49,9 @@ public class Account {
     @JoinColumn(name = "accountID_FK")
     private List<LoginRecord> loginRecords = new ArrayList<>();
     private boolean sync;
+    private boolean logIn;
+    @Transient
+    private String token;
 
     public Account(String email, String password) {
         this.email = email;
@@ -141,5 +149,24 @@ public class Account {
         this.user = user;
     }
 
+    public boolean isLogIn() {
+        return logIn;
+    }
 
+    public void setLogIn(boolean logIn) {
+        this.logIn = logIn;
+    }
+
+
+    public String getToken() {
+        return MD5.getMD5(this.email + "itailor" + this.password);
+    }
+
+    public void setToken(String token) {
+        this.token = MD5.getMD5(this.email + "itailor" + this.password);
+    }
+
+    public void initToken() {
+        this.token = MD5.getMD5(this.email + "itailor" + this.password);
+    }
 }

@@ -19,11 +19,13 @@ public class ShareItem {
     private int shareItemID;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "resourceID_FK", nullable = false)
+//    @JoinColumn(name = "resourceID_FK", nullable = false)
+    @JoinColumn(name = "resourceID_FK")
     private Resource resource = new Resource();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "shareItemID_FK", nullable = false)
+//    @JoinColumn(name = "shareItemID_FK", nullable = false)
+    @JoinColumn(name = "shareItemID_FK")
     private List<Comment> comments = new ArrayList<>();
 
     private Timestamp createdTime;

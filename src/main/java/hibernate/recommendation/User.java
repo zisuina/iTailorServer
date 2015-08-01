@@ -17,7 +17,8 @@ public class User {
     private int userID;
     private String nickname = "";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "preferenceID_FK", nullable = false, updatable = false)
+//    @JoinColumn(name = "preferenceID_FK", nullable = false, updatable = false)
+    @JoinColumn(name = "preferenceID_FK")
     private PreferenceMatrix preferenceMatrix;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "userID")
