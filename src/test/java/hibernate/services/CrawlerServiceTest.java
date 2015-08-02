@@ -19,7 +19,8 @@ public class CrawlerServiceTest {
 
     @Test
     public void testOnLineSearch() throws Exception {
-//        assertTrue(crawlerService.onLineSearch("连衣裙")!=null);
-        assertTrue(crawlerService.onLineSearch("怎么可能找的出东西").isEmpty());
+//        assertTrue(crawlerService.onLineSearch("连衣裙")!=null);\
+        crawlerService.onLineSearch("怎么可能找的出东西");
+        assertTrue(crawlerService.getItems().isEmpty());
     }
 }

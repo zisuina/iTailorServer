@@ -14,6 +14,5 @@ public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
         packages("resource.user");
         register(JacksonJsonProvider.class);
-
     }
 }

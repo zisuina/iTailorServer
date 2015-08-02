@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 public class AccountResource {
     private AccountService accountService = new AccountService();
 
+    //登陆
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String get(@QueryParam("email") final String email,

@@ -3,16 +3,12 @@ package crawler;
 
 import hibernate.recommendation.ClothingImage;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.ArrayList;
 
 /**
  * Created by liker on 21/07/2015 0021.
  * Group iTailor.hunters.neu.edu.cn
  */
-@Entity
-@Table(name = "items")
 public class Item {
     private String itemId;
     private String itemName;

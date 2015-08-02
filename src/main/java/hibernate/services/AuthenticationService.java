@@ -16,9 +16,6 @@ public class AuthenticationService {
     }
 
     public boolean isValidAccount() {
-        if (account.isLogIn() && account.getAuthenticate().equals(authenticate)) {
-            return true;
-        }
-        return false;
+        return account.isLogIn() && account.getAuthenticate().equals(authenticate);
     }
 }

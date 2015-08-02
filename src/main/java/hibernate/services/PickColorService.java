@@ -22,7 +22,6 @@ public class PickColorService {
     }
 
     HibernateServiceInterface hibernateService = (session) -> {
-
         session.createSQLQuery("delete from colors").executeUpdate();
         this.loadColorsFromFile(".\\src\\main\\resources\\colors.txt");
         System.out.println("SIZE:" + colors.size());
@@ -57,7 +56,6 @@ public class PickColorService {
             return false;
         }
     }
-
 
     public Color whichColorIsTheClosestFor(int red, int green, int blue) throws HibernateFailException {
         Color one = new Color(red, green, blue);

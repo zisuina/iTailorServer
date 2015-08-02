@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Path("images")
-public class ImageResource {
+public class OnLineImageResource {
     //注册
     @POST
     @Produces(MediaType.TEXT_PLAIN)

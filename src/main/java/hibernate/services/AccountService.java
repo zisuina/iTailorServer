@@ -38,9 +38,9 @@ public class AccountService {
                             logger.debug("Get the reference of account:" + email);
                             account = temp;
                         });
+                this.accountLoadSkip = true;
+                logger.debug("FLAG:accountLoadSkip is changed.");
             }
-            this.accountLoadSkip = true;
-            logger.debug("FLAG:accountLoadSkip is changed.");
         }
     }
 
@@ -99,7 +99,7 @@ public class AccountService {
 
     public boolean checkPassword(String email, String password) {
         getAccountIfExisted(email);
-        if (!isNull(account)) {
+        if (!isNull(account) && password != null) {
             if (account.getPassword().equals(password)) {
                 passwordCheckSkip = true;
                 doHibernateSaveOrUpdate();

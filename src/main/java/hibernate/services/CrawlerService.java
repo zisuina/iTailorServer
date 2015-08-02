@@ -11,13 +11,21 @@ import java.util.ArrayList;
  */
 public class CrawlerService {
     private TmallSearch tmallSearch = new TmallSearch();
-
-    public ArrayList<Item> onLineSearch(String searchKeys) {
+    private ArrayList<Item> items = new ArrayList<>();
+    public void onLineSearch(String searchKeys) {
         tmallSearch.search(searchKeys);
-        return tmallSearch.getItems();
+        items = tmallSearch.getItems();
     }
 
-    public ArrayList<Item> offLineSearch(String searchKeys){
-        return null;
+    public void filtrationAfterSearch(){
+        //TO DO
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 }

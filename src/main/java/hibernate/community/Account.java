@@ -38,9 +38,7 @@ public class Account {
             inverseJoinColumns = {@JoinColumn(name = "groupID_FK", referencedColumnName = "groupID")})
     private List<Group> groups = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "timeLineID_FK", nullable = false)
     @JoinColumn(name = "timeLineID_FK")
-//    private TimeLine timeLine = new TimeLine();
     private TimeLine timeLine;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
@@ -50,15 +48,21 @@ public class Account {
     private List<LoginRecord> loginRecords = new ArrayList<>();
     private boolean sync;
     private boolean logIn;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "groupID_FK")
+    private Group rootGroup = new Group();
+
     @Transient
     private String authenticate;
 
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
+        this.getGroups().add(new Group("Friends"));
     }
 
     public Account() {
+        this.getGroups().add(new Group("Friends"));
     }
 
     public int getAccountID() {
@@ -167,5 +171,13 @@ public class Account {
 
     public void updateAuthenticate() {
         this.authenticate = MD5.getMD5(this.email + "itailor" + this.password);
+    }
+
+    public Group getRootGroup() {
+        return rootGroup;
+    }
+
+    public void setRootGroup(Group rootGroup) {
+        this.rootGroup = rootGroup;
     }
 }

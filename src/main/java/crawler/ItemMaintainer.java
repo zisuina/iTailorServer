@@ -218,7 +218,7 @@ public class ItemMaintainer implements PageProcessor {
 
     public void getItemImagesFromTamll(Page page) {
         int limit = page.getHtml().xpath("//*[@id=\"J_UlThumb\"]/li").nodes().size();
-        ClothingImage[] clothingImages = null;
+        ClothingImage[] clothingImages;
         for (int i = 0; i < limit; i++) {
             int j = i + 1;
             clothingImages = new ClothingImage[limit];
