@@ -1,6 +1,5 @@
 package crawler.example;
 
-import crawler.MyPageProcessor;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;

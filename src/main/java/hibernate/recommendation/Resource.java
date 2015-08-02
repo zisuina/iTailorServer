@@ -18,11 +18,12 @@ public class Resource {
     @JoinColumn(name = "userID_FK")
     private User userID;
     private String location = "undefine";
-    private float sizeKB = 0.0f;
+    private int sizeB;
     private Timestamp timestamp;
     private String source= "undefine";
     private String description = "undefine";
     private int thumbNum = 0;
+    private long tmallID;
 
     public Resource() {
         timestamp = new Timestamp(System.currentTimeMillis());
@@ -52,12 +53,12 @@ public class Resource {
         this.location = location;
     }
 
-    public float getSizeKB() {
-        return sizeKB;
+    public int getSizeB() {
+        return sizeB;
     }
 
-    public void setSizeKB(float sizeKB) {
-        this.sizeKB = sizeKB;
+    public void setSizeB(int sizeB) {
+        this.sizeB = sizeB;
     }
 
     public Timestamp getTimestamp() {
@@ -90,5 +91,13 @@ public class Resource {
 
     public void setThumbNum(int thumbNum) {
         this.thumbNum = thumbNum;
+    }
+
+    public long getTmallID() {
+        return tmallID;
+    }
+
+    public void setTmallID(long tmallID) {
+        this.tmallID = tmallID;
     }
 }

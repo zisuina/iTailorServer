@@ -35,8 +35,7 @@ public class ClothingImage extends Resource{
     private Set<Element> elements = new HashSet<>();
 
     private String name = "undefine";
-    private String format = "undefine";
-    private String imageSize = "undefine";
+    private String format = "JPEG";
 
     public ClothingImage() {
     }
@@ -105,11 +104,5 @@ public class ClothingImage extends Resource{
         this.format = format;
     }
 
-    public String getImageSize() {
-        return imageSize;
-    }
 
-    public void setImageSize(String imageSize) {
-        this.imageSize = imageSize;
-    }
 }

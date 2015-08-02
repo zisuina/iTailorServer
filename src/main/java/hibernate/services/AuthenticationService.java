@@ -11,7 +11,7 @@ public class AuthenticationService {
     String authenticate = "";
 
     public AuthenticationService(String email, String authenticate) {
-        this.account = AccountService.getAccountByEmail(email);
+//        this.account = AccountService.getAccountByEmail(email);
         this.authenticate = authenticate;
     }
 

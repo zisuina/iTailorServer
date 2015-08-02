@@ -1,4 +1,7 @@
 package crawler;
+
+import hibernate.recommendation.ClothingImage;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,21 +14,21 @@ import java.net.URL;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class GetImage {
-    public void getImage(String image) {
+    public void getImage(String itemName,ClothingImage clothingImage) {
+        String image = clothingImage.getSource();
         URL url;
         try {
             url = new URL("http://" + image);
+            clothingImage.setSource(url.toString());
+            clothingImage.setName(itemName);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(5 * 1000);
             InputStream inStream = conn.getInputStream();//通过输入流获取图片数据
             byte[] data = readInputStream(inStream);//得到图片的二进制数据
-
-            String name = String.valueOf(Math.random() * 100);
-            System.out.println(name);
-
-            File ImageFile = new File(".\\src\\main\\webapp\\images\\" + name + ".png");//存到本地硬盘名为“captain”
+            File ImageFile = new File(".\\src\\main\\webapp\\images\\" + itemName + ".jpg");
             FileOutputStream outstream = new FileOutputStream(ImageFile);
+            clothingImage.setSizeB(data.length);
             outstream.write(data);
             outstream.close();
             System.out.println("One OK!");

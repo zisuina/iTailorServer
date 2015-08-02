@@ -1,4 +1,4 @@
-package crawler;
+package crawler.example;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

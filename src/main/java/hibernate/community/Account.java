@@ -158,20 +158,14 @@ public class Account {
     }
 
     public String getAuthenticate() {
-        return MD5.getMD5(this.email + "itailor" + this.password);
+        return this.authenticate;
     }
 
     public void setAuthenticate(String authenticate) {
-        this.authenticate = MD5.getMD5(this.email + "itailor" + this.password);
+        this.authenticate = authenticate;
     }
 
-    public void login(){
-        this.logIn = true;
+    public void updateAuthenticate() {
         this.authenticate = MD5.getMD5(this.email + "itailor" + this.password);
-    }
-
-    public void logout(){
-        this.logIn = false;
-        this.authenticate = "undefine";
     }
 }

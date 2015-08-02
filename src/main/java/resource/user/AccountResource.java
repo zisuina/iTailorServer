@@ -1,9 +1,6 @@
 package resource.user;
 
-import hibernate.community.Account;
-import hibernate.community.LoginRecord;
 import hibernate.services.AccountService;
-import util.BaseDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -16,20 +13,16 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("accounts")
 public class AccountResource {
+    private AccountService accountService = new AccountService();
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String get(@QueryParam("email") final String email,
                       @HeaderParam("password") final String password,
                       @Context HttpServletRequest request) {
-        Account account = AccountService.isAccountExisted(email);
-        if (account != null && account.getPassword().equals(password)) {
-            account.getLoginRecords().add(
-                    new LoginRecord(request.getRemoteUser(), AccountService.getIpAddress(request))
-            );
-            account.login();
-            new BaseDAO<Account>().update(account);
-            return account.getAuthenticate();
+        accountService.checkPassword(email, password);
+        if (accountService.loginAccountByEmail(email)) {
+            return accountService.getAccount().getAuthenticate();
         }
         return "NOT_BE_ACCEPTED";
     }
@@ -39,10 +32,9 @@ public class AccountResource {
     @Produces(MediaType.TEXT_PLAIN)
     public boolean post(@QueryParam("email") final String email,
                         @HeaderParam("password") final String password) {
-        Account account = AccountService.isAccountExisted(email);
-        if (account == null && password != null) {
-            account = new Account(email, password);
-            new BaseDAO<Account>().create(account);
+        accountService.checkPassword(email, password);
+        if (accountService.getAccount() == null) {
+            accountService.registerANewAccount(email, password);
             return true;
         }
         return false;
@@ -53,12 +45,8 @@ public class AccountResource {
     @Produces(MediaType.TEXT_PLAIN)
     public boolean delete(@QueryParam("email") final String email,
                           @HeaderParam("password") final String password) {
-        Account account = AccountService.isAccountExisted(email);
-        if (account != null && password != null && account.getPassword().equals(password)) {
-            new BaseDAO<Account>().delete(account);
-            return true;
-        }
-        return false;
+        accountService.checkPassword(email, password);
+        return accountService.deleteAccountByEmail(email);
     }
 
     //更新
@@ -67,15 +55,11 @@ public class AccountResource {
     public boolean put(@QueryParam("email") final String email,
                        @HeaderParam("password") final String password,
                        @HeaderParam("newPassword") final String newPassword) {
-        Account account = AccountService.isAccountExisted(email);
-        if (account != null && password != null && account.getPassword().equals(password)) {
-            account.setPassword(newPassword);
-            new BaseDAO<Account>().update(account);
+        if (accountService.checkPassword(email, password)) {
+            accountService.getAccount().setPassword(newPassword);
+            accountService.doHibernateSaveOrUpdate();
             return true;
         }
         return false;
-
     }
-
-
 }

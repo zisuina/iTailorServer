@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import util.BaseDAO;
 import util.EmailVerification;
 import util.hibernate.HibernateSessionFactory;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -14,75 +15,100 @@ import java.util.List;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class AccountService {
-    static Logger logger = Logger.getLogger(AccountService.class);
-    static List<Account> accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
-    Account account = null;
-    String email = "";
-
-    public AccountService(String email) {
-        this.email = email;
-        this.account = getAccountByEmail(email);
-    }
+    private static Logger logger = Logger.getLogger(AccountService.class);
+    private static List<Account> accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
+    private Account account = null;
+    private boolean accountLoadSkip = false;
+    private boolean passwordCheckSkip = false;
 
     public AccountService() {
     }
 
     public static boolean isEmailWellFormatted(String email) {
+        logger.debug("Email-check:" + email);
         return EmailVerification.isValid(email);
     }
 
-    public static Account isAccountExisted(String email) {
-        if (isEmailWellFormatted(email)) {
-            for (Account account : accountArrayList) {
-                if (account.getEmail().equals(email)) {
-                    return account;
-                }
+    public void getAccountIfExisted(String email) {
+        if (!accountLoadSkip) {
+            if (isEmailWellFormatted(email)) {
+                accountArrayList.stream()
+                        .filter(temp -> temp.getEmail().equals(email))
+                        .forEach(temp -> {
+                            logger.debug("Get the reference of account:" + email);
+                            account = temp;
+                        });
             }
+            this.accountLoadSkip = true;
+            logger.debug("FLAG:accountLoadSkip is changed.");
         }
-        return null;
     }
 
     public boolean registerANewAccount(String email, String password) {
         if (isEmailWellFormatted(email)) {
-            if (isAccountExisted(email) == null) {
+            getAccountIfExisted(email);
+            if (account == null) {
                 accountArrayList.add(new Account(email, password == null ? "" : password));
                 logger.debug("Create a new account:" + email);
+                doHibernateSaveOrUpdate();
+                return true;
+            }
+        }
+        logger.debug("REGISTER FAIL:" + email + " # " + password);
+        return false;
+    }
+
+    public boolean loginAccountByEmail(String email) {
+        getAccountIfExisted(email);
+        if (!isNull(account) && passwordCheckSkip) {
+            passwordCheckSkip = true;
+            account.setLogIn(true);
+            account.updateAuthenticate();
+            logger.debug("Login account:" + email);
+            doHibernateSaveOrUpdate();
+            return true;
+        }
+        logger.debug("LOGIN FAIL Account:" + email);
+        return false;
+    }
+
+    public void logoutAccountByEmail(String email) {
+        getAccountIfExisted(email);
+        if (!isNull(account)) {
+            account.setLogIn(false);
+            logger.debug("Logout account:" + email);
+            doHibernateSaveOrUpdate();
+        }
+    }
+
+    public boolean deleteAccountByEmail(String email) {
+        getAccountIfExisted(email);
+        System.out.println(isNull(account));
+        System.out.println(isNull(passwordCheckSkip));
+        if (!isNull(account) && passwordCheckSkip) {
+
+            accountArrayList.remove(account);
+            new BaseDAO<Account>().delete(account);
+//            doHibernateSaveOrUpdate();
+            logger.debug("Account deleted" + email);
+            return true;
+        }
+        logger.debug("Account deleted fail:" + email);
+        return false;
+    }
+
+    public boolean checkPassword(String email, String password) {
+        getAccountIfExisted(email);
+        if (!isNull(account)) {
+            if (account.getPassword().equals(password)) {
+                passwordCheckSkip = true;
+                doHibernateSaveOrUpdate();
                 return true;
             }
         }
         return false;
     }
 
-    public static Account getAccountByEmail(String email) {
-        if (isEmailWellFormatted(email)) {
-            for (Account temp : accountArrayList) {
-                if (temp.getEmail().equals(email)) {
-                    logger.debug("Get the reference of account:" + email);
-                    return temp;
-                }
-            }
-        }
-        return null;
-    }
-
-    public boolean loginAccountByEmail(String email) {
-        account = isAccountExisted(email);
-        if (!isNull(account)) {
-            account.setLogIn(true);
-            new BaseDAO<Account>().update(account);
-            logger.debug("Login account:" + email);
-            return true;
-        }
-        return false;
-    }
-
-    public void logoutAccountByEmail(String email) {
-        account = isAccountExisted(email);
-        if (account != null) {
-            account.setLogIn(false);
-            logger.debug("Logout account:" + email);
-        }
-    }
 
     public Account getAccount() {
         return account;
@@ -90,14 +116,6 @@ public class AccountService {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public static String getIpAddress(HttpServletRequest request) {
@@ -126,13 +144,28 @@ public class AccountService {
         AccountService.accountArrayList = accountArrayList;
     }
 
-    public void doHibernate() {
+    public void doHibernateSaveOrUpdate() {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
         accountArrayList.forEach(session::saveOrUpdate);
         session.getTransaction().commit();
+        logger.debug("Hibernate Once!");
         session.close();
     }
 
+    public boolean isAccountLoadSkip() {
+        return accountLoadSkip;
+    }
 
+    public void setAccountLoadSkip(boolean accountLoadSkip) {
+        this.accountLoadSkip = accountLoadSkip;
+    }
+
+    public boolean isPasswordCheckSkip() {
+        return passwordCheckSkip;
+    }
+
+    public void setPasswordCheckSkip(boolean passwordCheckSkip) {
+        this.passwordCheckSkip = passwordCheckSkip;
+    }
 }

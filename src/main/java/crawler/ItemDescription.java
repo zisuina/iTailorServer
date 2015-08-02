@@ -8,7 +8,6 @@ import java.util.Map;
  */
 public class ItemDescription {
     private Map<String, String> descriptions;
-
     public ItemDescription(Map<String, String> descriptions) {
         this.descriptions = descriptions;
     }

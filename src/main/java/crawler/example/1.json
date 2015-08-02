@@ -1,0 +1,250 @@
+{
+  "api": {
+    "descUrl": "//dsc.taobaocdn.com/i3/450/930/45493455074/TB1qQbnIpXXXXcPXFXX8qtpFXXX.desc%7Cvar%5Edesc%3Bsign%5E347160ad5a05a4ea75d0662c0691cafe%3Blang%5Egbk%3Bt%5E1438322465",
+    "fetchDcUrl": "//hdc1.alicdn.com/asyn.htm?pageId=275661499&userId=513051429",
+    "httpsDescUrl": "//desc.alicdn.com/i3/450/930/45493455074/TB1qQbnIpXXXXcPXFXX8qtpFXXX.desc%7Cvar%5Edesc%3Bsign%5E347160ad5a05a4ea75d0662c0691cafe%3Blang%5Egbk%3Bt%5E1438322465",
+    "validateDcUrl": "//mdetail.tmall.com/validateDc.htm?renderTime=1438398482071&releaseTime=1438398474000&lastVersionMd5=e7b67147d27640a999fcf6e5f0b01a95&releaseTimeKey=rstime_sid62767848pid275661499&itemId=45493455074&isNewSystem=true"
+  },
+  "apiAddCart": "//cart.taobao.com/add_cart_item.htm?item_id=45493455074",
+  "apiBeans": "//count.taobao.com/counter3?keys=SM_368_dsr-513051429,ICCP_1_45493455074",
+  "apiBidCount": "//tbskip.taobao.com/json/show_bid_count.htm?itemNumId=45493455074&old_quantity=268&date=1438430475000",
+  "apiItemViews": "//count.taobao.com/counter2?keys=ICVT_7_45493455074&inc=ICVT_7_45493455074&sign=106ffe349e4af26fb79b3a4438491f10eef",
+  "apiTmallComboInfo": "//ext-mdskip.taobao.com/extension/queryTmallCombo.do?itemId=45493455074&comboGroup=0",
+  "apiTmallComboItem": "//ext-mdskip.taobao.com/extension/queryComboItem.do?comboGroup=0",
+  "cartEnable": true,
+  "changeLocationApi": "//mdskip.taobao.com/core/changeLocation.htm?isRegionLevel=false&isUseInventoryCenter=false&isAreaSell=false&household=false&tgTag=false&sellerUserTag=35196960&isSecKill=false&showShopProm=false&notAllowOriginPrice=false&itemTags=775,907,1154,1163,1478,1483,1675,1803,2049,2059,2443,2507,2635,3019,3851,3915,3974,4107,4166,4171,4363,4491,4555,4614,4678,4811,5062,5835,5954,6401,6411,6603,7105,8641,9153,9281,9665,11266,12737,13121,13825,13953,14529,15297,15554,16321,17665,17793,17921,19841,20161,20289,20609,21697,21953,22081,23105,24321,24705,27521,28353,28802,39490,44930,48706,57026,59010,60418,62082,72386&sellerUserTag2=18015687066781760&service3C=false&sellerUserTag4=576470240597149059&sellerUserTag3=633456172236928&itemId=45493455074&addressLevel=2&offlineShop=false&cartEnable=true",
+  "cmCatId": "50025258",
+  "detail": {
+    "addressLevel": 2,
+    "allowRate": true,
+    "autoccUser": false,
+    "canEditInItemDet": true,
+    "cdn75": false,
+    "defaultItemPrice": "269.00",
+    "goNewAuctionFlow": false,
+    "is0YuanBuy": false,
+    "isAliTelecomNew": false,
+    "isAlicomMasterCard": false,
+    "isAllowReport": true,
+    "isAutoFinancing": false,
+    "isCarService": false,
+    "isCarYuEBao": false,
+    "isContractPhoneItem": false,
+    "isCyclePurchase": false,
+    "isDownShelf": false,
+    "isH5NewLogin": true,
+    "isHasPos": false,
+    "isHasQualification": false,
+    "isHiddenShopAction": false,
+    "isHidePoi": false,
+    "isHkItem": false,
+    "isHkO2OItem": false,
+    "isIFCShop": false,
+    "isItemAllowSellerView": true,
+    "isNewAttraction": true,
+    "isNewMedical": false,
+    "isNextDayService": false,
+    "isPreSellBrand": false,
+    "isPrescriptionDrug": false,
+    "isRegionLevel": false,
+    "isShowContentModuleTitle": false,
+    "isShowEcityBasicSign": false,
+    "isShowEcityDesc": false,
+    "isShowEcityVerticalSign": false,
+    "isShowPreClosed": false,
+    "isSkuMemorized": false,
+    "isTeMai": false,
+    "isVitual3C": false,
+    "loginBeforeCart": false,
+    "pageType": "default",
+    "reviewListType": 5,
+    "shopSameCategoryUrl": "//leting.tmall.com?search=y&categoryp=1623&detail_nid=45493455074",
+    "show9sVideo": true,
+    "showDiscountRecommend": false,
+    "timeKillAuction": false,
+    "tryReportDisable": false
+  },
+  "getProgressiveInfoApi": "//mdskip.taobao.com/core/getProgressiveInfo.do?platform_type=b2c&fromTryBeforeBuy=false&sellerId=513051429&platform=tmall&category=1623&sellerPercent=3_100_1.60;6_0_4.50;9_0_6.00",
+  "idsMod": [
+
+  ],
+  "initApi": "//mdskip.taobao.com/core/initItemDetail.htm?isAreaSell=false&cartEnable=true&showShopProm=false&progressiveSupport=false&itemId=45493455074&isForbidBuyItem=false&household=false&offlineShop=false&sellerPreview=false&cachedTimestamp=1438475586999&isApparel=true&isUseInventoryCenter=false&queryMemberRight=true&addressLevel=2&tryBeforeBuy=false&service3C=false&isRegionLevel=false&isSecKill=false&tmallBuySupport=true",
+  "initCspuExtraApi": "//ext-mdskip.taobao.com/extension/initCspuExtra.htm",
+  "initExtensionApi": "//ext-mdskip.taobao.com/extension/initExtension.htm?showShopProm=false&showSpuMaintainer=false&showBreadCrumb=true&spuId=341763437&categoryId=1623&itemTags=775,907,1154,1163,1478,1483,1675,1803,2049,2059,2443,2507,2635,3019,3851,3915,3974,4107,4166,4171,4363,4491,4555,4614,4678,4811,5062,5835,5954,6401,6411,6603,7105,8641,9153,9281,9665,11266,12737,13121,13825,13953,14529,15297,15554,16321,17665,17793,17921,19841,20161,20289,20609,21697,21953,22081,23105,24321,24705,27521,28353,28802,39490,44930,48706,57026,59010,60418,62082,72386&sellerId=513051429&brand=%C0%D6%EE%AE",
+  "initExtraApi": "//ext-mdskip.taobao.com/extension/initExtra.htm",
+  "isAliTripHK": false,
+  "isAreaSell": false,
+  "isDoubleElevenItem": true,
+  "isHouseholdService": false,
+  "isMeiz": false,
+  "isMultiPoint": true,
+  "isService": false,
+  "isSevenDaysRefundment": false,
+  "isShowSizeHelper": false,
+  "isShowSizeRecommend": false,
+  "isTmallComboSupport": true,
+  "isTripUser": false,
+  "isWTContract": false,
+  "itemDO": {
+    "attachImgUrl": [
+      "//img.alicdn.com/imgextra/i1/513051429/TB268jxdpXXXXX3XXXXXXXXXXXX_!!513051429.jpg",
+      "//img.alicdn.com/imgextra/i2/513051429/TB2NZjAdpXXXXXNXXXXXXXXXXXX_!!513051429.jpg"
+    ],
+    "auctionStatus": "0",
+    "auctionType": "b",
+    "brand": "&#20048;&#30010;",
+    "brandId": "4057780",
+    "brandSiteId": "0",
+    "brandSpecialSold": "false",
+    "categoryId": "1623",
+    "cspuCategorySwitch": false,
+    "encryptSellerId": "UMFHGvm8YMmIS",
+    "feature": "1",
+    "hasSku": true,
+    "isBidden": false,
+    "isDcAsyn": true,
+    "isDefaultChooseTryBeforeBuy": false,
+    "isEcardAuction": false,
+    "isElecCouponItem": false,
+    "isInRepository": false,
+    "isNewProGroup": false,
+    "isOnline": true,
+    "isSecondKillFromMobile": false,
+    "isSecondKillFromPC": false,
+    "isSecondKillFromPCAndWap": false,
+    "isSupportTryBeforeBuy": false,
+    "itemId": "45493455074",
+    "progressiveSupport": "false",
+    "prov": "浙江",
+    "quantity": 201,
+    "reservePrice": "269.00",
+    "rootCatId": "16",
+    "sellProgressiveRate": "3_100_1.60;6_0_4.50;9_0_6.00",
+    "sellerNickName": "%E4%B9%90%E7%94%BA%E5%AE%98%E6%96%B9%E6%97%97%E8%88%B0%E5%BA%97",
+    "spuId": "341763437",
+    "title": "乐町2015夏季女装新款立体纱花边欧根纱蓬蓬裙半身裙 夏 短裙",
+    "userId": "513051429",
+    "validatorUrl": "//store.taobao.com/tadget/shop_stats.htm",
+    "weight": "0"
+  },
+  "rateConfig": {
+    "itemId": 45493455074,
+    "listType": 5,
+    "rateCloudDisable": false,
+    "rateEnable": true,
+    "rateScoreCacheDisable": false,
+    "rateScoreDisable": false,
+    "rateSubjectDisable": false,
+    "sellerId": 513051429,
+    "spuId": 341763437,
+    "tryReportDisable": false
+  },
+  "releaseTime": 1438398474000,
+  "renderSystemServer": "//render.taobao.com",
+  "renderTime": 1438398482071,
+  "rstShopId": 62767848,
+  "selectCityApi": "//mdskip.taobao.com/core/selectCity.htm?isAreaSell=false&itemId=45493455074",
+  "selectRegionApi": "//mdskip.taobao.com/core/selectRegion.do?isAreaSell=false&itemId=45493455074",
+  "serviceIconList": [
+    {
+      "description": "“天猫新品”是指天猫首次上架的特定商品",
+      "tagImage": "//img.alicdn.com/tps/i4/T1vAWAFBVcXXcsE9Te-40-42.png",
+      "tagLink": "#"
+    }
+  ],
+  "standingDate": 0,
+  "tag": {
+    "isAsynDesc": true,
+    "isBrandAttr": true,
+    "isBrandSiteRightColumn": true,
+    "isMedical": false,
+    "isRightRecommend": true,
+    "isShowEcityIcon": false,
+    "isShowHouseIcon": false,
+    "isShowMeiliXinde": false,
+    "isShowTryReport": false,
+    "isShowYuanchuanIcon": false
+  },
+  "tagsId": "775,907,1154,1163,1478,1483,1675,1803,2049,2059,2443,2507,2635,3019,3851,3915,3974,4107,4166,4171,4363,4491,4555,4614,4678,4811,5062,5835,5954,6401,6411,6603,7105,8641,9153,9281,9665,11266,12737,13121,13825,13953,14529,15297,15554,16321,17665,17793,17921,19841,20161,20289,20609,21697,21953,22081,23105,24321,24705,27521,28353,28802,39490,44930,48706,57026,59010,60418,62082,72386",
+  "tmallRateType": 0,
+  "tradeConfig": {
+    "1": "//buy.taobao.com/auction/buy_now.jhtml",
+    "2": "//buy.tmall.com/order/confirm_order.htm",
+    "3": "//obuy.tmall.com/home/order/confirm_order.htm",
+    "4": "",
+    "5": "//buy.yao.95095.com/order/confirm_order.htm",
+    "7": "//tw.taobao.com/buy/auction/buy_now.jhtml"
+  },
+  "tradeType": 2,
+  "url": {
+    "BIDRedirectionitemDomain": "//paimai.taobao.com",
+    "buyBase": "//buy.taobao.com/auction",
+    "detailServer": "//detail.taobao.com",
+    "extMdskip": "//ext-mdskip.taobao.com",
+    "mallList": "//list.tmall.com",
+    "mdskip": "//mdskip.taobao.com",
+    "rate": "//rate.tmall.com",
+    "tbskip": "//tbskip.taobao.com",
+    "tgDetailDomain": "//detail.ju.taobao.com",
+    "tgDomain": "//ju.taobao.com",
+    "topUploadServerBaseUrl": "//upload.taobao.com",
+    "tradeBaseUrl": "//trade.taobao.com/trade",
+    "tradeForOldTmallBuy": "//stay.buy.tmall.com/order/confirm_order.htm",
+    "xCrossServer": "//mdetail.tmall.com"
+  },
+  "valCartInfo": {
+    "cartUrl": "//cart.taobao.com/my_cart.htm?from=bdetail",
+    "itemId": "45493455074",
+    "statsUrl": "//go.mmstat.com/1.gif?logtype=2&category=cart_{loc}_1623"
+  },
+  "valItemInfo": {
+    "defSelected": [
+
+    ],
+    "salesProp": {
+
+    },
+    "skuList": [
+      {
+        "names": "常规 155/S 黑色 ",
+        "pvs": "-1:-1;20509:26888840;1627207:28341",
+        "skuId": 3101474555729
+      },
+      {
+        "names": "常规 160/M 黑色 ",
+        "pvs": "-1:-1;20509:13295546;1627207:28341",
+        "skuId": 3101474555730
+      },
+      {
+        "names": "常规 165/L 黑色 ",
+        "pvs": "-1:-1;20509:17875888;1627207:28341",
+        "skuId": 3101474555731
+      }
+    ],
+    "skuMap": {
+      ";-1:-1;20509:13295546;1627207:28341;": {
+        "price": "269.00",
+        "priceCent": 26900,
+        "skuId": 3101474555730,
+        "stock": 83
+      },
+      ";-1:-1;20509:17875888;1627207:28341;": {
+        "price": "269.00",
+        "priceCent": 26900,
+        "skuId": 3101474555731,
+        "stock": 37
+      },
+      ";-1:-1;20509:26888840;1627207:28341;": {
+        "price": "269.00",
+        "priceCent": 26900,
+        "skuId": 3101474555729,
+        "stock": 81
+      }
+    }
+  },
+  "valLoginIndicator": "//buy.taobao.com/auction/buy.htm?from=itemDetail&id=45493455074",
+  "valMode": 128,
+  "valPointRate": 0.5,
+  "valPointTimes": 1,
+  "valTimeLeft": 559688
+}
