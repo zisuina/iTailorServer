@@ -21,7 +21,6 @@ public class Group {
     private List<Account> accountList = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "controlID_FK", nullable = false)
     @JoinColumn(name = "controlID_FK")
     private AccessControl accessControl = new AccessControl();
     private String groupName = "undefine";

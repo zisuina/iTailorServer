@@ -16,7 +16,6 @@ public class TimeLine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int timelineID;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "timelineID_FK", nullable = false)
     @JoinColumn(name = "timelineID_FK")
     private List<ShareItem> shareItems = new ArrayList<>();
 

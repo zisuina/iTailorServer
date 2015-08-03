@@ -53,8 +53,4 @@ public class AccessControl {
     public void setControlID(int controlID) {
         this.controlID = controlID;
     }
-
-
-
-
 }

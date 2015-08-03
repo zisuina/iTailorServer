@@ -44,4 +44,8 @@ public class CommentService {
             comment.setThumbNum(comment.getThumbNum() + 1);
         }
     }
+
+    public void commentFilter(Comment comment){
+        //TO DO
+    }
 }

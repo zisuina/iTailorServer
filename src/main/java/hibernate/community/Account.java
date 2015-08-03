@@ -5,6 +5,7 @@ import hibernate.recommendation.User;
 import util.encryption.MD5;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +23,8 @@ public class Account {
     private String email;
     private String password = "";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "userID_FK", nullable = false, updatable = false)
     @JoinColumn(name = "userID_FK")
-//    private User user = new User();
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountID_FK")
-    private List<Feedback> feedbacks = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<Message> messageList = new ArrayList<>();
@@ -51,6 +47,12 @@ public class Account {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "groupID_FK")
     private Group rootGroup = new Group();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "accountID_FK")
+    private List<Account> pursuers = new ArrayList<>();
+
+    private Timestamp latestSyncTime;
 
     @Transient
     private String authenticate;
@@ -87,14 +89,6 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Feedback> getFeedbacks() {
-        return feedbacks;
-    }
-
-    public void setFeedbacks(List<Feedback> feedbacks) {
-        this.feedbacks = feedbacks;
     }
 
     public List<Message> getMessageList() {
@@ -181,5 +175,53 @@ public class Account {
         this.rootGroup = rootGroup;
     }
 
+    public List<Account> getPursuers() {
+        return pursuers;
+    }
 
+    public void setPursuers(List<Account> pursuers) {
+        this.pursuers = pursuers;
+    }
+
+    public Timestamp getLatestSyncTime() {
+        return latestSyncTime;
+    }
+
+    public void setLatestSyncTime(Timestamp latestSyncTime) {
+        this.latestSyncTime = latestSyncTime;
+    }
+
+    /**
+     * @param account
+     * @return 双向"Friends"维护
+     */
+    public boolean isAFriendOf(Account account) {
+        if (this.getRootGroup().getAccountList().contains(account)) {
+            return true;
+        }
+        for (Group group : this.getGroups()) {
+            if (group.getAccountList().contains(account)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean wantToConnect(Account zAccount) {
+        if (!this.isAFriendOf(zAccount) && !this.pursuers.contains(zAccount)) {
+            zAccount.getPursuers().add(this);
+            //消息推送
+            return true;
+        }
+        return false;
+    }
+
+    public boolean agreeToConnect(Account zAccount) {
+        if (!this.isAFriendOf(zAccount) && this.pursuers.contains(zAccount)) {
+            this.getRootGroup().getAccountList().add(zAccount);
+            this.pursuers.remove(zAccount);
+            return true;
+        }
+        return false;
+    }
 }

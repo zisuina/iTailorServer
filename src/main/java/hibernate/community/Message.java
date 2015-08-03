@@ -15,7 +15,6 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int messageID;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "accountID_FK", nullable = false)
     @JoinColumn(name = "accountID_FK")
     private Account senderAccount;
     private String context = "";

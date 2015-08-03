@@ -17,7 +17,6 @@ public class User {
     private int userID;
     private String nickname = "undefine";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "preferenceID_FK", nullable = false, updatable = false)
     @JoinColumn(name = "preferenceID_FK")
     private PreferenceMatrix preferenceMatrix;
 
@@ -42,8 +41,6 @@ public class User {
 //    private List<Item> itemRecommendedToday = new ArrayList<>();
 
 //    private UserType userType;
-
-
 
     public User() {
         this.nickname = "anonymous";
@@ -108,7 +105,6 @@ public class User {
     public void setSearchWordsHistory(List<SearchWord> searchWordsHistory) {
         this.searchWordsHistory = searchWordsHistory;
     }
-
 //    public List<Item> getItemRecommendedToday() {
 //        return itemRecommendedToday;
 //    }

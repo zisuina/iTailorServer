@@ -31,15 +31,4 @@ public class GroupService {
     }
 
 
-    public boolean deleteGroupFromAccount(Account account, Group group) {
-//        if (account != null && group != null) {
-//            Group root;
-//            for(Group root:account.getGroups()){
-//                if()
-//            }
-//        }
-        return false;
-    }
-
-
 }

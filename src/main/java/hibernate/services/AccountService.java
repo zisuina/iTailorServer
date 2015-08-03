@@ -109,7 +109,6 @@ public class AccountService {
         return false;
     }
 
-
     public Account getAccount() {
         return account;
     }
@@ -168,4 +167,7 @@ public class AccountService {
     public void setPasswordCheckSkip(boolean passwordCheckSkip) {
         this.passwordCheckSkip = passwordCheckSkip;
     }
+
+
+
 }

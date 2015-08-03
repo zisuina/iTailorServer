@@ -48,8 +48,8 @@ public class UserTest {
         Comment comment = new Comment("comment",account);
         shareItem.getComments().add(comment);
 
-        Feedback feedback = new Feedback("feedback",account2);
-        account.getFeedbacks().add(feedback);
+//        Feedback feedback = new Feedback("feedback",account2);
+//        account.getFeedbacks().add(feedback);
 
         User user = new User();
         account.setUser(user);
