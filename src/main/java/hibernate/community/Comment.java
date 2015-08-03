@@ -27,4 +27,5 @@ public class Comment extends Message {
     public void setThumbNum(int thumbNum) {
         this.thumbNum = thumbNum;
     }
+
 }
