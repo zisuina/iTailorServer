@@ -33,4 +33,11 @@ public class AccountResourceTest extends JerseyTest{
         System.out.println(response.getHeaders().toString());
         System.out.println(response.getStatus());
     }
+
+    @Test
+    public void testRegisterAccount() throws Exception {
+        AccountResource accountResource = new AccountResource();
+        accountResource.registerAccount("likser2.xu@foxmail.com","88888");
+    }
+
 }

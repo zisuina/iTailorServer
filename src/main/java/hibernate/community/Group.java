@@ -22,7 +22,7 @@ public class Group {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "controlID_FK")
-    private AccessControl accessControl = new AccessControl();
+    private AccessControl accessControl;
     private String groupName = "undefine";
 
     public Group() {

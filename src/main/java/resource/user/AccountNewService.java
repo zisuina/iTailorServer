@@ -3,9 +3,12 @@ package resource.user;
 import hibernate.community.Account;
 import hibernate.community.Group;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import util.BaseDAO;
 import util.EmailVerification;
+import util.hibernate.HibernateSessionFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,9 +17,38 @@ import java.util.List;
  */
 public class AccountNewService {
     private static Logger logger = Logger.getLogger(AccountNewService.class);
-    private List<Account> accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
+    private List<Account> accountArrayList = new ArrayList<>();
+    private List<Account> accountTobeLeave = new ArrayList<>();
+
+    public void comeBackFromDB() {
+        accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
+    }
+
+    public void settleIntoDB() {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        try {
+            session.getTransaction().begin();
+            if (!accountArrayList.isEmpty()) {
+                accountArrayList.forEach(session::saveOrUpdate);
+            }
+            if (!accountTobeLeave.isEmpty()) {
+                accountTobeLeave.forEach(session::delete);
+            }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+    public void reportStatus() {
+        System.out.println("STAY@Account SIZE:" + accountArrayList.size());
+        System.out.println("LEAVE@Account SIZE:" + accountTobeLeave.size());
+    }
 
     public AccountNewService() {
+
     }
 
     public boolean isEmailWellFormatted(String email) {
@@ -35,7 +67,9 @@ public class AccountNewService {
 
     public Account registerAccountForWellFormattedEmail(String email, String password) {
         Account account = new Account(email, password == null ? "" : password);
-        accountArrayList.add(account);
+        if (accountArrayList.contains(account)) {
+            accountArrayList.add(account);
+        }
         logger.debug("Create a new account:" + email);
         return account;
     }
@@ -62,11 +96,13 @@ public class AccountNewService {
         one.setPassword(another.getPassword() == null ? "" : another.getPassword());
         one.setSync(another.isSync());
         one.setLogIn(another.isLogIn());
+        new BaseDAO<Account>().update(one);
         //能被修改的字段，安全策略
     }
 
     public void updateOneGroupByAnother(Group one, Group another) {
         one.setGroupName(another.getGroupName() == null ? "undefine" : another.getGroupName());
+        new BaseDAO<Group>().update(one);
     }
 
     public Group getGroupByAccountIDAndGroupID(int accountID, int groupID) {
@@ -111,5 +147,13 @@ public class AccountNewService {
 
     public void setAccountArrayList(List<Account> accountArrayList) {
         this.accountArrayList = accountArrayList;
+    }
+
+    public List<Account> getAccountTobeLeave() {
+        return accountTobeLeave;
+    }
+
+    public void setAccountTobeLeave(List<Account> accountTobeLeave) {
+        this.accountTobeLeave = accountTobeLeave;
     }
 }

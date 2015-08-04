@@ -1,11 +1,6 @@
 package resource.user;
 
-import hibernate.community.Account;
-import hibernate.community.LoginRecord;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -14,78 +9,87 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("accountS")
 public class AccountResource {
-    static{
+    static {
 
     }
 
 
-//    @Path("/")
+    //    @Path("/")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    public int registerAccount(@QueryParam("email") final String email,
-                               @HeaderParam("password") final String password) {
+    public boolean registerAccount(@QueryParam("email") final String email,
+                                   @HeaderParam("password") final String password) {
+        System.out.println("FINE!POST");
         AccountNewService accountNewService = new AccountNewService();
+        accountNewService.comeBackFromDB();
         if (accountNewService.isEmailWellFormatted(email)) {
             if (accountNewService.getAccountForWellFormattedEmail(email) == null) {
-                return accountNewService.registerAccountForWellFormattedEmail(email, password).getAccountID();
+                System.out.println("FINE!!!!!POST");
+                accountNewService.registerAccountForWellFormattedEmail(email, password);
+                System.out.println("Email:" + email);
+                accountNewService.settleIntoDB();
+                return true;
             }
-        }
-        return 0;
-    }
-
-
-    //注销
-//    @Path("/")
-    @DELETE
-    @Produces(MediaType.TEXT_PLAIN)
-    public boolean deleteAccount(@QueryParam("accountID") final int accountID,
-                                 @HeaderParam("password") final String password) {
-        AccountNewService accountNewService = new AccountNewService();
-        Account ref = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-        if (ref != null) {
-            accountNewService.getAccountArrayList().remove(ref);
-            return true;
         }
         return false;
     }
 
-    //更新
-//    @Path("/")
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    public Account updateAccount(@HeaderParam("password") final String password,
-                                 final Account account) {
-        AccountNewService accountNewService = new AccountNewService();
-        Account ref = accountNewService
-                .getAccountAfterCheckPasswordByAccountID(account.getAccountID(), password);
-        if (ref != null && ref.getPassword().equals(account.getPassword())) {
-            accountNewService.updateOneAccountByAnother(ref, account);
-            return ref;
-        }
-        return null;
-    }
 
-    //登陆
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Account getAccount(@QueryParam("email") final String email,
-                              @HeaderParam("password") final String password,
-                              @Context HttpServletRequest request) {
-        AccountNewService accountNewService = new AccountNewService();
-
-        if (accountNewService.isEmailWellFormatted(email)) {
-            Account account = accountNewService.getAccountForWellFormattedEmail(email);
-            if (account != null) {
-                LoginRecord loginRecord = new LoginRecord();
-                loginRecord.setIp(request.getRemoteAddr());
-                loginRecord.setUDID(request.getRemoteUser());
-                account.getLoginRecords().add(loginRecord);
-                //TO DO 要过滤掉不该被看到的内容以及嵌套调用的内容
-                return account;
-            }
-        }
-        return null;
-    }
+//    //注销
+////    @Path("/")
+//    @DELETE
+//    @Produces(MediaType.TEXT_PLAIN)
+//    public boolean deleteAccount(@QueryParam("accountID") final int accountID,
+//                                 @HeaderParam("password") final String password) {
+//        AccountNewService accountNewService = new AccountNewService();
+//        Account ref = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+//        if (ref != null) {
+//            System.out.println("FINE!DELETE");
+//            accountNewService.getAccountArrayList().remove(ref);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    //更新
+////    @Path("/")
+//    @PUT
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Account updateAccount(@HeaderParam("password") final String password,
+//                                 final Account account) {
+//        AccountNewService accountNewService = new AccountNewService();
+//        Account ref = accountNewService
+//                .getAccountAfterCheckPasswordByAccountID(account.getAccountID(), password);
+//        if (ref != null && ref.getPassword().equals(account.getPassword())) {
+//            accountNewService.updateOneAccountByAnother(ref, account);
+//            System.out.println("FINE!PUT");
+//            return ref;
+//        }
+//        return null;
+//    }
+//
+//    //登陆
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Account getAccount(@QueryParam("email") final String email,
+//                              @HeaderParam("password") final String password,
+//                              @Context HttpServletRequest request) {
+//        AccountNewService accountNewService = new AccountNewService();
+//
+//        if (accountNewService.isEmailWellFormatted(email)) {
+//            Account account = accountNewService.getAccountForWellFormattedEmail(email);
+//            if (account != null) {
+//                LoginRecord loginRecord = new LoginRecord();
+//                loginRecord.setIp(request.getRemoteAddr());
+//                loginRecord.setUDID(request.getRemoteUser());
+//                account.getLoginRecords().add(loginRecord);
+//                //TO DO 要过滤掉不该被看到的内容以及嵌套调用的内容
+//                System.out.println("FINE!GET");
+//                return account;
+//            }
+//        }
+//        return null;
+//    }
 //
 //    @Path("messageS")
 //    @POST

@@ -1,5 +1,6 @@
 package hibernate.community;
 
+import hibernate.recommendation.User;
 import org.junit.Test;
 import util.BaseDAO;
 
@@ -67,6 +68,24 @@ public class AccountTest {
     public void testInitToken() throws Exception {
         Account account = new Account("liker.xu@foxmail.com", "liker12134");
         assertEquals("2362F03C235BFF4937E5343D3B2AD00A", account.getAuthenticate());
+    }
+
+
+    @Test
+    public void aGoodStoryVersion(){
+        AccessControl accessControl = new AccessControl(1,true,true);
+        Group group = new Group("hello");
+        group.setAccessControl(accessControl);
+
+        Account account = new Account();
+        account.setEmail("liker.xu@foxmail.com");
+        account.setRootGroup(group);
+
+        User user = new User();
+        account.setUser(user);
+
+        new BaseDAO<Account>().create(account);
+
     }
 
 
