@@ -3,6 +3,8 @@ package hibernate.community;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -47,5 +49,14 @@ public class TimeLine {
 
     public void setRecentlyUpdatedTime(Timestamp recentlyUpdatedTime) {
         this.recentlyUpdatedTime = recentlyUpdatedTime;
+    }
+
+    public List<ShareItem> getSortedShareItems() {
+        Collections.sort(shareItems, new Comparator<ShareItem>() {
+            public int compare(ShareItem arg0, ShareItem arg1) {
+                return arg0.getCreatedTime().compareTo(arg1.getCreatedTime());
+            }
+        });
+        return shareItems;
     }
 }

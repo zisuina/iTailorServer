@@ -34,9 +34,9 @@ public class PreferenceMatrix {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "preferenceID_FK")
     private List<FavorClothingMaterial> materialPreference = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "preferenceID_FK")
-    private List<FavorResource> resourcePreference = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "preferenceID_FK")
+//    private List<FavorResource> resourcePreference = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "preferenceID_FK")
@@ -98,13 +98,13 @@ public class PreferenceMatrix {
         this.materialPreference = materialPreference;
     }
 
-    public List<FavorResource> getResourcePreference() {
-        return resourcePreference;
-    }
-
-    public void setResourcePreference(List<FavorResource> resourcePreference) {
-        this.resourcePreference = resourcePreference;
-    }
+//    public List<FavorResource> getResourcePreference() {
+//        return resourcePreference;
+//    }
+//
+//    public void setResourcePreference(List<FavorResource> resourcePreference) {
+//        this.resourcePreference = resourcePreference;
+//    }
 
     public List<Resource> getFavourResourceList() {
         return favourResourceList;

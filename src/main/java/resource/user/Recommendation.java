@@ -1,4 +1,6 @@
-package hibernate.recommendation;
+package resource.user;
+
+import hibernate.recommendation.User;
 
 /**
  * Created by liker on 02/08/2015 0002.

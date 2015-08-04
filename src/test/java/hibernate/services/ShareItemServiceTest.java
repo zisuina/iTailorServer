@@ -3,6 +3,7 @@ package hibernate.services;
 import hibernate.community.*;
 import org.junit.Before;
 import org.junit.Test;
+import resource.user.TimeLineService;
 
 import java.util.ArrayList;
 import java.util.List;

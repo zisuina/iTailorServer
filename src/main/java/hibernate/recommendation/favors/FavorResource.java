@@ -1,6 +1,5 @@
 package hibernate.recommendation.favors;
 
-import hibernate.recommendation.FavorElement;
 import hibernate.recommendation.Resource;
 
 import javax.persistence.*;

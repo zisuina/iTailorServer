@@ -16,8 +16,8 @@ public class Resource {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "userID_FK")
-    private User userID;
-    private String location = "undefine";
+    private User user;
+//    private String location = "undefine";
     private int sizeB;
     private Timestamp timestamp;
     private String source= "undefine";
@@ -37,21 +37,21 @@ public class Resource {
         this.resourceId = resourceId;
     }
 
-    public User getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setUser(User userID) {
+        this.user = userID;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
+//    public String getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(String location) {
+//        this.location = location;
+//    }
 
     public int getSizeB() {
         return sizeB;

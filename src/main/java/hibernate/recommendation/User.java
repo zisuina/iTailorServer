@@ -14,13 +14,13 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userID;
+    private int user;
     private String nickname = "undefine";
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "preferenceID_FK")
     private PreferenceMatrix preferenceMatrix;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "userID")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
 //    @OrderBy("resourceId")
     private List<Resource> resourceList = new ArrayList<>();
 
@@ -50,12 +50,12 @@ public class User {
         this.nickname = nickname;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUser() {
+        return user;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUser(int userID) {
+        this.user = userID;
     }
 
     public String getNickname() {

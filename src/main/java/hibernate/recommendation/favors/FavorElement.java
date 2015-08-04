@@ -1,4 +1,4 @@
-package hibernate.recommendation;
+package hibernate.recommendation.favors;
 
 import javax.persistence.*;
 

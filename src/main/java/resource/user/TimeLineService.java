@@ -1,7 +1,8 @@
-package hibernate.services;
+package resource.user;
 
 import hibernate.community.Account;
 import hibernate.community.Group;
+import hibernate.services.AccessControlParticle;
 
 import java.util.List;
 import java.util.stream.Collectors;

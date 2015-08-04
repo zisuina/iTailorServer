@@ -2,7 +2,6 @@ package hibernate.recommendation.favors;
 
 
 import hibernate.elements.Color;
-import hibernate.recommendation.FavorElement;
 
 import javax.persistence.*;
 

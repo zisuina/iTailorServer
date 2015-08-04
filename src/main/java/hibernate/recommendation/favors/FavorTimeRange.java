@@ -1,7 +1,6 @@
 package hibernate.recommendation.favors;
 
 import hibernate.elements.TimeRange;
-import hibernate.recommendation.FavorElement;
 
 import javax.persistence.*;
 

@@ -1,7 +1,6 @@
 package hibernate.recommendation.favors;
 
 import hibernate.elements.Scene;
-import hibernate.recommendation.FavorElement;
 
 import javax.persistence.*;
 
