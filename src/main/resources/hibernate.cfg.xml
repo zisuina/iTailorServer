@@ -28,7 +28,7 @@
         <mapping class="hibernate.community.Account"/>
         <mapping class="hibernate.community.Message"/>
         <mapping class="hibernate.community.Comment"/>
-        <mapping class="hibernate.community.Feedback"/>
+        <!--<mapping class="hibernate.community.Feedback"/>-->
         <mapping class="hibernate.community.Group"/>
         <mapping class="hibernate.community.ShareItem"/>
         <mapping class="hibernate.community.LoginRecord"/>

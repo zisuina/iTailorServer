@@ -14,7 +14,10 @@ import java.util.List;
  */
 public class AccountNewService {
     private static Logger logger = Logger.getLogger(AccountNewService.class);
-    private static List<Account> accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
+    private List<Account> accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
+
+    public AccountNewService() {
+    }
 
     public boolean isEmailWellFormatted(String email) {
         logger.debug("Email-check:" + email);
@@ -102,11 +105,11 @@ public class AccountNewService {
 //
 //    }
 
-    public static List<Account> getAccountArrayList() {
+    public List<Account> getAccountArrayList() {
         return accountArrayList;
     }
 
-    public static void setAccountArrayList(List<Account> accountArrayList) {
-        AccountNewService.accountArrayList = accountArrayList;
+    public void setAccountArrayList(List<Account> accountArrayList) {
+        this.accountArrayList = accountArrayList;
     }
 }
