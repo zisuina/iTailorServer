@@ -1,5 +1,7 @@
 package hibernate.community;
 
+import resource.message.MessageJson;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -61,4 +63,37 @@ public class Message {
     public void setSenderAccount(Account senderAccount) {
         this.senderAccount = senderAccount;
     }
+
+
+    public MessageJson becomeToJson() {
+        MessageJson messageJson = new MessageJson();
+        messageJson.setContext(this.getContext());
+        messageJson.setCreatedTime(this.getCreatedTime());
+        messageJson.setMessageID(this.messageID);
+        messageJson.setSenderAccountID(this.getSenderAccount() != null ? this.getSenderAccount().getAccountID() : 0);
+        return messageJson;
+    }
+
+
+//    public Message transferMessageJson(MessageJson messageJson) {
+//
+//        Message message = new Message();
+//        AccountNewService accountNewService = new AccountNewService();
+//        Account account =
+//                accountNewService.getAccountWithoutCheckPasswordByAccountID(messageJson.getSenderAccountID());
+//        System.out.println("MESSAGEJSON:" + messageJson.getMessageID());
+//        if (account != null) {
+//            message.setContext(messageJson.getContext());
+//            message.setSenderAccount(account);
+////            if (messageJson.getCreatedTime() == null) {
+////                messageJson.setCreatedTime(new Timestamp(System.currentTimeMillis()));
+////            }
+//            message.setCreatedTime(messageJson.getCreatedTime());
+////            new BaseDAO<Message>().create(this);
+//            System.out.println("RETURN");
+//            return message;
+//        }
+//        return null;
+//
+//    }
 }

@@ -2,6 +2,7 @@ package hibernate.community;
 
 import hibernate.recommendation.User;
 import org.junit.Test;
+import resource.user.AccountNewService;
 import util.BaseDAO;
 
 import static junit.framework.TestCase.assertEquals;
@@ -73,18 +74,30 @@ public class AccountTest {
 
     @Test
     public void aGoodStoryVersion(){
-        AccessControl accessControl = new AccessControl(1,true,true);
+//        AccessControl accessControl = new AccessControl(1,true,true);
         Group group = new Group("hello");
-        group.setAccessControl(accessControl);
+//        group.setAccessControl(accessControl);
 
         Account account = new Account();
-        account.setEmail("liker.xu@foxmail.com");
+        account.setEmail("li88888r.xu@foxmail.com");
         account.setRootGroup(group);
 
         User user = new User();
         account.setUser(user);
 
-        new BaseDAO<Account>().create(account);
+
+        Message message = new Message();
+        message.setContext("This is a message!");
+        message.setSenderAccount(account);
+
+        account.getMessageList().add(message);
+
+        AccountNewService accountNewService = new AccountNewService();
+        accountNewService.comeBackFromDB();
+        accountNewService.getAccountArrayList().add(account);
+        accountNewService.settleIntoDB();
+
+//        new BaseDAO<Account>().create(account);
 
     }
 

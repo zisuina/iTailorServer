@@ -1,5 +1,7 @@
 package hibernate.community;
 
+import resource.message.GroupJson;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ public class Group {
 
     public Group() {
     }
+
+
 
     public Group(String groupName) {
         this.groupName = groupName;
@@ -63,4 +67,17 @@ public class Group {
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
+
+    public GroupJson becomeToGroupJson() {
+        GroupJson groupJson = new GroupJson();
+        groupJson.setGroupID(this.groupID);
+//        for (int i = 0; i < this.getAccountList().size(); i++) {
+//            groupJson.getAccountIDs()[i] = accountList.get(i).getAccountID();
+//        }
+        groupJson.setSend(this.accessControl.isSend());
+        groupJson.setReceive(this.accessControl.isReceive());
+        groupJson.setGroupName(this.groupName);
+        return groupJson;
+    }
+
 }

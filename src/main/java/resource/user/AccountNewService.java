@@ -17,14 +17,21 @@ import java.util.List;
  */
 public class AccountNewService {
     private static Logger logger = Logger.getLogger(AccountNewService.class);
-    private List<Account> accountArrayList = new ArrayList<>();
-    private List<Account> accountTobeLeave = new ArrayList<>();
+    private static List<Account> accountArrayList = new ArrayList<>();
+    private static List<Account> accountTobeLeave = new ArrayList<>();
+
+
+    public List<String> getAllEmailsInDB() {
+        System.out.println("GET All Emails from DB!");
+        return new BaseDAO<String>().list("select a.email from Account as a");
+    }
 
     public void comeBackFromDB() {
         accountArrayList = new BaseDAO<Account>().list("select a from Account as a");
     }
 
     public void settleIntoDB() {
+        System.out.println("SETTLE INTO DB!");
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         try {
             session.getTransaction().begin();
@@ -57,6 +64,7 @@ public class AccountNewService {
     }
 
     public Account getAccountForWellFormattedEmail(String email) {
+        comeBackFromDB();
         for (Account ref : accountArrayList) {
             if (ref.getEmail().equals(email)) {
                 return ref;
@@ -66,17 +74,22 @@ public class AccountNewService {
     }
 
     public Account registerAccountForWellFormattedEmail(String email, String password) {
+        comeBackFromDB();
         Account account = new Account(email, password == null ? "" : password);
-        if (accountArrayList.contains(account)) {
+        if (!getAllEmailsInDB().contains(email)) {
             accountArrayList.add(account);
         }
+        settleIntoDB();
         logger.debug("Create a new account:" + email);
         return account;
     }
 
     public Account getAccountAfterCheckPasswordByAccountID(int accountID, String password) {
+        comeBackFromDB();
         for (Account account : accountArrayList) {
+            System.out.println("ACCOUNT-ID:" + account.getAccountID());
             if (accountID == account.getAccountID() && account.getPassword().equals(password)) {
+                System.out.println("RETURN");
                 return account;
             }
         }
@@ -84,6 +97,7 @@ public class AccountNewService {
     }
 
     public Account getAccountWithoutCheckPasswordByAccountID(int accountID) {
+        comeBackFromDB();
         for (Account account : accountArrayList) {
             if (accountID == account.getAccountID()) {
                 return account;
@@ -94,9 +108,12 @@ public class AccountNewService {
 
     public void updateOneAccountByAnother(Account one, Account another) {
         one.setPassword(another.getPassword() == null ? "" : another.getPassword());
+        System.out.println("NEW PASSWORD:" + one.getPassword());
         one.setSync(another.isSync());
         one.setLogIn(another.isLogIn());
-        new BaseDAO<Account>().update(one);
+        System.out.println("NEW LOGIN:" + one.isLogIn());
+        settleIntoDB();
+//        new BaseDAO<Account>().update(one);
         //能被修改的字段，安全策略
     }
 

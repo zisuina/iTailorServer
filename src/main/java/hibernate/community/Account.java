@@ -2,6 +2,7 @@ package hibernate.community;
 
 
 import hibernate.recommendation.User;
+import resource.message.AccountJson;
 import util.encryption.MD5;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<Message> messageList = new ArrayList<>();
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "account_groups",
             joinColumns = {@JoinColumn(name = "accountID_FK", referencedColumnName = "accountID")},
@@ -35,7 +37,7 @@ public class Account {
     private List<Group> groups = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "timeLineID_FK")
-    private TimeLine timeLine;
+    private TimeLine timeLine = new TimeLine();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<ShareItem> shareItems = new ArrayList<>();
@@ -52,7 +54,8 @@ public class Account {
     @JoinColumn(name = "accountID_FK")
     private List<Account> pursuers = new ArrayList<>();
 
-    private Timestamp latestSyncTime;
+    private Timestamp latestSyncTime = new Timestamp(System.currentTimeMillis());
+
 
     @Transient
     private String authenticate;
@@ -223,5 +226,19 @@ public class Account {
             return true;
         }
         return false;
+    }
+
+    public AccountJson createJson() {
+        AccountJson accountJson = new AccountJson();
+        accountJson.setAccountID(this.getAccountID());
+        accountJson.setEmail(this.email);
+        accountJson.setUserID(this.user != null ? this.user.getUser() : 0);
+        accountJson.setTimeLineID(this.getTimeLine() != null ? this.getTimeLine().getTimelineID() : 0);
+        accountJson.setSync(this.isSync());
+        accountJson.setLogIn(this.isLogIn());
+        accountJson.setRootGroupID(this.rootGroup != null ? this.rootGroup.getGroupID() : 0);
+        accountJson.setLatestSyncTime(this.latestSyncTime);
+        accountJson.setAuthenticate(this.getAuthenticate());
+        return accountJson;
     }
 }

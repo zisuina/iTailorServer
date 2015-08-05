@@ -8,6 +8,7 @@ import util.BaseDAO;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by liker on 04/08/2015 0004.
@@ -34,7 +35,7 @@ public class AccountNewServiceTest {
     @Test
     public void testSettleIntoDB() throws Exception {
         List<Account> one = new BaseDAO<Account>().list("select a from Account as a");
-        Account account = new Account("likw432er.xu@foxmail.com", "888");
+        Account account = new Account("thea.zhu@foxmail.com", "888");
         boolean flag = true;
         for (Account ref : one) {
             if (ref.getEmail().equals(account.getEmail())) {
@@ -61,4 +62,14 @@ public class AccountNewServiceTest {
         accountNewService.reportStatus();
     }
 
+    @Test
+    public void testGetAllEmailsInDB() throws Exception {
+        accountNewService.comeBackFromDB();
+        Account account = new Account("thea2.zhu@foxmail.com", "888");
+        accountNewService.getAccountArrayList().add(account);
+        accountNewService.settleIntoDB();
+        List<String> emails = accountNewService.getAllEmailsInDB();
+        assertTrue(emails.contains("thea2.zhu@foxmail.com"));
+        emails.forEach(System.out::println);
+    }
 }

@@ -1,6 +1,7 @@
 package hibernate.community;
 
 import hibernate.recommendation.Resource;
+import resource.message.ShareItemJson;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -26,7 +27,7 @@ public class ShareItem {
     @JoinColumn(name = "shareItemID_FK")
     private List<Comment> comments = new ArrayList<>();
 
-    private Timestamp createdTime;
+    private Timestamp createdTime = new Timestamp(System.currentTimeMillis());
 
     public ShareItem() {
         this.createdTime = new Timestamp(System.currentTimeMillis());
@@ -62,5 +63,16 @@ public class ShareItem {
 
     public void setResource(Resource resource) {
         this.resource = resource;
+    }
+
+    public ShareItemJson becomeToJson() {
+        ShareItemJson shareItemJson = new ShareItemJson();
+        shareItemJson.setCreatedTime(this.getCreatedTime());
+        shareItemJson.setResourceID(this.resource == null ? 0 : this.resource.getResourceId());
+        shareItemJson.setShareItemID(this.shareItemID);
+        for (Comment comment : this.getComments()) {
+            shareItemJson.getCommentIDs().add(comment.getMessageID());
+        }
+        return shareItemJson;
     }
 }
