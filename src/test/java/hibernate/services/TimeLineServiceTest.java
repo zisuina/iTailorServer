@@ -5,7 +5,7 @@ import hibernate.community.Account;
 import hibernate.community.Group;
 import org.junit.Before;
 import org.junit.Test;
-import resource.user.TimeLineService;
+import resource.service.TimeLineService;
 
 import java.util.List;
 

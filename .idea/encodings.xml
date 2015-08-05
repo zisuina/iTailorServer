@@ -20,8 +20,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/recommendation/Resource.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recognize" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/resource/user/Example.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/resource/user/RegistrationResource.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/resource/Example.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/resource/service/test.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/resource/tobe/RegistrationResource.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/BaseDAO.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/EmailVerification.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/dao" charset="GBK" />

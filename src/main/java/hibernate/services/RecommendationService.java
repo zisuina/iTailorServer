@@ -1,7 +1,6 @@
 package hibernate.services;
 
 import crawler.Item;
-import resource.user.Recommendation;
 import hibernate.recommendation.User;
 import org.apache.log4j.Logger;
 import util.BaseDAO;
@@ -20,8 +19,8 @@ public class RecommendationService {
         List<User> users = new BaseDAO<User>().list("select u from User as u");
         users.forEach((User user) -> {
             ArrayList<Item> items = perfectlyCalculate(user);
-//            user.setItemRecommendedToday(items.size() < 4 ? items : items.subList(0, 2));
-            logger.debug("Reset OR Init Recommendation For USER:" + user.getUser() + "?" + user.getNickname());
+//            tobe.setItemRecommendedToday(items.size() < 4 ? items : items.subList(0, 2));
+            logger.debug("Reset OR Init RecommendationService For USER:" + user.getUser() + "?" + user.getNickname());
             new BaseDAO<User>().update(user);
         });
     }
@@ -29,10 +28,10 @@ public class RecommendationService {
     public ArrayList<Item> perfectlyCalculate(User user) {
         CrawlerService crawlerService = new CrawlerService();
         do {
-            String keywords = Recommendation.makeRecommendation(user);
+            String keywords = resource.service.RecommendationService.makeRecommendation(user);
             crawlerService.onLineSearch(keywords);
         } while (crawlerService.getItems().isEmpty());
-        logger.debug("Recommendation Calculation for USER:" + user.getUser() + "?" + user.getNickname());
+        logger.debug("RecommendationService Calculation for USER:" + user.getUser() + "?" + user.getNickname());
         return crawlerService.getItems();
     }
 

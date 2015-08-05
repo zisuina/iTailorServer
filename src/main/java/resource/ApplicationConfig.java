@@ -12,7 +12,7 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("itailor/*")
 public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
-        packages("resource.user");
+        packages("resource");
         register(JacksonJsonProvider.class);
     }
 }

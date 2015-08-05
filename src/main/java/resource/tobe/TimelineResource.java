@@ -1,7 +1,6 @@
 //package resource.user;
 //
 //import hibernate.community.Account;
-//import hibernate.services.AccountService;
 //
 //import javax.ws.rs.GET;
 //import javax.ws.rs.HeaderParam;

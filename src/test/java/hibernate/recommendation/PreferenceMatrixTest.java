@@ -37,7 +37,7 @@ public class PreferenceMatrixTest {
 
         timeLine.getShareItems().add(shareItem);
 
-        Message message = new Message("message",account2);
+        Message message = new Message("json",account2);
         account.getMessageList().add(message);
 
         Comment comment = new Comment("comment",account);

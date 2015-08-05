@@ -1,5 +1,7 @@
 package hibernate.recommendation;
 
+import resource.json.ResourceJson;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 /**
@@ -99,5 +101,9 @@ public class Resource {
 
     public void setTmallID(long tmallID) {
         this.tmallID = tmallID;
+    }
+
+    public ResourceJson becomeToJson() {
+        return null;
     }
 }

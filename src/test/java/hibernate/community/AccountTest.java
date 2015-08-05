@@ -2,7 +2,7 @@ package hibernate.community;
 
 import hibernate.recommendation.User;
 import org.junit.Test;
-import resource.user.AccountNewService;
+import resource.service.AccountNewService;
 import util.BaseDAO;
 
 import static junit.framework.TestCase.assertEquals;
@@ -52,7 +52,7 @@ public class AccountTest {
 
         timeLine.getShareItems().add(shareItem);
 
-        Message message = new Message("message",account2);
+        Message message = new Message("json",account2);
         account.getMessageList().add(message);
 
         Comment comment = new Comment("comment",account);
@@ -87,7 +87,7 @@ public class AccountTest {
 
 
         Message message = new Message();
-        message.setContext("This is a message!");
+        message.setContext("This is a json!");
         message.setSenderAccount(account);
 
         account.getMessageList().add(message);

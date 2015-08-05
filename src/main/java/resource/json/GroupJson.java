@@ -1,8 +1,8 @@
-package resource.message;
+package resource.json;
 
 import hibernate.community.AccessControl;
 import hibernate.community.Group;
-import resource.user.AccountNewService;
+import resource.service.AccountNewService;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

@@ -2,7 +2,7 @@ package hibernate.community;
 
 
 import hibernate.recommendation.User;
-import resource.message.AccountJson;
+import resource.json.AccountJson;
 import util.encryption.MD5;
 
 import javax.persistence.*;

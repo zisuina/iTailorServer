@@ -1,4 +1,4 @@
-package resource.user;
+package resource.service;
 
 import hibernate.community.Account;
 import hibernate.community.Group;

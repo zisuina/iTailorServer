@@ -1,4 +1,4 @@
-package resource.message;
+package resource.json;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Timestamp;

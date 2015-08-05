@@ -1,4 +1,4 @@
-package resource.message;
+package resource.json;
 
 import hibernate.elements.Color;
 

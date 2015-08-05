@@ -1,6 +1,6 @@
 //package resource.user;
 //
-//import resource.message.JImage;
+//import resource.json.JImage;
 //
 //import javax.ws.rs.Consumes;
 //import javax.ws.rs.POST;

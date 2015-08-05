@@ -1,6 +1,8 @@
 package hibernate.recommendation;
 
 
+import resource.json.UserJson;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +106,10 @@ public class User {
 
     public void setSearchWordsHistory(List<SearchWord> searchWordsHistory) {
         this.searchWordsHistory = searchWordsHistory;
+    }
+
+    public UserJson becomeToJson() {
+        return null;
     }
 //    public List<Item> getItemRecommendedToday() {
 //        return itemRecommendedToday;

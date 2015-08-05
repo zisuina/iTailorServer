@@ -1,11 +1,11 @@
-package resource.user;
+package resource.community;
 
 import hibernate.community.*;
-import resource.message.AccountJson;
-import resource.message.GroupJson;
-import resource.message.MessageJson;
-import resource.message.ShareItemJson;
+import resource.json.*;
+import resource.service.AccountNewService;
+import resource.service.UserService;
 import util.BaseDAO;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -692,6 +692,38 @@ public class AccountResource {
 //        }
 //        return null;
 //    }
+
+
+    @Path("/tobe")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean putUser(@QueryParam("accountID") final int accountID,
+                           @HeaderParam("password") final String password,
+                           final UserJson userJson) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+            UserService userService = new UserService();
+            userService.mergeJsonToUser(userJson);
+            return true;
+        }
+        return false;
+    }
+
+    @Path("/tobe")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    public UserJson getUser(@QueryParam("accountID") final int accountID,
+                            @HeaderParam("password") final String password) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+            return account.getUser().becomeToJson();
+        }
+        return null;
+    }
+
+
 
 
 }

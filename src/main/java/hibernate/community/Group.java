@@ -1,6 +1,6 @@
 package hibernate.community;
 
-import resource.message.GroupJson;
+import resource.json.GroupJson;
 
 import javax.persistence.*;
 import java.util.ArrayList;

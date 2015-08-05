@@ -1,7 +1,7 @@
 package hibernate.community;
 
 import hibernate.recommendation.Resource;
-import resource.message.ShareItemJson;
+import resource.json.ShareItemJson;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

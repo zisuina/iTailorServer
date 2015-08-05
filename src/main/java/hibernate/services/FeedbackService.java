@@ -26,10 +26,10 @@ public class FeedbackService {
 
 //    public void reply(Feedback feedback, String context) {
 //        feedback.setAccepted(true);
-//        Message message = new Message();
-//        message.setSenderAccount(system);
-//        message.setContext(context);
-//        feedback.getSenderAccount().getMessageList().add(message);
+//        Message json = new Message();
+//        json.setSenderAccount(system);
+//        json.setContext(context);
+//        feedback.getSenderAccount().getMessageList().add(json);
 //    }
 
 }

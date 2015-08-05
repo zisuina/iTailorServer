@@ -10,17 +10,17 @@ public class testLog2 {
     public void show() {
         Logger logger = Logger.getLogger(testLog2.class);
 //        ALL,TRACE,DEBUG,INFO,WARNING,ERROR,FITAL,OFF
-        logger.trace("TRACE message.");
-        logger.debug("DEBUG message.");
-        logger.info("INFO message.");
-        logger.warn("WARNING message.");
-        logger.error("ERROR message.");
-        logger.fatal("FATAL message");
+        logger.trace("TRACE json.");
+        logger.debug("DEBUG json.");
+        logger.info("INFO json.");
+        logger.warn("WARNING json.");
+        logger.error("ERROR json.");
+        logger.fatal("FATAL json");
         if(logger.isDebugEnabled()){
-            logger.debug("DEBUG message when debug is enabled.");
+            logger.debug("DEBUG json when debug is enabled.");
         }
         if(logger.isEnabledFor(Level.ERROR)){
-            logger.error("WARNING message when warn is enable");
+            logger.error("WARNING json when warn is enable");
         }
     }
 }

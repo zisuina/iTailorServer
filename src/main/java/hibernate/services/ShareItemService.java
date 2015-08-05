@@ -2,7 +2,7 @@ package hibernate.services;
 
 import hibernate.community.Account;
 import hibernate.community.ShareItem;
-import resource.user.TimeLineService;
+import resource.service.TimeLineService;
 
 import java.util.List;
 import java.util.stream.Collectors;

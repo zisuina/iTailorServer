@@ -1,6 +1,7 @@
-package resource.user;
+package resource.tobe;
 
 import org.junit.Test;
+import resource.community.AccountResource;
 
 import static junit.framework.TestCase.assertTrue;
 

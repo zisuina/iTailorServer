@@ -1,7 +1,8 @@
-package resource.user;
+package resource.service;
 
 import hibernate.community.ShareItem;
 import org.apache.log4j.Logger;
+import resource.service.AccountNewService;
 import util.BaseDAO;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public class ShareItemNewService {
         }
         return null;
     }
+
+
 }

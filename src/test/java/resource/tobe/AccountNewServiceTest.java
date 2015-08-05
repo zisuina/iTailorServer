@@ -1,8 +1,9 @@
-package resource.user;
+package resource.tobe;
 
 import hibernate.community.Account;
 import org.junit.Before;
 import org.junit.Test;
+import resource.service.AccountNewService;
 import util.BaseDAO;
 
 import java.util.List;

@@ -3,7 +3,7 @@
 //import hibernate.community.Account;
 //import hibernate.recommendation.User;
 //import org.apache.log4j.Logger;
-//import resource.message.Registration;
+//import resource.json.Registration;
 //import util.BaseDAO;
 //
 //import javax.ws.rs.Consumes;
@@ -26,9 +26,9 @@
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    public String put(Registration jsonObject) {
 ////        Account account = new Account(jsonObject.getEmail(),jsonObject.getPassword());
-////        User user = new User(jsonObject.getNickname(),account);
+////        User tobe = new User(jsonObject.getNickname(),account);
 //        BaseDAO<User> accountDAO2 = new BaseDAO<>();
-////        accountDAO2.create(user);
+////        accountDAO2.create(tobe);
 //        BaseDAO<Account> accountDAO = new BaseDAO<>();
 ////        accountDAO.create(account);
 //        return "Yes,we save it!";
