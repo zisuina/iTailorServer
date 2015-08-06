@@ -1,5 +1,7 @@
 package resource.json;
 
+import hibernate.community.Account;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Timestamp;
 
@@ -103,5 +105,13 @@ public class AccountJson {
 
     public void setAuthenticate(String authenticate) {
         this.authenticate = authenticate;
+    }
+
+    public Account becomeToEntity() {
+        Account account = new Account();
+        account.setPassword(this.password);
+        account.setLogIn(this.logIn);
+        account.setSync(this.isSync());
+        return account;
     }
 }

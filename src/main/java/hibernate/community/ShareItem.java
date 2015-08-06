@@ -75,4 +75,8 @@ public class ShareItem {
         }
         return shareItemJson;
     }
+
+    public void beGivenUp(){
+        this.resource = null;
+    }
 }

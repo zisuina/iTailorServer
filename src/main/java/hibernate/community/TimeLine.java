@@ -52,11 +52,18 @@ public class TimeLine {
     }
 
     public List<ShareItem> getSortedShareItems() {
+        if(shareItems.isEmpty()){
+            return new ArrayList<>();
+        }
         Collections.sort(shareItems, new Comparator<ShareItem>() {
             public int compare(ShareItem arg0, ShareItem arg1) {
                 return arg0.getCreatedTime().compareTo(arg1.getCreatedTime());
             }
         });
         return shareItems;
+    }
+
+    public void beGivenUp(){
+        this.shareItems = null;
     }
 }

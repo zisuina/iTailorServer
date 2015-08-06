@@ -47,7 +47,7 @@ public class Account {
     private boolean sync;
     private boolean logIn;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "groupID_FK")
+    @JoinColumn(name = "rootGroupID_FK")
     private Group rootGroup = new Group();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -228,9 +228,10 @@ public class Account {
         return false;
     }
 
-    public AccountJson createJson() {
+    public AccountJson becomeToJson() {
         AccountJson accountJson = new AccountJson();
         accountJson.setAccountID(this.getAccountID());
+        accountJson.setPassword(this.password);
         accountJson.setEmail(this.email);
         accountJson.setUserID(this.user != null ? this.user.getUser() : 0);
         accountJson.setTimeLineID(this.getTimeLine() != null ? this.getTimeLine().getTimelineID() : 0);
@@ -240,5 +241,24 @@ public class Account {
         accountJson.setLatestSyncTime(this.latestSyncTime);
         accountJson.setAuthenticate(this.getAuthenticate());
         return accountJson;
+    }
+
+    public void mergeJsonToEntity(AccountJson accountJson) {
+//        this.setPassword(accountJson.getPassword() == null ? "" : accountJson.getPassword());
+        this.setPassword(accountJson.getPassword());
+        this.setSync(accountJson.isSync());
+        this.setLogIn(accountJson.isLogIn());
+    }
+
+
+    /**
+     * 用于被删除不级联删除其他用户产生的对象
+     */
+    public void beGivenUp() {
+        this.groups.forEach(hibernate.community.Group::beGivenUp);
+        this.shareItems.forEach(hibernate.community.ShareItem::beGivenUp);
+        this.rootGroup.beGivenUp();
+        this.pursuers = null;
+        this.user = null;
     }
 }

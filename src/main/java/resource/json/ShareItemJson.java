@@ -1,5 +1,8 @@
 package resource.json;
 
+import hibernate.community.ShareItem;
+import hibernate.recommendation.Resource;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -49,5 +52,13 @@ public class ShareItemJson {
 
     public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public ShareItem becomeToJson() {
+        ShareItem shareItem = new ShareItem();
+        //TODO
+        shareItem.setComments(null);
+        shareItem.setResource(new Resource());
+        return shareItem;
     }
 }

@@ -2,7 +2,6 @@ package resource.json;
 
 import hibernate.community.AccessControl;
 import hibernate.community.Group;
-import resource.service.AccountNewService;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -58,21 +57,9 @@ public class GroupJson {
     }
 
     public Group becomeToGroup() {
-        System.out.println("RECEIVE: " + this.isReceive());
-        System.out.println("SEND: " + this.isSend());
-        System.out.println("GroupName: " + this.getGroupName());
         Group group = new Group();
-        group.setAccessControl(new AccessControl(2, this.isReceive(), this.isSend()));
+        group.setAccessControl(new AccessControl(this.isReceive(), this.isSend()));
         group.setGroupName(this.groupName);
-        AccountNewService accountNewService = new AccountNewService();
-//        for (int i : this.accountIDs) {
-//            Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(i);
-//            System.out.println("AccountID:" + i);
-//            if (account != null) {
-//                System.out.println("ONE ADDED!");
-//                group.getAccountList().add(account);
-//            }
-//        }
         return group;
     }
 }

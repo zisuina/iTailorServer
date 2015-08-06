@@ -24,7 +24,7 @@ public class Group {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "controlID_FK")
-    private AccessControl accessControl;
+    private AccessControl accessControl = new AccessControl();
     private String groupName = "undefine";
 
     public Group() {
@@ -71,13 +71,15 @@ public class Group {
     public GroupJson becomeToGroupJson() {
         GroupJson groupJson = new GroupJson();
         groupJson.setGroupID(this.groupID);
-//        for (int i = 0; i < this.getAccountList().size(); i++) {
-//            groupJson.getAccountIDs()[i] = accountList.get(i).getAccountID();
-//        }
-        groupJson.setSend(this.accessControl.isSend());
-        groupJson.setReceive(this.accessControl.isReceive());
+        groupJson.setSend(this.accessControl == null || this.accessControl.isSend());
+        groupJson.setReceive(this.accessControl == null || this.accessControl.isReceive());
         groupJson.setGroupName(this.groupName);
         return groupJson;
+    }
+
+    public void beGivenUp(){
+        this.accountList = null;
+        this.accessControl = null;
     }
 
 }

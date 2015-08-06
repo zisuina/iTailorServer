@@ -96,4 +96,8 @@ public class Message {
 //        return null;
 //
 //    }
+
+    public void beGivenUp(){
+        this.senderAccount = null;
+    }
 }

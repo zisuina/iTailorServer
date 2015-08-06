@@ -1,14 +1,17 @@
 package resource.community;
 
 import hibernate.community.*;
-import resource.json.*;
+import org.apache.log4j.Logger;
+import resource.json.AccountJson;
+import resource.json.GroupJson;
+import resource.json.MessageJson;
+import resource.json.ShareItemJson;
 import resource.service.AccountNewService;
-import resource.service.UserService;
+import resource.service.ShareItemNewService;
+import resource.service.TimeLineService;
 import util.BaseDAO;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -21,24 +24,20 @@ import java.util.stream.Collectors;
  */
 @Path("accountS")
 public class AccountResource {
+    private static Logger logger = Logger.getLogger(AccountResource.class);
 
-    //    @Path("/")
+    //    @Path("/")  tested
     @POST
     @Produces(MediaType.TEXT_PLAIN)
 //    email thea.zhu6@foxmail.com
 //    email thea.zhu14@foxmail.com
 //    password helloworld
-    public boolean registerAccount(@QueryParam("email") final String email,
-                                   @HeaderParam("password") final String password) {
-        System.out.println("FINE!POST");
+    public boolean postAccount(@QueryParam("email") final String email,
+                               @HeaderParam("password") final String password) {
         AccountNewService accountNewService = new AccountNewService();
-//        accountNewService.comeBackFromDB();
         if (accountNewService.isEmailWellFormatted(email)) {
             if (accountNewService.getAccountForWellFormattedEmail(email) == null) {
-                System.out.println("FINE!!!!!POST");
                 accountNewService.registerAccountForWellFormattedEmail(email, password);
-                System.out.println("Email:" + email);
-                accountNewService.settleIntoDB();
                 return true;
             }
         }
@@ -47,7 +46,7 @@ public class AccountResource {
 
 
     //注销
-//    @Path("/")
+//    @Path("/") tested
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
 //    accountID 30
@@ -57,70 +56,69 @@ public class AccountResource {
         AccountNewService accountNewService = new AccountNewService();
         Account ref = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
         if (ref != null) {
-            System.out.println("FINE!DELETE");
             accountNewService.getAccountArrayList().remove(ref);
-            accountNewService.getAccountTobeLeave().add(ref);
-            accountNewService.settleIntoDB();
+            ref.beGivenUp();
+            new BaseDAO<Account>().delete(ref);
             return true;
         }
         return false;
     }
 
     //更新
-//    @Path("/")
+//    @Path("/") tested
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    //一次失败
 //    {"accountID":"35","password":"newpassword","sync":"true","logIn":"true"}
-    public boolean updateAccount(@HeaderParam("password") final String password,
-                                 final Account account) {
+    public boolean putAccount(@QueryParam("accountID") final int accountID,
+                              @HeaderParam("password") final String password,
+                              final AccountJson accountJson) {
+        if (accountJson == null) {
+            return false;
+        }
         AccountNewService accountNewService = new AccountNewService();
-        System.out.println("deleteID:" + account.getAccountID());
+        Account account = accountJson.becomeToEntity();
         Account ref = accountNewService
-                .getAccountAfterCheckPasswordByAccountID(account.getAccountID(), password);
-        System.out.println("ID:" + account.getAccountID());
-        System.out.println("PWD:" + password);
-        if (ref != null && ref.getPassword().equals(password)) {
-            System.out.println("ID:" + ref.getAccountID());
-            System.out.println("PWD:" + ref.getPassword());
-            accountNewService.updateOneAccountByAnother(ref, account);
-            System.out.println("FINE!PUT");
+                .getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (ref != null) {
+            System.out.println(">>>>>>>>>>");
+            ref.mergeJsonToEntity(accountJson);
+            new BaseDAO<Account>().update(ref);
             return true;
         }
         return false;
     }
 
-    //登陆
-    @GET
+    @GET //tested
     @Produces(MediaType.APPLICATION_JSON)
     public AccountJson getAccount(@QueryParam("email") final String email,
-                                  @HeaderParam("password") final String password,
-                                  @Context HttpServletRequest request) {
+                                  @HeaderParam("password") final String password) {
+//                                  @Context HttpServletRequest request) {
         AccountNewService accountNewService = new AccountNewService();
 
         if (accountNewService.isEmailWellFormatted(email)) {
             Account account = accountNewService.getAccountForWellFormattedEmail(email);
             if (account != null) {
-                LoginRecord loginRecord = new LoginRecord();
-                loginRecord.setIp(request.getRemoteAddr());
-                loginRecord.setUDID(request.getRemoteUser());
-                account.getLoginRecords().add(loginRecord);
-                accountNewService.settleIntoDB();
-                System.out.println("FINE!GET");
-                return account.createJson();
+                return account.becomeToJson();
             }
         }
         return null;
     }
 
-    //http://localhost:8080/itailor/accountS/messageS?accountID=3
+    //http://localhost:8080/itailor/accountS/messageS?accountID=3  tested
     @Path("/messageS")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
 //    {"messageID":"1","senderAccountID":"1","context":"he$llo mes@sage"}
+    //    java.lang.NullPointerException
+//    resource.community.AccountResource.postMessage(AccountResource.java:128)
     public boolean postMessage(@QueryParam("accountID") final int accountID,
                                final MessageJson messageJson) {
+        if (messageJson == null) {
+            return false;
+        }
         AccountNewService accountNewService = new AccountNewService();
         Account ref = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
         if (ref != null) {
@@ -135,7 +133,7 @@ public class AccountResource {
         return false;
     }
 
-    //http://localhost:8080/itailor/accountS/messageS?accountID=3&messageID=589824
+    //http://localhost:8080/itailor/accountS/messageS?accountID=3&messageID=589824 tested
     @Path("/messageS")
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
@@ -160,7 +158,7 @@ public class AccountResource {
     }
 
 
-    @Path("/messageS")
+    @Path("/messageS") //tested
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<MessageJson> getMessage(@QueryParam("accountID") final int accountID,
@@ -184,7 +182,7 @@ public class AccountResource {
         return messageJsons;
     }
 
-    //
+    //tested
     @Path("/groupS")
     @POST
     @Produces(MediaType.TEXT_PLAIN)
@@ -194,6 +192,9 @@ public class AccountResource {
     public boolean postGroup(@QueryParam("accountID") final int accountID,
                              @HeaderParam("password") final String password,
                              final GroupJson groupJson) {
+        if (groupJson == null) {
+            return false;
+        }
         Group group = new Group();
         AccountNewService accountNewService = new AccountNewService();
 
@@ -214,7 +215,7 @@ public class AccountResource {
         return false;
     }
 
-    @Path("/groupS")
+    @Path("/groupS") //tested
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
     public boolean deleteGroup(@QueryParam("accountID") final int accountID,
@@ -237,7 +238,7 @@ public class AccountResource {
         return false;
     }
 
-    @Path("/groupS")
+    @Path("/groupS")  //tested
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -264,17 +265,17 @@ public class AccountResource {
         return null;
     }
 
-    @Path("/groupS")
+    @Path("/groupS") //tested
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public GroupJson getGroup(@QueryParam("accountID") final int accountID,
-                              @QueryParam("groupID") final int groupID,
+                              @QueryParam("groupName") final String groupName,
                               @HeaderParam("password") final String password) {
         AccountNewService accountNewService = new AccountNewService();
         Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
         if (account != null) {
             for (Group ref : account.getGroups()) {
-                if (ref.getGroupID() == groupID) {
+                if (ref.getGroupName().equals(groupName)) {
                     return ref.becomeToGroupJson();
                 }
             }
@@ -283,10 +284,10 @@ public class AccountResource {
     }
 
 
-    @Path("/groupS/accountS")
+    @Path("/groupS/accountS")  //tested
     @POST
     @Produces(MediaType.TEXT_PLAIN)
-    //待测试
+    //默认加根组
     public boolean postGroupAccount(@QueryParam("accountID") final int accountID,
                                     @QueryParam("groupID") final int groupID,
                                     @QueryParam("email") final String email,
@@ -296,24 +297,17 @@ public class AccountResource {
         if (account != null) {
             if (accountNewService.isEmailWellFormatted(email)) {
                 Account ref = accountNewService.getAccountForWellFormattedEmail(email);
-                if (!account.isAFriendOf(ref)) {
-//                    if (account.getPursuers().contains(ref)) {
-//                        account.getRootGroup().getAccountList().add(ref);
-//                        accountNewService.getGroupByAccountIDAndGroupID(accountID, groupID)
-//                                .getAccountList().add(ref);
-//                        ref.getRootGroup().getAccountList().add(account);
-//                        account.getPursuers().remove(ref);
-////                        new BaseDAO<Account>().update(account);
-//                        //可能存在问题
-//                    } else if (ref.getPursuers().contains(account)) {
-//                        return false;
-//                    }
-//                    ref.getPursuers().add(account);
-                    account.getRootGroup().getAccountList().add(ref);
-                    ref.getRootGroup().getAccountList().add(account);
-                    new BaseDAO<Account>().update(account);
-                    new BaseDAO<Account>().update(ref);
-                    return true;
+                if (ref != null) {
+                    if (!account.isAFriendOf(ref)) {
+                        account.getRootGroup().getAccountList().add(ref);
+                        if (ref.getRootGroup() == null) {
+                            ref.setRootGroup(new Group("newRootGroup"));
+                        }
+                        ref.getRootGroup().getAccountList().add(account);
+                        new BaseDAO<Account>().update(account);
+                        new BaseDAO<Account>().update(ref);
+                        return true;
+                    }
                 }
             }
         }
@@ -321,7 +315,7 @@ public class AccountResource {
     }
 
 
-    @Path("/groupS/accountS")
+    @Path("/groupS/accountS")  //tested
     @DELETE
     @Produces(MediaType.TEXT_PLAIN)
     public boolean deleteGroupAccount(@QueryParam("accountID") final int accountID,
@@ -344,7 +338,7 @@ public class AccountResource {
     }
 
 
-    @Path("/groupS/accountS")
+    @Path("/groupS/accountS")  //tested
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public AccountJson getGroupAccount(@QueryParam("accountID") final int accountID,
@@ -357,7 +351,7 @@ public class AccountResource {
             for (Account ref : one.getAccountList()) {
                 if (ref.getAccountID() == accountID2) {
                     //TO DO 要过滤掉不该被看到的内容以及嵌套调用的内容
-                    return ref.createJson();
+                    return ref.becomeToJson();
                 }
             }
         }
@@ -365,35 +359,42 @@ public class AccountResource {
     }
 
     //
-    @Path("/groupS/accessControl")
+    @Path("/groupS/accessControl") //tested
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
 //    {"receive":"true","send":"false"}
     public AccessControl putAccessControl(@QueryParam("accountID") final int accountID,
                                           @QueryParam("groupID") final int groupID,
+                                          @HeaderParam("password") final String password,
                                           final AccessControl accessControl) {
         AccountNewService accountNewService = new AccountNewService();
-        Group group = accountNewService.getGroupByAccountIDAndGroupID(accountID, groupID);
-        AccessControl access = new AccessControl(accessControl.isReceive(), accessControl.isSend());
-//        AccessControlService accessControlService = new AccessControlService();
-//        group.setAccessControl(accessControlService
-//                .getSpecificAccessControl(accessControl.isReceive(), accessControl.isSend()));
-        group.setAccessControl(access);
-        new BaseDAO<Group>().update(group);
-        return group.getAccessControl();
+        Group group = accountNewService.getGroupByAccountIDAndGroupID(accountID, groupID, password);
+        if (group != null) {
+            System.out.println(">>>>>>>>>>>>>>>>YES");
+            AccessControl access = new AccessControl(accessControl.isReceive(), accessControl.isSend());
+            group.setAccessControl(access);
+            new BaseDAO<Group>().update(group);
+            return access;
+        }
+        return null;
     }
 
-    @Path("/groupS/accessControl")
+    @Path("/groupS/accessControl") //tested
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public AccessControl getAccessControl(@QueryParam("accountID") final int accountID,
-                                          @QueryParam("groupID") final int groupID) {
+                                          @QueryParam("groupID") final int groupID,
+                                          @HeaderParam("password") final String password) {
         AccountNewService accountNewService = new AccountNewService();
-        Group group = accountNewService.getGroupByAccountIDAndGroupID(accountID, groupID);
-        return group.getAccessControl();
+        Group group = accountNewService.getGroupByAccountIDAndGroupID(accountID, groupID, password);
+        if (group != null) {
+            return group.getAccessControl();
+        }
+        return null;
     }
 
-    @Path("timeline")
+    //
+    @Path("timeline")  //to be tested
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ShareItemJson> getTimeLine(@QueryParam("accountID") final int accountID,
@@ -401,15 +402,21 @@ public class AccountResource {
                                            @HeaderParam("password") final String password) {
         AccountNewService accountNewService = new AccountNewService();
         Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        System.out.println(account == null);
         if (account != null) {
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             if (account.getTimeLine() == null) {
                 account.setTimeLine(new TimeLine());
                 new BaseDAO<Account>().update(account);
             }
             List<ShareItem> shareItems = account.getTimeLine().getSortedShareItems();
-            shareItems = shareItems.subList(0, limit > shareItems.size() ? shareItems.size() : limit);
-            List<ShareItemJson> shareItemJsons = shareItems.stream()
-                    .map(ShareItem::becomeToJson).collect(Collectors.toList());
+            if (!shareItems.isEmpty()) {
+                shareItems = shareItems.subList(0, limit > shareItems.size() ? shareItems.size() : limit);
+                List<ShareItemJson> shareItemJsons = shareItems.stream()
+                        .map(ShareItem::becomeToJson).collect(Collectors.toList());
+                return shareItemJsons;
+            }
+            return new ArrayList<>();
         }
         return null;
     }
@@ -457,32 +464,45 @@ public class AccountResource {
     }
 
 
-//    @Path("timeline/shareItems/commentS")
-//    @POST
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public void postTimeLineShareItemsComment(@QueryParam("shareItemID") final int shareItemID,
-//                                              @HeaderParam("password") final String password,
-//                                              final Comment comment) {
-//        Account account = comment.getSenderAccount();
-//        if (account != null && account.getPassword().equals(password)) {
-//            for (ShareItem shareItem : account.getTimeLine().getShareItems()) {
-//                if (shareItem.getShareItemID() == shareItemID) {
-//                    shareItem.getComments().add(comment);
-//                }
-//            }
-//        }
-//    }
-//
-//    @Path("timeline/shareItems/commentS")
-//    @DELETE
-//    @Produces(MediaType.TEXT_PLAIN)
-//    public boolean deleteTimeLineShareItemsComment(@QueryParam("accountID") final int accountID,
-//                                                   @QueryParam("shareItemID") final int shareItemID,
-//                                                   @QueryParam("commentID") final int commentID) {
-//        //只有发布者与子与分享单件可以删除评论
-//        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
-//        if (account != null) {
-//            for (ShareItem shareItem : account.getTimeLine().getShareItems()) {
+    @Path("timeline/shareItems/commentS")
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public void postTimeLineShareItemsComment(@QueryParam("shareItemID") final int shareItemID,
+                                              @HeaderParam("password") final String password,
+                                              final Comment comment) {
+        Account account = comment.getSenderAccount();
+        if (account != null && account.getPassword().equals(password)) {
+            for (ShareItem shareItem : account.getTimeLine().getShareItems()) {
+                if (shareItem.getShareItemID() == shareItemID) {
+                    shareItem.getComments().add(comment);
+                }
+            }
+        }
+    }
+
+    @Path("timeline/shareItems/commentS")
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean deleteTimeLineShareItemsComment(@QueryParam("accountID") final int accountID,
+                                                   @QueryParam("shareItemID") final int shareItemID,
+                                                   @QueryParam("commentID") final int commentID) {
+        AccountNewService accountNewService = new AccountNewService();
+        //只有发布者与子与分享单件可以删除评论
+        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
+        if (account != null) {
+            for (ShareItem shareItem : account.getTimeLine().getShareItems()) {
+                if (shareItem.getShareItemID() == shareItemID) {
+                    for (Comment comment : shareItem.getComments()) {
+                        if (comment.getMessageID() == commentID) {
+                            if (account.getUser().equals(shareItem.getResource().getUser())
+                                    || comment.getSenderAccount().equals(account)) {
+                                shareItem.getComments().remove(comment);
+                            }
+                        }
+                    }
+                }
+            }
+//            for (ShareItem shareItem : account.getShareItems()) {
 //                if (shareItem.getShareItemID() == shareItemID) {
 //                    for (Comment comment : shareItem.getComments()) {
 //                        if (comment.getMessageID() == commentID) {
@@ -494,236 +514,263 @@ public class AccountResource {
 //                    }
 //                }
 //            }
-////            for (ShareItem shareItem : account.getShareItems()) {
-////                if (shareItem.getShareItemID() == shareItemID) {
-////                    for (Comment comment : shareItem.getComments()) {
-////                        if (comment.getMessageID() == commentID) {
-////                            if (account.getUser().equals(shareItem.getResource().getUser())
-////                                    || comment.getSenderAccount().equals(account)) {
-////                                shareItem.getComments().remove(comment);
-////                            }
-////                        }
-////                    }
-////                }
-////            }
-//            //评论删除有没有同步我很期待Java对象管理给予我肯定回复
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    @Path("timeline/shareItems/commentS")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Comment> getTimeLineShareItemsComment(@QueryParam("accountID") final int accountID,
-//                                                      @QueryParam("shareItemID") final int shareItemID,
-//                                                      @QueryParam("limit") final int limit) {
-//
-//        List<Comment> comments2 = new ArrayList<>();
-//        //权限控制在哪？
-//        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
-//        if (account != null) {
-//            ShareItemNewService shareItemNewService = new ShareItemNewService();
-//            List<Comment> comments = shareItemNewService.getShareItemByID(shareItemID).getComments();
-//            comments = comments.subList(0, limit > comments.size() ? comments.size() : limit);
-//            for (Comment comment : comments) {
-//                TimeLineService timeLineService = new TimeLineService(comment.getSenderAccount());
-//                if (timeLineService.getSendAccountList().contains(account)) {
-//                    comments.add(comment);
-//                }
-//            }
-//        }
-//        return comments2;
-//    }
-//
-//    @Path("loginRecords")
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void postLoginRecords(@QueryParam("email") final String email,
-//                                 @HeaderParam("password") final String password,
-//                                 final LoginRecord loginRecord) {
-//        if (accountNewService.isEmailWellFormatted(email)) {
-//            Account account = accountNewService.getAccountForWellFormattedEmail(email);
-//            if (account.getPassword().equals(password)) {
-//                account.getLoginRecords().add(loginRecord);
-//                account.setLogIn(true);
-//            }
-//        }
-//    }
-//
-//    @Path("loginRecords")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public void deleteLoginRecords(@QueryParam("email") final String email,
-//                                   @HeaderParam("password") final String password,
-//                                   final LoginRecord loginRecord) {
-//        if (accountNewService.isEmailWellFormatted(email)) {
-//            Account account = accountNewService.getAccountForWellFormattedEmail(email);
-//            if (account.getPassword().equals(password)) {
-//                account.getLoginRecords().add(loginRecord);
-//                account.setLogIn(false);
-//            }
-//        }
-//    }
-//
-//    @Path("loginRecords")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<LoginRecord> getLoginRecords(@QueryParam("accountID") final int accountID,
-//                                             @QueryParam("limit") final int limit,
-//                                             @HeaderParam("password") final String password) {
-//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-//        if (account != null) {
-//            List<LoginRecord> loginRecords = account.getLoginRecords();
-//            return loginRecords.subList(0, limit > loginRecords.size() ? loginRecords.size() : limit);
-//        }
-//        return null;
-//    }
-//
-//
-//    @Path("accounts")
-//    @POST
-//    public boolean postAccounts(@QueryParam("accountID") final int accountID,
-//                                @QueryParam("email") final String email) {
-//        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
-//        if (accountNewService.isEmailWellFormatted(email)) {
-//            Account account2 = accountNewService.getAccountForWellFormattedEmail(email);
-//            if (!account.isAFriendOf(account2)) {
-//                if (account.getPursuers().contains(account2)) {
-//                    account.getRootGroup().getAccountList().add(account2);
-//                    account2.getRootGroup().getAccountList().add(account);
-//                    account.getPursuers().remove(account2);
-//                }
-//                account2.getPursuers().add(account);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    @Path("accounts")
-//    @DELETE
-//    public void deleteAccounts(@QueryParam("accountID") final int accountID,
-//                               @QueryParam("accountID") final int accountID2) {
-//        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
-//        Account account2 = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID2);
-//        if (account != null && account2 != null) {
-//            if (account.getPursuers().contains(account2)) {
-//                account.getPursuers().remove(account2);
-//            }
-//            if (account2.getPursuers().contains(account)) {
-//                account2.getPursuers().remove(account);
-//            }
-//        }
-//    }
-//
-//    @Path("accounts")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Account> getAccounts(@QueryParam("accountID") final int accountID) {
-//        return accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID).getPursuers();
-//    }
-//
-//    @Path("shareItems")
-//    @POST
-//    public void postShareItems(@QueryParam("accountID") final int accountID,
-//                               @HeaderParam("password") final String password,
-//                               final ShareItem shareItem) {
-//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-//        if (account != null) {
-//            ShareItemService shareItemService = new ShareItemService();
-//            shareItemService.pushShareItem(account, shareItem);
-//        }
-//    }
-//
-//    @Path("shareItems")
-//    @DELETE
-//    public boolean deleteShareItems(@QueryParam("accountID") final int accountID,
-//                                    @HeaderParam("shareItemID") final int shareItemID,
-//                                    @HeaderParam("password") final String password) {
-//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-//        if (account != null) {
-//            for (ShareItem shareItem : account.getShareItems()) {
-//                if (shareItem.getShareItemID() == shareItemID) {
-//                    account.getShareItems().remove(shareItem);
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-//
-//
-//    @Path("shareItems")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<ShareItem> getShareItems(@QueryParam("accountID") final int accountID,
-//                                         @QueryParam("limit") final int limit,
-//                                         @HeaderParam("password") final String password) {
-//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-//        if (account != null) {
-//            List<ShareItem> result = account.getShareItems();
-//            return result.subList(0, limit > result.size() ? result.size() : limit);
-//        }
-//        return null;
-//    }
-//
-//    @Path("rootGroup")
-//    @PUT
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Group putRootGroup(@QueryParam("accountID") final int accountID,
-//                              @HeaderParam("password") final String password,
-//                              final Group group) {
-//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-//        if (account != null) {
-//            accountNewService.updateOneGroupByAnother(account.getRootGroup(), group);
-//        }
-//        return account.getRootGroup();
-//    }
-//
-//    @Path("rootGroup")
-//    @PUT
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Group putRootGroup(@QueryParam("accountID") final int accountID,
-//                              @HeaderParam("password") final String password) {
-//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-//        if (account != null) {
-//            return account.getRootGroup();
-//        }
-//        return null;
-//    }
-
-
-    @Path("/tobe")
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public boolean putUser(@QueryParam("accountID") final int accountID,
-                           @HeaderParam("password") final String password,
-                           final UserJson userJson) {
-        AccountNewService accountNewService = new AccountNewService();
-        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
-        if (account != null) {
-            UserService userService = new UserService();
-            userService.mergeJsonToUser(userJson);
+            //评论删除有没有同步我很期待Java对象管理给予我肯定回复
             return true;
         }
         return false;
     }
 
-    @Path("/tobe")
+    @Path("timeline/shareItems/commentS")
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Comment> getTimeLineShareItemsComment(@QueryParam("accountID") final int accountID,
+                                                      @QueryParam("shareItemID") final int shareItemID,
+                                                      @QueryParam("limit") final int limit) {
+        AccountNewService accountNewService = new AccountNewService();
+
+        List<Comment> comments2 = new ArrayList<>();
+        //权限控制在哪？
+        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
+        if (account != null) {
+            ShareItemNewService shareItemNewService = new ShareItemNewService();
+            List<Comment> comments = shareItemNewService.getShareItemByID(shareItemID).getComments();
+            comments = comments.subList(0, limit > comments.size() ? comments.size() : limit);
+            for (Comment comment : comments) {
+                TimeLineService timeLineService = new TimeLineService(comment.getSenderAccount());
+                if (timeLineService.getSendAccountList().contains(account)) {
+                    comments.add(comment);
+                }
+            }
+        }
+        return comments2;
+    }
+
+
+    @Path("loginRecordS") //tested
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public UserJson getUser(@QueryParam("accountID") final int accountID,
-                            @HeaderParam("password") final String password) {
+    public boolean postLoginRecords(@QueryParam("email") final String email,
+                                 @HeaderParam("password") final String password,
+                                 final LoginRecord loginRecord) {
+        AccountNewService accountNewService = new AccountNewService();
+        if (accountNewService.isEmailWellFormatted(email)) {
+            Account account = accountNewService.getAccountForWellFormattedEmail(email);
+            if (account.getPassword().equals(password)) {
+                account.getLoginRecords().add(loginRecord);
+                account.setLogIn(true);
+                new BaseDAO<Account>().update(account);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Path("loginRecordS")
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void deleteLoginRecords(@QueryParam("email") final String email,
+                                   @HeaderParam("password") final String password,
+                                   final LoginRecord loginRecord) {
+        AccountNewService accountNewService = new AccountNewService();
+        if (accountNewService.isEmailWellFormatted(email)) {
+            Account account = accountNewService.getAccountForWellFormattedEmail(email);
+            if (account.getPassword().equals(password)) {
+                account.getLoginRecords().add(loginRecord);
+                account.setLogIn(false);
+            }
+        }
+    }
+
+    @Path("loginRecordS") //tested but not so good
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<LoginRecord> getLoginRecords(@QueryParam("accountID") final int accountID,
+                                             @QueryParam("limit") final int limit,
+                                             @HeaderParam("password") final String password) {
         AccountNewService accountNewService = new AccountNewService();
         Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
         if (account != null) {
-            return account.getUser().becomeToJson();
+//            return  List<LoginRecord> loginRecords = account.getLoginRecords();
+//            return loginRecords.subList(0, limit > loginRecords.size() ? loginRecords.size() : limit);
+            return account.getLoginRecords();
         }
         return null;
     }
 
 
+    @Path("accountS") //tested
+    @POST
+    public boolean postAccounts(@QueryParam("accountID") final int accountID,
+                                @QueryParam("email") final String email) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
+        if (accountNewService.isEmailWellFormatted(email)) {
+            Account account2 = accountNewService.getAccountForWellFormattedEmail(email);
+            if (!account.isAFriendOf(account2)) {
+                if (account.getPursuers().contains(account2)) {
+                    account.getRootGroup().getAccountList().add(account2);
+                    account2.getRootGroup().getAccountList().add(account);
+                    account.getPursuers().remove(account2);
+                }
+                account2.getPursuers().add(account);
+                new BaseDAO<Account>().update(account);
+                new BaseDAO<Account>().update(account2);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Path("accountS") //tested
+    @DELETE
+    public boolean deleteAccounts(@QueryParam("accountID") final int accountID,
+                                  @QueryParam("accountID2") final int accountID2) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID);
+        Account account2 = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID2);
+        if (account != null && account2 != null) {
+            if (account.getPursuers().contains(account2)) {
+                account.getPursuers().remove(account2);
+                new BaseDAO<Account>().update(account);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Path("accountS") //tested
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<AccountJson> getAccounts(@QueryParam("accountID") final int accountID) {
+        AccountNewService accountNewService = new AccountNewService();
+        List<Account> accounts = accountNewService.getAccountWithoutCheckPasswordByAccountID(accountID).getPursuers();
+        List<AccountJson> accountJsons = new ArrayList<>();
+        if (!accounts.isEmpty()) {
+            accountJsons.addAll(accounts.stream().map(Account::becomeToJson).collect(Collectors.toList()));
+            return accountJsons;
+        }
+        return accountJsons;
+    }
+
+
+    @Path("shareItemS") //tested
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean postShareItems(@QueryParam("accountID") final int accountID,
+                               @HeaderParam("password") final String password,
+                               final ShareItemJson shareItemJson) {
+        ShareItem shareItem = shareItemJson.becomeToJson();
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+//            ShareItemService shareItemService = new ShareItemService();
+//            if(shareItem!=null){
+//                shareItemService.pushShareItem(account, shareItem);
+//                new BaseDAO<Account>().update(account);
+//            }
+            return true;
+        }
+        return false;
+    }
+
+    @Path("shareItemS")
+    @DELETE
+    public boolean deleteShareItems(@QueryParam("accountID") final int accountID,
+                                    @HeaderParam("shareItemID") final int shareItemID,
+                                    @HeaderParam("password") final String password) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+            for (ShareItem shareItem : account.getShareItems()) {
+                if (shareItem.getShareItemID() == shareItemID) {
+                    account.getShareItems().remove(shareItem);
+                    shareItem.beGivenUp();
+                    new BaseDAO<ShareItem>().delete(shareItem);
+                    new BaseDAO<Account>().update(account);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    @Path("shareItemS")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ShareItem> getShareItems(@QueryParam("accountID") final int accountID,
+                                         @QueryParam("limit") final int limit,
+                                         @HeaderParam("password") final String password) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+            List<ShareItem> result = account.getShareItems();
+            return result.subList(0, limit > result.size() ? result.size() : limit);
+        }
+        return null;
+    }
+
+    @Path("rootGroup") //tested
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public GroupJson putRootGroup(@QueryParam("accountID") final int accountID,
+                                  @HeaderParam("password") final String password,
+                                  final GroupJson groupJson) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+            Group group = groupJson.becomeToGroup();
+            accountNewService.updateOneGroupByAnother(account.getRootGroup(), group);
+        }
+        return account.getRootGroup().becomeToGroupJson();
+    }
+
+    @Path("rootGroup") //tested
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public GroupJson getRootGroup(@QueryParam("accountID") final int accountID,
+                                  @HeaderParam("password") final String password) {
+        AccountNewService accountNewService = new AccountNewService();
+        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+        if (account != null) {
+            if (account.getRootGroup() == null) {
+                account.setRootGroup(new Group("Undefine"));
+                new BaseDAO<Account>().update(account);
+            }
+            return account.getRootGroup().becomeToGroupJson();
+        }
+        return null;
+    }
+//
+//
+//    @Path("/tobe")
+//    @PUT
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public boolean putUser(@QueryParam("accountID") final int accountID,
+//                           @HeaderParam("password") final String password,
+//                           final UserJson userJson) {
+//        AccountNewService accountNewService = new AccountNewService();
+//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+//        if (account != null) {
+//            UserService userService = new UserService();
+//            userService.mergeJsonToUser(userJson);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    @Path("/tobe")
+//    @GET
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public UserJson getUser(@QueryParam("accountID") final int accountID,
+//                            @HeaderParam("password") final String password) {
+//        AccountNewService accountNewService = new AccountNewService();
+//        Account account = accountNewService.getAccountAfterCheckPasswordByAccountID(accountID, password);
+//        if (account != null) {
+//            return account.getUser().becomeToJson();
+//        }
+//        return null;
+//    }
 
 
 }

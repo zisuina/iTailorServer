@@ -1,36 +1,45 @@
 package resource.service;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.InputStream;
+import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.ServletContext;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import java.io.*;
 
 /**
  * Created by liker on 05/08/2015 0005.
  * Group iTailor.hunters.neu.edu.cn
  */
+@Path("imagesServer")
 public class ImageSender {
-    private File myfile;
-    private String myfileFileName;
-    private String myfileContentType;
-
-    public String show() throws Exception {
-        File file = new File(".\\src\\main\\java\\resource\\service\\test.jpg");
-        InputStream is = FileUtils.openInputStream(file);
-        byte[] bytes = readInputStream(is);
-        return null;
+    @GET
+    @Produces("image/*")
+    public Response getImage(@QueryParam("imageId") final String imageName,
+                             @Context ServletContext application) {
+        //权限控制，能否访问
+        String realPath = application.getRealPath("/images");
+        System.out.println("Path:" + realPath + "\\" + imageName);
+        File file = new File(realPath, imageName);
+        if (!file.exists()) {
+            throw new WebApplicationException(404);
+        }
+        String mt = new MimetypesFileTypeMap().getContentType(file);
+        return Response.ok(file, mt).header("ContentType", "image/*").build();
     }
 
-    public static byte[] readInputStream(InputStream instream) throws Exception {
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1204];
-        int len;
-        while ((len = instream.read(buffer)) != -1) {
-            outStream.write(buffer, 0, len);
+    @POST
+    @Consumes("image/*")
+    public boolean postImage(final File f) throws IOException {
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(f))){
+            String s;
+            do{
+                s = bufferedReader.readLine();
+                System.out.println(s);
+            }while(s!=null);
+            return true;
+//            return f;
         }
-        instream.close();
-        return outStream.toByteArray();
     }
 
 }

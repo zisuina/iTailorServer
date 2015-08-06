@@ -119,11 +119,14 @@ public class AccountNewService {
 
     public void updateOneGroupByAnother(Group one, Group another) {
         one.setGroupName(another.getGroupName() == null ? "undefine" : another.getGroupName());
+        if(another.getAccessControl()!=null){
+            one.setAccessControl(another.getAccessControl());
+        }
         new BaseDAO<Group>().update(one);
     }
 
-    public Group getGroupByAccountIDAndGroupID(int accountID, int groupID) {
-        Account account = getAccountWithoutCheckPasswordByAccountID(accountID);
+    public Group getGroupByAccountIDAndGroupID(int accountID, int groupID,String password) {
+        Account account = getAccountAfterCheckPasswordByAccountID(accountID,password);
         if (account != null) {
             if (account.getRootGroup().getGroupID() == groupID) {
                 return account.getRootGroup();
