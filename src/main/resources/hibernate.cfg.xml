@@ -62,6 +62,11 @@
         <mapping class="crawler.Property"/>
         <mapping class="crawler.SkuItem"/>
         <mapping class="crawler.Item"/>
+        <mapping class="costume.Dress"/>
+        <mapping class="costume.HDress"/>
+        <mapping class="costume.Coat"/>
+        <mapping class="costume.Pant"/>
+        <mapping class="costume.UCloth"/>
         <!--<mapping class="crawler.Item"/>-->
     </session-factory>
 </hibernate-configuration>

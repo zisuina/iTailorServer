@@ -10,14 +10,7 @@ import java.util.ArrayList;
  */
 
 public class GetColor {
-    /**
-     * 读取Excel里的数据
-     *
-     * @param filePath
-     * @return
-     */
     String filePath = "..\\99.txt";
-
     public ArrayList<String> readColor(String type){
         ArrayList<String> name = new ArrayList();
         ArrayList color_r = new ArrayList();

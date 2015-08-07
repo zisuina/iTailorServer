@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/Item.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/crawler/ItemDescription.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/SkuItem.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/TmallSearch.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/demo" charset="GBK" />
@@ -24,6 +23,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/com" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/com/company/Main.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/information" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/information/TxtService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/Example.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/service/test.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/tobe/RegistrationResource.java" charset="GBK" />

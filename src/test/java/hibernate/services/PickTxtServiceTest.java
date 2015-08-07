@@ -11,7 +11,7 @@ import static junit.framework.TestCase.assertEquals;
  * Created by liker on 30/07/2015 0030.
  * Group iTailor.hunters.neu.edu.cn
  */
-public class PickColorServiceTest {
+public class PickTxtServiceTest {
     PickColorService pickColorService = null;
     @Before
     public void setUp() throws Exception {

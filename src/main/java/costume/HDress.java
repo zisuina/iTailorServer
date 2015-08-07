@@ -7,26 +7,24 @@ import javax.persistence.*;
  * Group iTailor.hunters.neu.edu.cn
  */
 @Entity
-@Table(name = "dresses")
-public class Dress {
+@Table(name = "half_body_dresses")
+public class HDress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int dressID;
-    private String collar_type;
-    private String sleeve_type;
+    private String waist_height;
     private String style;
     private String shape;
     private String dress_length;
 
-    public Dress(String collar_type, String sleeve_type, String style, String shape, String dress_length) {
-        this.collar_type = collar_type;
-        this.sleeve_type = sleeve_type;
+    public HDress() {
+    }
+
+    public HDress(String waist_height, String style, String shape, String dress_length) {
+        this.waist_height = waist_height;
         this.style = style;
         this.shape = shape;
         this.dress_length = dress_length;
-    }
-
-    public Dress() {
     }
 
     public int getDressID() {
@@ -37,20 +35,12 @@ public class Dress {
         this.dressID = dressID;
     }
 
-    public String getCollar_type() {
-        return collar_type;
+    public String getWaist_height() {
+        return waist_height;
     }
 
-    public void setCollar_type(String lingZi) {
-        this.collar_type = lingZi;
-    }
-
-    public String getSleeve_type() {
-        return sleeve_type;
-    }
-
-    public void setSleeve_type(String xiuZi) {
-        this.sleeve_type = xiuZi;
+    public void setWaist_height(String waist_height) {
+        this.waist_height = waist_height;
     }
 
     public String getStyle() {
@@ -61,11 +51,19 @@ public class Dress {
         this.style = style;
     }
 
+    public String getShape() {
+        return shape;
+    }
+
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
+
     public String getDress_length() {
         return dress_length;
     }
 
-    public void setDress_length(String qunChang) {
-        this.dress_length = qunChang;
+    public void setDress_length(String dress_length) {
+        this.dress_length = dress_length;
     }
 }

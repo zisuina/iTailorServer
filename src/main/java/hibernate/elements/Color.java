@@ -22,6 +22,19 @@ public class Color {
     private float saturation;//饱和度
     private float brightness;//明度
     private String hex = "";
+    private String sales;
+    private String relative_value;
+
+
+    public Color(String name_ch, String name_en, int red, int green, int blue, String sales, String relative_value) {
+        this.name_ch = name_ch;
+        this.name_en = name_en;
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.sales = sales;
+        this.relative_value = relative_value;
+    }
 
     public Color(int red, int green, int blue) {
         if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255) {
@@ -161,5 +174,21 @@ public class Color {
 
     public static void getColorByHex(String hex){
         //TO DO
+    }
+
+    public String getSales() {
+        return sales;
+    }
+
+    public void setSales(String sales) {
+        this.sales = sales;
+    }
+
+    public String getRelative_value() {
+        return relative_value;
+    }
+
+    public void setRelative_value(String other) {
+        this.relative_value = other;
     }
 }

@@ -18,6 +18,7 @@ public class Cloth {
     }
 
     int times;
+
     public void setStyle(String style) {
         this.style = style;
     }
@@ -39,27 +40,29 @@ public class Cloth {
     }
 
     String color;
-    public Cloth()
-    {}
-    public Cloth(String name,double price)
-    {
-        this.name=name;
-        this.price=price;
+
+    public Cloth() {
     }
-    public Cloth(String name,double price,String style)
-    {
-        this.name=name;
-        this.price=price;
-        this.style=style;
+
+    public Cloth(String name, double price) {
+        this.name = name;
+        this.price = price;
     }
-    public Cloth(String name,double price,String style,String color,int score)
-    {
-        this.name=name;
-        this.price=price;
-        this.style=style;
-        this.color=color;
-        this.score= score;
+
+    public Cloth(String name, double price, String style) {
+        this.name = name;
+        this.price = price;
+        this.style = style;
     }
+
+    public Cloth(String name, double price, String style, String color, int score) {
+        this.name = name;
+        this.price = price;
+        this.style = style;
+        this.color = color;
+        this.score = score;
+    }
+
     public String getName() {
         return name;
     }
@@ -79,13 +82,15 @@ public class Cloth {
     public double getPrice() {
         return price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
+
     public boolean equals(Object other) {
-        if(other instanceof Cloth) {
-            Cloth otherCloth = (Cloth)other;
-            return this.getName().equals(otherCloth.getName()) && this.getPrice() == otherCloth.getPrice()&&
+        if (other instanceof Cloth) {
+            Cloth otherCloth = (Cloth) other;
+            return this.getName().equals(otherCloth.getName()) && this.getPrice() == otherCloth.getPrice() &&
                     this.getStyle().equals(otherCloth.getStyle());
         } else {
             return false;
