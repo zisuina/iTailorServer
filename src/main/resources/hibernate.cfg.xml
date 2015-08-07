@@ -59,6 +59,9 @@
         <mapping class="hibernate.recommendation.RecommendedResource"/>
         <mapping class="hibernate.recommendation.Wardrobe"/>
         <mapping class="hibernate.recommendation.SearchWord"/>
+        <mapping class="crawler.Property"/>
+        <mapping class="crawler.SkuItem"/>
+        <mapping class="crawler.Item"/>
         <!--<mapping class="crawler.Item"/>-->
     </session-factory>
 </hibernate-configuration>

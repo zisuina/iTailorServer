@@ -1,6 +1,7 @@
 package crawler;
 
 import hibernate.recommendation.ClothingImage;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,7 +14,7 @@ import java.net.URL;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class GetImage {
-    public void getImage(String itemName,ClothingImage clothingImage) {
+    public void getImage(String itemName, ClothingImage clothingImage) {
         String image = clothingImage.getSource();
         URL url;
         try {
@@ -25,7 +26,21 @@ public class GetImage {
             conn.setConnectTimeout(5 * 1000);
             InputStream inStream = conn.getInputStream();//通过输入流获取图片数据
             byte[] data = readInputStream(inStream);//得到图片的二进制数据
-            File ImageFile = new File(".\\src\\main\\webapp\\images\\" + itemName + ".jpg");
+
+//            String realPath = application.getRealPath("/images");
+//            System.out.println("Path:" + realPath + "\\" + imageName);
+
+//            File ImageFile = new File(".\\src\\main\\webapp\\images\\" + itemName + ".jpg");
+            File imagePath = new File("..\\images");
+            if (!imagePath.exists()) {
+                imagePath.mkdir();
+            }
+
+            File ImageFile = new File(imagePath + "\\" + itemName + ".jpg");
+            System.out.println("FILE Path@ "+ImageFile.getAbsolutePath());
+            //我手动创建了目录
+
+
             FileOutputStream outstream = new FileOutputStream(ImageFile);
             clothingImage.setSizeB(data.length);
             outstream.write(data);

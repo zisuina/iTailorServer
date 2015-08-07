@@ -2,24 +2,43 @@ package crawler;
 
 
 import hibernate.recommendation.ClothingImage;
+import util.BaseDAO;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by liker on 21/07/2015 0021.
  * Group iTailor.hunters.neu.edu.cn
  */
+@Entity
+@Table(name = "items")
 public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int itemServerID;
+
     private String itemId;
     private String itemName;
     private String keyName;
     private String shopName;
     private int saleQuantityInAMonth; //Ajax
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "itemServerID_FK")
+    private List<Property> properties = new ArrayList<>();
 
-    private ItemDescription itemDescription;
-    private ArrayList<SkuItem> skuItems = new ArrayList<>();
-    private ArrayList<ClothingImage> clothingImages = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "itemServerID_FK")
+    private List<SkuItem> skuItems = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "itemServerID_FK")
+    private List<ClothingImage> clothingImages = new ArrayList<>();
+
+    public Item() {
+    }
 
     @Override
     public String toString() {
@@ -28,7 +47,7 @@ public class Item {
                 "Item_name:" + itemName + "\n" +
                 "Search_Key_name:" + keyName + "\n" +
                 "Sale_quantity_in_a_month:" + saleQuantityInAMonth + "\n" +
-                "ItemDescription:" + itemDescription.toString() + "\n" +
+                "ItemDescription:" + properties.toString() + "\n" +
                 "SkuItems Size:" + skuItems.size();
     }
 
@@ -38,6 +57,7 @@ public class Item {
 
     public void maintain() {
         new ItemMaintainer(this).maintain();
+        new BaseDAO<Item>().create(this);
     }
 
 
@@ -81,33 +101,43 @@ public class Item {
         this.saleQuantityInAMonth = saleQuantityInAMonth;
     }
 
-    public ItemDescription getItemDescription() {
-        return itemDescription;
+    public List<Property> getProperties() {
+        return properties;
     }
 
-    public void setItemDescription(ItemDescription itemDescription) {
-        this.itemDescription = itemDescription;
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
     }
 
-    public ArrayList<SkuItem> getSkuItems() {
+    public List<SkuItem> getSkuItems() {
         return skuItems;
+    }
+
+    public void setSkuItems(List<SkuItem> skuItems) {
+        this.skuItems = skuItems;
+    }
+
+    public void setClothingImages(List<ClothingImage> clothingImages) {
+        this.clothingImages = clothingImages;
     }
 
     public void setSkuItems(ArrayList<SkuItem> skuItems) {
         this.skuItems = skuItems;
     }
 
-    public static void main(String[] args) {
-        Item item = new Item("44787408094");
-        item.maintain();
-        System.out.println(item.toString());
-    }
-
-    public ArrayList<ClothingImage> getClothingImages() {
+    public List<ClothingImage> getClothingImages() {
         return clothingImages;
     }
 
     public void setClothingImages(ArrayList<ClothingImage> clothingImages) {
         this.clothingImages = clothingImages;
+    }
+
+    public int getItemServerID() {
+        return itemServerID;
+    }
+
+    public void setItemServerID(int itemServerID) {
+        this.itemServerID = itemServerID;
     }
 }

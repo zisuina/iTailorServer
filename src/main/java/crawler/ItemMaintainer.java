@@ -21,7 +21,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,13 +53,13 @@ public class ItemMaintainer implements PageProcessor {
                 item.setShopName(html.xpath("//*[@id=\"side-shop-info\"]/div/h3/div/a/text()").toString());
             }
             item.setSaleQuantityInAMonth(getSellCount());
-            item.setItemDescription(new ItemDescription(getDescriptionMap(html)));
+            item.setProperties(getProperties(html));
+//            item.setItemDescription(new ItemDescription(getDescriptionMap(html)));
             getAllSkuItems(html);
             getItemImagesFromTamll(page);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -83,6 +85,21 @@ public class ItemMaintainer implements PageProcessor {
         }
         return result;
     }
+
+
+    List<Property> getProperties(Html html) {
+        int limit = html.xpath("///*[@id=\"J_AttrUL\"]/li").nodes().size();
+        List<Property> properties = new ArrayList<>();
+        String[] keys;
+        for (int i = 0; i < limit; i++) {
+            int j = i + 1;
+            String one = html.xpath("///*[@id=\"J_AttrUL\"]/li[" + j + "]/text()").toString().replaceAll("\u00A0", "");
+            String[] key = one.split(":", 2);
+            properties.add(new Property(key[0], key[1]));
+        }
+        return properties;
+    }
+
 
     void getAllSkuItems(Html html) throws Exception {
         Matcher m = Pattern.compile("\\{\"api\":(.*)\\}")
