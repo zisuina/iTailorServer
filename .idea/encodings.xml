@@ -20,6 +20,10 @@
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/recommendation/Resource.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recognize" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/algorithm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/com" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/com/company/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/information" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/Example.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/service/test.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/tobe/RegistrationResource.java" charset="GBK" />
@@ -30,10 +34,11 @@
     <file url="file://$PROJECT_DIR$/src/main/java/util/encryption" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/file" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/hibernate" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/99.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/colors.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/log4j.properties" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/test/java/hibernate/services/CrawlerServiceTest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/test/java/hibernate/services/CrawlerServiceTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/test/java/resource/util/testLog2.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

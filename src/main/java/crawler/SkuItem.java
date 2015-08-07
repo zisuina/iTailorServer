@@ -1,7 +1,6 @@
 package crawler;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by liker on 22/07/2015 0022.
@@ -10,6 +9,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "skuItems")
 public class SkuItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int accountID;
     private String skuid;
     private String size;
     private String color;
@@ -74,4 +76,11 @@ public class SkuItem {
         this.price = price;
     }
 
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
 }

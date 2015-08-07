@@ -4,6 +4,7 @@ import hibernate.community.Account;
 import hibernate.recommendation.User;
 import resource.json.ResourceJson;
 import resource.service.AccountNewService;
+import resource.service.SearchService;
 import resource.service.UserService;
 
 import javax.ws.rs.*;
@@ -12,7 +13,7 @@ import javax.ws.rs.*;
  * Created by liker on 05/08/2015 0005.
  * Group iTailor.hunters.neu.edu.cn
  */
-@Path("tobe")
+@Path("recommend")
 public class UserResource {
     @Path("Resource")
     @POST
@@ -55,7 +56,12 @@ public class UserResource {
 
     @Path("/SearchWords")
     @POST
-    public boolean postSearchWords() {
+    public boolean postSearchWords(@QueryParam("accountID") final int accountID,
+                                   @QueryParam("keywords") final String keywords,
+                                   @HeaderParam("password") final String password) {
+        SearchService searchService = new SearchService();
+        searchService.search(keywords);
+        System.out.println("SEARCH DONE");
         return false;
     }
 
@@ -97,103 +103,96 @@ public class UserResource {
 
     @Path("/Wardrobe")
     @PUT
-    public boolean putRootWardrobe(){
+    public boolean putRootWardrobe() {
         return false;
     }
 
     @Path("/Wardrobe")
     @GET
-    public boolean getRootWardrobe(){
+    public boolean getRootWardrobe() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS")
     @POST
-    public boolean postWardrobes(){
+    public boolean postWardrobes() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS")
     @DELETE
-    public boolean deleteWardrobes(){
+    public boolean deleteWardrobes() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS")
     @PUT
-    public boolean putWardrobes(){
+    public boolean putWardrobes() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS")
     @GET
-    public boolean getWardrobes(){
+    public boolean getWardrobes() {
         return false;
     }
 
 
     @Path("/Wardrobe/WardrobeS/ResourceS")
     @POST
-    public boolean postWardrobeResource(){
+    public boolean postWardrobeResource() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS/ResourceS")
     @DELETE
-    public boolean deleteWardrobeResource(){
+    public boolean deleteWardrobeResource() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS/ResourceS")
     @PUT
-    public boolean putWardrobeResource(){
+    public boolean putWardrobeResource() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS/ResourceS")
     @GET
-    public boolean getWardrobeResource(){
+    public boolean getWardrobeResource() {
         return false;
     }
 
 
     @Path("/Wardrobe/WardrobeS/ResourceS/3DResourceS")
     @POST
-    public boolean postWardrobe3DResource(){
+    public boolean postWardrobe3DResource() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS/ResourceS/3DResourceS")
     @DELETE
-    public boolean deleteWardrobe3DResource(){
+    public boolean deleteWardrobe3DResource() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS/ResourceS/3DResourceS")
     @PUT
-    public boolean putWardrobe3DResource(){
+    public boolean putWardrobe3DResource() {
         return false;
     }
 
     @Path("/Wardrobe/WardrobeS/ResourceS/3DResourceS")
     @GET
-    public boolean getWardrobe3DResource(){
+    public boolean getWardrobe3DResource() {
         return false;
     }
 
 
     @Path("/Wardrobe/WardrobeS/ResourceS/RecommendedResourceS")
     @GET
-    public boolean getRecommendedResourceS(){
+    public boolean getRecommendedResourceS() {
         return false;
     }
-
-
-
-
-
-
-
 
 
 }

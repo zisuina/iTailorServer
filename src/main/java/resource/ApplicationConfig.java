@@ -10,7 +10,7 @@ import javax.ws.rs.ApplicationPath;
  * Group iTailor.hunters.neu.edu.cn
  */
 //@ApplicationPath("itailor/*")
-@ApplicationPath("/*")
+@ApplicationPath("itailor/*")
 public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
         packages("resource");

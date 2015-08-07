@@ -19,8 +19,8 @@ public class CrawlerServiceTest {
 
     @Test
     public void testOnLineSearch() throws Exception {
-//        assertTrue(crawlerService.onLineSearch("Á¬ÒÂÈ¹")!=null);\
-        crawlerService.onLineSearch("ÔõÃ´¿ÉÄÜÕÒµÄ³ö¶«Î÷");
+//        assertTrue(crawlerService.onLineSearch("è¿è¡£è£™")!=null);\
+        crawlerService.onLineSearch("æ€ä¹ˆå¯èƒ½æ‰¾çš„å‡ºä¸œè¥¿");
         assertTrue(crawlerService.getItems().isEmpty());
     }
 }

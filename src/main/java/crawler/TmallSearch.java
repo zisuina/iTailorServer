@@ -29,6 +29,7 @@ public class TmallSearch implements PageProcessor {
             if (matcher.find()) {
                 Item item = new Item(matcher.group(0).replace("id=", ""));
                 if (count < 3) {
+                    logger.debug("One item begins to maintain:[ID]>>>> " + item.getItemId());
                     item.maintain();
                     count++;
                 }
@@ -63,7 +64,7 @@ public class TmallSearch implements PageProcessor {
         new TmallSearch().search("公主裙");
     }
 
-    public void search(String searchWord) {
+    public boolean search(String searchWord) {
         try {
             Spider spider = Spider.create(this);
             logger.debug("SEARCH SHOP NAME:" + searchWord + "BEGIN");
@@ -72,9 +73,11 @@ public class TmallSearch implements PageProcessor {
             spider.thread(5);
             spider.run();
             logger.debug("SEARCH SHOP NAME:" + searchWord + " END");
+            return true;
         } catch (UnsupportedEncodingException e) {
             logger.debug("UnsupportedEncodingException:" + e.getLocalizedMessage());
         }
+        return false;
     }
 
     public ArrayList<Item> getItems() {

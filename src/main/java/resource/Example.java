@@ -11,6 +11,6 @@ public class Example {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Got it!";
+        return "Got it![By the way,it's come from JRebel.]";
     }
 }
