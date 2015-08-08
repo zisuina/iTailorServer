@@ -18,6 +18,16 @@ public class UCloth {
     private String pattern;
     private String length;
 
+    public String getBinaryCode() {
+        EnCodeService enCodeService = new EnCodeService();
+//        圆领;直袖;瑞丽;动物;短款
+        return enCodeService.getPropertyBinary("collar_type", "UCloth", this.collar_type) +
+                enCodeService.getPropertyBinary("sleeve_type", "UCloth", this.sleeve_type) +
+                enCodeService.getPropertyBinary("style", "UCloth", this.style) +
+                enCodeService.getPropertyBinary("pattern", "UCloth", this.pattern) +
+                enCodeService.getPropertyBinary("length", "UCloth", this.length);
+    }
+
 
     public UCloth(String collar_type, String sleeve_type, String style, String pattern, String length) {
         this.collar_type = collar_type;

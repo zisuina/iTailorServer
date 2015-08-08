@@ -63,4 +63,20 @@ public class ImageSenderTest extends JerseyTest {
 //        }
     }
 
+    @Test
+    public void testGetImage() throws Exception {
+
+    }
+
+    @Test
+    public void testPostImage() throws Exception {
+        final File f = new File(".\\src\\main\\java\\resource\\service\\test.jpg");
+        final Invocation.Builder request = target(BASEURI).path("imagesServer").request();
+        Entity<File> e = Entity.entity(f, MediaType.APPLICATION_OCTET_STREAM);
+        final Response response = request.post(e, Response.class);
+
+        String result = response.readEntity(String.class);
+        System.out.println(response.getStatus());
+        System.out.println(result);
+    }
 }

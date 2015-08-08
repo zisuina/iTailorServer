@@ -12,5 +12,5 @@ public class MyPathManager {
     final static public String coatPath = ".\\src\\main\\resources\\Coat.txt";
     final static public String pantPath = ".\\src\\main\\resources\\Pants.txt";
     final static public String uClothPath = ".\\src\\main\\resources\\U-cloth.txt";
-
+    final static public String colorPrefixPath = ".\\src\\main\\resources\\color-prefix.txt";
 }

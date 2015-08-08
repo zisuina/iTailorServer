@@ -1,4 +1,4 @@
-package recommendation.crystal.algorithm;
+package util;
 
 /**
  * Created by crystal.liker on 2015/8/3.
@@ -20,7 +20,8 @@ public class QickSort {
         list[low] = tmp;              //中轴记录到尾
         return low;                   //返回中轴的位置
     }
-    public void   _quickSort(float[] list, int low, int high) {
+
+    public void _quickSort(float[] list, int low, int high) {
         if (low < high) {
             int middle = getMiddle(list, low, high);  //将list数组进行一分为二
             _quickSort(list, low, middle - 1);        //对低字表进行递归排序
@@ -28,7 +29,8 @@ public class QickSort {
 
         }
     }
-    public  void quick(float[] str) {
+
+    public void quick(float[] str) {
         if (str.length > 0) {    //查看数组是否为空
             _quickSort(str, 0, str.length - 1);
         }

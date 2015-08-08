@@ -35,6 +35,7 @@
         <mapping class="hibernate.community.TimeLine"/>
         <mapping class="hibernate.recommendation.User"/>
         <mapping class="hibernate.recommendation.Resource"/>
+        <mapping class="hibernate.recommendation.BodyOperator"/>
         <mapping class="hibernate.recommendation.PreferenceMatrix"/>
         <mapping class="hibernate.recommendation.favors.FavorElement"/>
         <mapping class="hibernate.recommendation.favors.FavorStyle"/>

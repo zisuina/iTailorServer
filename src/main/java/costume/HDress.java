@@ -17,6 +17,15 @@ public class HDress {
     private String shape;
     private String dress_length;
 
+    public String getBinaryCode() {
+        EnCodeService enCodeService = new EnCodeService();
+//        瑞丽;蛋糕裙;超短裙;高腰
+        return enCodeService.getPropertyBinary("style", "HDress", this.style) +
+                enCodeService.getPropertyBinary("shape", "HDress", this.shape) +
+                enCodeService.getPropertyBinary("dress_length", "HDress", this.dress_length) +
+                enCodeService.getPropertyBinary("waist_height", "HDress", this.waist_height);
+    }
+
     public HDress() {
     }
 

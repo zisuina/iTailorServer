@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by liker on 07/08/2015 0007.
@@ -256,6 +257,52 @@ public class TxtService {
             logger.debug(e.getMessage());
             logger.debug("READ [FILE U-Cloth.txt] ERROR");
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean settleColorPrefixIntoDB() {
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+
+        try {
+            session.beginTransaction();
+            List<Color> colors = session.createQuery("select c from Color as c").list();
+            File file = new File(MyPathManager.colorPrefixPath);
+            if (file.isFile() && file.exists()) {
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file), "UTF-8");//考虑到编码格式
+                BufferedReader bufferedReader = new BufferedReader(read);
+                String lineTxt = null;
+                for (Color color : colors) {
+                    if ((lineTxt = bufferedReader.readLine()) != null) {
+                        String[] data2 = lineTxt.split(",", 12);
+                        boolean[] data = new boolean[12];
+                        System.out.println(data2.length);
+                        for (int i = 0; i < 12; i++) {
+                            if (data2[i].equals("1")) {
+                                data[i] = true;
+                            } else {
+                                data[i] = false;
+                            }
+                        }
+                        color.setPrefixColor(data[0], data[1], data[2], data[3], data[4], data[5],
+                                data[6], data[7], data[8], data[9], data[10], data[11]
+                        );
+                    }
+                }
+                logger.debug("[FILE color-prefix.txt] settles into database successfully.");
+                read.close();
+                session.getTransaction().commit();
+                return true;
+            } else {
+                logger.debug("[FILE color-prefix.txt] 404 NOT FOUND!");
+            }
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+            logger.debug("READ [FILE color-prefix.txt] ERROR");
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
         return false;
     }

@@ -22,7 +22,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import static junit.framework.TestCase.*;
-import static junit.framework.TestCase.assertEquals;
 
 /**
  * Created by liker on 06/08/2015 0006.
@@ -125,10 +124,14 @@ public class AccountResourceTest extends JerseyTest {
                 .queryParam("accountID", godJson.getAccountID());
         final Invocation.Builder invocationBuilder
                 = queryTarget.request(MediaType.TEXT_PLAIN);
+
         MessageJson messageJson = new MessageJson();
         messageJson.setContext("2.This is a message 4 test!");
+
         Entity<MessageJson> e = Entity.entity(messageJson, MediaType.APPLICATION_JSON);
+//        Entity<File> e = Entity.entity(messageJson, MediaType.);
         final Response response = invocationBuilder.post(e, Response.class);
+//        response.
         assertEquals(200, response.getStatus());
         assertTrue(response.readEntity(boolean.class));
     }

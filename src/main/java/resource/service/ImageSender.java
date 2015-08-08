@@ -4,6 +4,7 @@ import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.*;
 
@@ -28,8 +29,9 @@ public class ImageSender {
         return Response.ok(file, mt).header("ContentType", "image/*").build();
     }
 
+
     @POST
-    @Consumes("image/*")
+    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
     public boolean postImage(final File f) throws IOException {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(f))){
             String s;

@@ -18,6 +18,16 @@ public class Pant {
     private String waist_height;
     private String style;
 
+    public String getBinaryCode() {
+        EnCodeService enCodeService = new EnCodeService();
+//        长裤;锥形裤;薄款;高腰;瑞丽
+        return enCodeService.getPropertyBinary("length", "Pant", this.length) +
+                enCodeService.getPropertyBinary("shape", "Pant", this.shape) +
+                enCodeService.getPropertyBinary("thickness", "Pant", this.thickness) +
+                enCodeService.getPropertyBinary("waist_height", "Pant", this.waist_height) +
+                enCodeService.getPropertyBinary("style", "Pant", this.style);
+    }
+
 
     public Pant(String length, String shape, String thickness, String waist_height, String style) {
         this.length = length;

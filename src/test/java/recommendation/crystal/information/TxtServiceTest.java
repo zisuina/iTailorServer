@@ -46,4 +46,9 @@ public class TxtServiceTest {
     public void testSettleUClothIntoDB() throws Exception {
         txtService.settleUClothIntoDB();
     }
+
+    @Test
+    public void testSettleColorPrefixIntoDB() throws Exception {
+        txtService.settleColorPrefixIntoDB();
+    }
 }

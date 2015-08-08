@@ -42,7 +42,7 @@ public class User {
 //    @JoinColumn(name = "userID_FK")
 //    private List<Item> itemRecommendedToday = new ArrayList<>();
 
-//    private UserType userType;
+//    private AccountType userType;
 
     public User() {
         this.nickname = "anonymous";

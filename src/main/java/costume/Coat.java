@@ -86,4 +86,26 @@ public class Coat {
     public void setStyle(String style) {
         this.style = style;
     }
+
+    public String getBinaryCode() {
+        EnCodeService enCodeService = new EnCodeService();
+        return enCodeService.getPropertyBinary("collar_type", "Coat", this.collar_type) +
+                enCodeService.getPropertyBinary("length", "Coat", this.length) +
+                enCodeService.getPropertyBinary("thickness", "Coat", this.thickness) +
+                enCodeService.getPropertyBinary("sleeve_type", "Coat", this.sleeve_type) +
+                enCodeService.getPropertyBinary("button", "Coat", this.button) +
+                enCodeService.getPropertyBinary("style", "Coat", this.style);
+    }
+
+    public String getBinaryCodeFormat() {
+        EnCodeService enCodeService = new EnCodeService();
+        return enCodeService.getPropertyBinary("collar_type", "Coat", this.collar_type) + "-" +
+                enCodeService.getPropertyBinary("length", "Coat", this.length) + "-" +
+                enCodeService.getPropertyBinary("thickness", "Coat", this.thickness) + "-" +
+                enCodeService.getPropertyBinary("sleeve_type", "Coat", this.sleeve_type) + "-" +
+                enCodeService.getPropertyBinary("button", "Coat", this.button) + "-" +
+                enCodeService.getPropertyBinary("style", "Coat", this.style);
+    }
+
+
 }

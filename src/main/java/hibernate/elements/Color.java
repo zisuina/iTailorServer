@@ -22,18 +22,45 @@ public class Color {
     private float saturation;//饱和度
     private float brightness;//明度
     private String hex = "";
-    private String sales;
-    private String relative_value;
+    private String quantityInTmall;//所有用户都缺了个0
+    private boolean nice_for_white;
+    private boolean nice_for_yellow;
+    private boolean nice_for_red;
+    private boolean nice_for_black;
+    private boolean nice_for_fat;
+    private boolean nice_for_standard;
+    private boolean nice_for_thin;
+    private boolean nice_for_young_age;
+    private boolean nice_for_middle_age;
+    private boolean nice_for_ole_age;
+    private boolean nice_for_inward;
+    private boolean nice_for_outward;
+//    private String relative_value;
 
 
-    public Color(String name_ch, String name_en, int red, int green, int blue, String sales, String relative_value) {
+    public void setPrefixColor(boolean nice_for_white, boolean nice_for_yellow, boolean nice_for_red, boolean nice_for_black, boolean nice_for_fat, boolean nice_for_standard, boolean nice_for_thin, boolean nice_for_young_age, boolean nice_for_middle_age, boolean nice_for_ole_age, boolean nice_for_inward, boolean nice_for_outward) {
+        this.nice_for_white = nice_for_white;
+        this.nice_for_yellow = nice_for_yellow;
+        this.nice_for_red = nice_for_red;
+        this.nice_for_black = nice_for_black;
+        this.nice_for_fat = nice_for_fat;
+        this.nice_for_standard = nice_for_standard;
+        this.nice_for_thin = nice_for_thin;
+        this.nice_for_young_age = nice_for_young_age;
+        this.nice_for_middle_age = nice_for_middle_age;
+        this.nice_for_ole_age = nice_for_ole_age;
+        this.nice_for_inward = nice_for_inward;
+        this.nice_for_outward = nice_for_outward;
+    }
+
+    public Color(String name_ch, String name_en, int red, int green, int blue, String quantityInTmall, String relative_value) {
         this.name_ch = name_ch;
         this.name_en = name_en;
         this.red = red;
         this.green = green;
         this.blue = blue;
-        this.sales = sales;
-        this.relative_value = relative_value;
+        this.quantityInTmall = quantityInTmall;
+//        this.relative_value = relative_value;
     }
 
     public Color(int red, int green, int blue) {
@@ -172,23 +199,41 @@ public class Color {
 
     }
 
-    public static void getColorByHex(String hex){
+    public static void getColorByHex(String hex) {
         //TO DO
     }
 
-    public String getSales() {
-        return sales;
+    public String getQuantityInTmall() {
+        return quantityInTmall;
     }
 
-    public void setSales(String sales) {
-        this.sales = sales;
+    public void setQuantityInTmall(String sales) {
+        this.quantityInTmall = sales;
     }
 
-    public String getRelative_value() {
-        return relative_value;
-    }
 
-    public void setRelative_value(String other) {
-        this.relative_value = other;
-    }
+//
+//    float[] rgb = new float[] { rgbR, rgbG, rgbB };
+//    Arrays.sort(rgb);
+//    float max = rgb[2];
+//    float min = rgb[0];
+//    float hsbB = max / 255.0f;
+//    float hsbS = max == 0 ? 0 : (max - min) / (float) max;
+//
+//    float hsbH = 0;
+//    if (max == rgbR && rgbG >= rgbB) {
+//        hsbH = (rgbG - rgbB) * 60f / (max - min) + 0;
+//    } else if (max == rgbR && rgbG < rgbB) {
+//        hsbH = (rgbG - rgbB) * 60f / (max - min) + 360;
+//    } else if (max == rgbG) {
+//        hsbH = (rgbB - rgbR) * 60f / (max - min) + 120;
+//    } else if (max == rgbB) {
+//        hsbH = (rgbR - rgbG) * 60f / (max - min) + 240;
+//    }
+//
+//    float[] hsb = new float[3];
+//    hsb[0]= hsbH;
+//    hsb[1]= hsbS;
+//    hsb[2]= hsbB;
+//    return hsb;
 }

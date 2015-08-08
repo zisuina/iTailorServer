@@ -7,13 +7,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/SkuItem.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/TmallSearch.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/demo" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/enums/ClothingSpectrum.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/enums/Mood.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/enums/ResourceType.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/enums/Size.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/enums/AccountType.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinColor.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinSpectrum.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/enums/UserType.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/exception/Jaxrs2GuideNotFoundException.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/community/TimeLine.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/recommendation/Resource.java" charset="GBK" />

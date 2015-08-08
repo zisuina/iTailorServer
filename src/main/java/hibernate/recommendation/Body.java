@@ -38,4 +38,7 @@ public class Body {
     public void setBodyStatusList(List<BodyStatus> bodyStatusList) {
         this.bodyStatusList = bodyStatusList;
     }
+
+//    a.IfBodyType("X","韩版风格",162,"圆形",20,"外向",54,"偏白");
+    
 }

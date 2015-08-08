@@ -1,6 +1,7 @@
 package hibernate.community;
 
 
+import enums.AccountType;
 import hibernate.recommendation.User;
 import resource.json.AccountJson;
 import util.encryption.MD5;
@@ -53,6 +54,9 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "accountID_FK")
     private List<Account> pursuers = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType = AccountType.CUSTOMER;
 
     private Timestamp latestSyncTime = new Timestamp(System.currentTimeMillis());
 
@@ -192,6 +196,15 @@ public class Account {
 
     public void setLatestSyncTime(Timestamp latestSyncTime) {
         this.latestSyncTime = latestSyncTime;
+    }
+
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     /**

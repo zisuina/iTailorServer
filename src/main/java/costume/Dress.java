@@ -18,6 +18,16 @@ public class Dress {
     private String shape;
     private String dress_length;
 
+    public String getBinaryCode() {
+//        圆领;直袖;瑞丽;蛋糕裙;超短裙
+        EnCodeService enCodeService = new EnCodeService();
+        return enCodeService.getPropertyBinary("collar_type", "Dress", this.collar_type) +
+                enCodeService.getPropertyBinary("sleeve_type", "Dress", this.sleeve_type) +
+                enCodeService.getPropertyBinary("style", "Dress", this.style) +
+                enCodeService.getPropertyBinary("shape", "Dress", this.shape) +
+                enCodeService.getPropertyBinary("dress_length", "Dress", this.dress_length);
+    }
+
     public Dress(String collar_type, String sleeve_type, String style, String shape, String dress_length) {
         this.collar_type = collar_type;
         this.sleeve_type = sleeve_type;
