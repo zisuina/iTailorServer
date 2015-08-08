@@ -67,6 +67,7 @@
         <mapping class="costume.Coat"/>
         <mapping class="costume.Pant"/>
         <mapping class="costume.UCloth"/>
+        <mapping class="costume.NiceColor"/>
         <!--<mapping class="crawler.Item"/>-->
     </session-factory>
 </hibernate-configuration>

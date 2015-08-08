@@ -1,4 +1,6 @@
 package recommendation.crystal.information;
+import enums.MyPathManager;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  */
 
 public class GetColor {
-    String filePath = "..\\99.txt";
+    String filePath = MyPathManager.colorsPath;
     public ArrayList<String> readColor(String type){
         ArrayList<String> name = new ArrayList();
         ArrayList color_r = new ArrayList();
