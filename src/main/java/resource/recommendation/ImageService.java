@@ -1,4 +1,6 @@
-package resource.service;
+package resource.recommendation;
+
+import util.file.SaveImage;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.ServletContext;
@@ -12,15 +14,13 @@ import java.io.*;
  * Created by liker on 05/08/2015 0005.
  * Group iTailor.hunters.neu.edu.cn
  */
-@Path("imagesServer")
-public class ImageSender {
+@Path("imageServer")
+public class ImageService {
     @GET
     @Produces("image/*")
     public Response getImage(@QueryParam("imageId") final String imageName,
                              @Context ServletContext application) {
-        //权限控制，能否访问
         String realPath = application.getRealPath("/images");
-        System.out.println("Path:" + realPath + "\\" + imageName);
         File file = new File(realPath, imageName);
         if (!file.exists()) {
             throw new WebApplicationException(404);
@@ -32,16 +32,13 @@ public class ImageSender {
 
     @POST
     @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    public boolean postImage(final File f) throws IOException {
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(f))){
-            String s;
-            do{
-                s = bufferedReader.readLine();
-                System.out.println(s);
-            }while(s!=null);
-            return true;
-//            return f;
-        }
+    public boolean postImage(@QueryParam("accountId") final int accountID,
+                             @QueryParam("imageName") final String imageName,
+                             @HeaderParam("password") final String password,
+                             final File f) {
+        SaveImage.settleIntoDISK(f, imageName);
+        return true;
     }
+
 
 }

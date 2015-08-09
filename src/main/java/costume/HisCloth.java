@@ -8,6 +8,7 @@ import hibernate.elements.Color;
  * Group iTailor.hunters.neu.edu.cn
  */
 public class HisCloth {
+
     private float price;
     private String itemName;
     private ClothStyle style;

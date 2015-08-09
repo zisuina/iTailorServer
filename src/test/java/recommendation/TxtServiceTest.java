@@ -1,4 +1,4 @@
-package recommendation.crystal.information;
+package recommendation;
 
 import org.junit.Before;
 import org.junit.Test;

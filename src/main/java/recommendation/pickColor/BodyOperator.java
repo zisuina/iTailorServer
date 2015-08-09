@@ -4,6 +4,7 @@ import enums.*;
 import hibernate.elements.Color;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by liker on 08/08/2015 0008.
@@ -43,6 +44,9 @@ public class BodyOperator {
     private ClothSize clothSize;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+
+//    private List<Color>
 
 
     public BodyOperator() {

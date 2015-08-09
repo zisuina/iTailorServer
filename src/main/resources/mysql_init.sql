@@ -1,18 +1,10 @@
-CREATE database hunters;
+CREATE database myserver;
 show databases;
-use hunters;
-grant all privileges on hunters.* to 'hunters'@'%' identified by 'hunters';
-grant all privileges on hunters.* to 'hunters'@'localhost' identified by 'hunters';
+use myserver;
+grant all privileges on myserver.* to 'hunters'@'%' identified by 'hunters';
+grant all privileges on myserver.* to 'hunters'@'localhost' identified by 'hunters';
 flush privileges;
-use itailor;
+exit;
+mysql -u hunters -p
+use myserver;
 show tables;
-select * from accesscontrol;
-select * from account_groups;
-select * from accounts;
-select * from comments;
-select * from feedback;
-select * from groups;
-select * from loginrecords;
-select * from messages;
-select * from shareitems;
-select * from timeline;

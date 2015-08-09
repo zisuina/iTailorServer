@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/enums/SkinColor.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/exception/Jaxrs2GuideNotFoundException.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/community/TimeLine.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/hibernate/elements/SearchWord.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/recommendation/Resource.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recognize" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recognize/AreaByDetectFace.java" charset="UTF-8" />
@@ -20,11 +21,13 @@
     <file url="file://$PROJECT_DIR$/src/main/java/recognize/RarPicture.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recognize/Test.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/NiceColor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/TxtService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/algorithm" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/com" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/com/company/Main.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/information" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/crystal/information/TxtService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/pickColor/BodyOperator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/Example.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/service/test.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/tobe/RegistrationResource.java" charset="GBK" />

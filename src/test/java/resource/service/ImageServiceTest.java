@@ -17,31 +17,17 @@ import java.net.URL;
  * Created by liker on 06/08/2015 0006.
  * Group iTailor.hunters.neu.edu.cn
  */
-public class ImageSenderTest extends JerseyTest {
+public class ImageServiceTest extends JerseyTest {
 
     private static final String BASEURI = "/";
 
     @Override
     protected Application configure() {
         return new ApplicationConfig();
-//        return new ResourceConfig(Example.class);
     }
 
     @Test
     public void testFile() throws IOException {
-
-//        final WebTarget queryTarget = target(BASEURI + "example");
-//        System.out.println(queryTarget.toString());
-////                .queryParam("imageId","123.jpg");
-//        final Invocation.Builder invocationBuilder
-//                = queryTarget.request(MediaType.TEXT_PLAIN);
-//        final Response response = invocationBuilder.get();
-//        System.out.println(response.getStatus());
-//        System.out.println(response.getLength());
-//        String res = response.readEntity(String.class);
-//        System.out.println(res);
-
-
         final URL resource = getClass().getClassLoader().getResource("gua.txt");
         System.out.println(resource.toString());
         final String file = resource.getFile();
@@ -52,15 +38,6 @@ public class ImageSenderTest extends JerseyTest {
 
         String result = response.readEntity(String.class);
         System.out.println(result);
-//        File res = response.readEntity(File.class);
-//        try (BufferedReader br = new BufferedReader(new FileReader(res))) {
-//            String s;
-//            do {
-//                s = br.readLine();
-//                System.out.println(s);
-//                System.out.println("HEllO....");
-//            } while (s != null);
-//        }
     }
 
     @Test
@@ -70,13 +47,14 @@ public class ImageSenderTest extends JerseyTest {
 
     @Test
     public void testPostImage() throws Exception {
-        final File f = new File(".\\src\\main\\java\\resource\\service\\test.jpg");
-        final Invocation.Builder request = target(BASEURI).path("imagesServer").request();
+        final File f = new File("C:\\Users\\liker\\Videos\\Pictures\\b1.jpg");
+        final Invocation.Builder request = target(BASEURI).path("imageServer")
+                .queryParam("accountID", "1")
+                .queryParam("imageName", "test")
+                .request();
         Entity<File> e = Entity.entity(f, MediaType.APPLICATION_OCTET_STREAM);
         final Response response = request.post(e, Response.class);
-
         String result = response.readEntity(String.class);
         System.out.println(response.getStatus());
-        System.out.println(result);
     }
 }

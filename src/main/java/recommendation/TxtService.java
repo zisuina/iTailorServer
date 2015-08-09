@@ -1,4 +1,4 @@
-package recommendation.crystal.information;
+package recommendation;
 
 import costume.*;
 import enums.MyPathManager;

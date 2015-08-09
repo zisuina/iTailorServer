@@ -1,6 +1,7 @@
 package hibernate.recommendation;
 
 
+import hibernate.elements.SearchWord;
 import resource.json.UserJson;
 
 import javax.persistence.*;

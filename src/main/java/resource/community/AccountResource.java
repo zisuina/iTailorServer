@@ -12,6 +12,7 @@ import resource.service.TimeLineService;
 import util.BaseDAO;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class AccountResource {
 
     //    @Path("/")  tested
     @POST
+    @Context
     @Produces(MediaType.TEXT_PLAIN)
 //    email thea.zhu6@foxmail.com
 //    email thea.zhu14@foxmail.com
