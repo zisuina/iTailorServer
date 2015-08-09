@@ -48,7 +48,7 @@ public class RunRecommendation {
         //TODO 根据表三来选择推荐的颜色
         //TODO 把表三的数据导入表一
 
-        //输出
+        //输出 crustal is so amazing.
 
     }
 }
