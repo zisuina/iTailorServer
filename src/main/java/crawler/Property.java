@@ -46,4 +46,9 @@ public class Property {
     public void setTheValue(String theValue) {
         this.theValue = theValue;
     }
+
+    public String toString()
+    {
+        return this.getTheValue();
+    }
 }

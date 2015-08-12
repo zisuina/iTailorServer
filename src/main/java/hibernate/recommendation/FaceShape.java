@@ -5,4 +5,5 @@ package hibernate.recommendation;
  * Group iTailor.hunters.neu.edu.cn
  */
 public enum FaceShape {
+    圆脸,椭圆脸,倒三角脸,四方脸,长方脸,菱形脸
 }

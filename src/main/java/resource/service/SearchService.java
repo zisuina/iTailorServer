@@ -14,4 +14,9 @@ public class SearchService {
          }
      }
 
+    public static void main(String[] args) {
+        SearchService searchService = new SearchService();
+        searchService.search("公主裙");
+    }
+
 }

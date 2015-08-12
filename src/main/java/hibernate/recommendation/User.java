@@ -119,4 +119,6 @@ public class User {
 //    public void setItemRecommendedToday(List<Item> itemRecommendedToday) {
 //        this.itemRecommendedToday = itemRecommendedToday;
 //    }
+
+
 }

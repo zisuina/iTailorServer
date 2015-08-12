@@ -1,54 +1,155 @@
 package recommendation;
 
+import crawler.SkuItem;
+import enums.*;
+import hibernate.elements.Color;
+import hibernate.recommendation.ClothingImage;
+import recommendation.IGA.IGA;
+import recommendation.colorTable.ChooseColorWhileFavorColorTable;
+import recommendation.colorTable.ColorProbability;
+import recommendation.colorTable.PeopleFavorColorTable;
+import recommendation.userSimilarity.*;
+
+import java.io.File;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.System.*;
+
 /**
  * Created by liker on 09/08/2015 0009.
  * Group iTailor.hunters.neu.edu.cn
  */
 public class RunRecommendation {
-    public void run(){
-        //TODO ÓÃ»§ÒÑÆÀ·ÖÒÂ·şÊıÁ¿ÅĞ¶Ï>=10
-        if(false){
-            //TODO ¼ÆËãÓÃ»§ÏàËÆ¶È
-                //TODO ÓÃ»§ÉíÌåÊı¾İ£¬²ÎÓëÓÎÏ·µÄ½á¹ûµÈ
-                //TODO ÓÃ»§ä¯ÀÀËÑË÷¼ÇÂ¼¿ÉÊÓÎªÏàËÆ¶ÈµÄÅĞ¶ÏÒÀ¾İ
-            //TODO »ñÈ¡ÏàËÆ¶È×î¸ßµÄÓÃ»§
-            //TODO ´ÓÊı¾İÖĞ»ñÈ¡ÏàËÆ¶È×î¸ßÓÃ»§µÄ×î½üµãÔŞÒÂ·ş
-            //TODO ÍÆ¼ö¸øÓÃ»§
-            //TODO »ñÈ¡²¢´¢´æÓÃ»§¸ø·ÖÊı¾İ
-        }else{
-            //TODO ´ÓÊı¾İ¿âÖĞÈ¡³ö¸ÃÓÃ»§ÒÑÆÀ·ÖµÄÒÂ·şÊı¾İ
-            //TODO  ×ª»»³É¶ş½øÖÆÊı¾İArrayList
-            //TODO ¼ÆËãÊ®¼şÒÂ·ş²»Í¬×é¼şµÄ²»Í¬µÃ·Ö
-            //TODO ³õÊ¼»¯ÖÖÈºÊı¾İ,¼ÆËãÊÊÓ¦¶È
-            //TODO °Ñ×î¸ßÊÊÓ¦¶ÈÒÂ·ş¼Óµ½ÊÕÁ²¾ØÕó
-            //TODO ÅĞ¶ÏÊÕÁ²¾ØÕóÊÇ·ñÊÕÁ²
-            while(true){
-                //TODO ¸ù¾İ³õÊ¼ÖÖÈºµÄÊıÁ¿Ñ¡ÔñÁªÃËËã×ÓN£¬Ëæ»úÌôN¼ş£¬×î¸ßÖµ×ö¸¸±²
-                //TODO Ñ¡Ôñ½»²æËã×Ó£¬¶Ô¸¸Ä¸È¾É«Ìå×é¼ş½øĞĞ½»»»
-                //TODO Ñ¡Ôñ±äÒìËã×Ó£¬¶Ôº¢×ÓÈ¾É«Ìå½øĞĞ±äÒì(±äÒìÂÊÈçºÎ¿ØÖÆ)
-                //TODO ¶ÔÁ½ÌõĞÂº¢×ÓÈ¾É«Ìå¼ÆËãÊÊÓ¦¶È
-                //TODO ³õÊ¼ÖÖÈºÅÅĞò
-                //TODO Ìæ»»ÅÅĞòÍêµÄ×î²îÁ½¸öºó´ú
-                //(Ë¼¿¼£ºÎªÊ²Ã´²»¶àÖÆÔìºó´úÌæ»»³õÊ¼ÖÖÈº)
-                //TODO °ÑĞÂÖÖÈº×î¸ßÖµ¼ÓÈëÊÕÁ²¾ØÕó(Èç¹û·ÅÈëÆ½¾ùÖµÖµµÃ¿¼ÂÇ)
-                //(Ë¼¿¼£ºÖ»ĞèÒª±È½ÏÁ½¸öĞÂºó´úÓë³õÊ¼¾ØÕó×î¸ßÖµ¼´¿É£¬ÒòÎªÎÒÃÇÖ»careÊÕÁ²ĞÔ)
-                //TODO Èç¹ûÅÜÁË500´ÎÊÕÁ²¾ØÕó»¹²»ÊÕÁ²£¬Ö±½ÓÌø³ö
+
+    User user1;
+    User user2;
+
+    public void init() {
+        user1 = new User(20, 162, 54, BodyShape.A, BodyFaceShape.æ¤­åœ†è„¸, Personality.å†…å‘, new Color(254, 255, 200), Gender.FEMALE);
+        user2 = new User(25, 159, 50, BodyShape.X, BodyFaceShape.åœ†è„¸, Personality.å†…å‘, new Color(200, 255, 200), Gender.FEMALE);
+    }
+
+    private int must_star_size = 10;
+    private int min_similar_day = 3;
+    private int push_limit = 3;
+    private Timestamp today = new Timestamp(currentTimeMillis());
+    List<ItemWithTimeAndScore> items = new ArrayList<>();
+
+    private Map<ClothBinaryString, Integer> coatStringMap = new HashMap<>();
+    private Map<ClothBinaryString, Integer> dressStringMap = new HashMap<>();
+    private Map<ClothBinaryString, Integer> hDressStringMap = new HashMap<>();
+    private Map<ClothBinaryString, Integer> pantStringMap = new HashMap<>();
+    private Map<ClothBinaryString, Integer> uClothStringMap = new HashMap<>();
+    private Map<ClothBinaryString, Integer> undefineStringMap = new HashMap<>();
+
+    private Users users = new Users();
+
+    public Map<ClothType,String> run(User user) {
+        if (user.getItems().size() < must_star_size) {
+            User two = CalculateSimilarity.getMostSimilarityUser(user, users);
+            if (two != null) {
+                List<Item> itemList = new ArrayList<>();
+                for (ItemWithTimeAndScore itemWithTimeAndScore : two.getItems()) {
+                    if ((itemWithTimeAndScore.getTimestamp().getTime() - today.getTime() / (1000 * 60 * 60 * 24) < min_similar_day)) {
+                        itemList.add(itemWithTimeAndScore);
+                    }
+                }
+                pushToUser(itemList.subList(0, itemList.size() > push_limit ? push_limit : itemList.size()));
             }
-            //TODO Ëæ»úÑ¡³öÊÕÁ²¾ØÕóÖĞµÄÒ»¼şÒÂ·ş½øĞĞ¶ş½øÖÆ½âÂë(È¡³öÒ»¼ş»¹ÊÇ¶à¼şÖµµÃ¿¼ÂÇ)
+        } else {
+            items = user.getItems();
+            //TODO  è½¬æ¢æˆäºŒè¿›åˆ¶æ•°æ®ArrayList
+            for (ItemWithTimeAndScore item : items) {
+                if (item.getClothType().equals(ClothType.Coat)) {
+                    coatStringMap.put(item.getClothBinaryString(), item.getScore());
+                } else if (item.getClothType().equals(ClothType.Dress)) {
+                    dressStringMap.put(item.getClothBinaryString(), item.getScore());
+                } else if (item.getClothType().equals(ClothType.Hdress)) {
+                    hDressStringMap.put(item.getClothBinaryString(), item.getScore());
+                } else if (item.getClothType().equals(ClothType.PANT)) {
+                    pantStringMap.put(item.getClothBinaryString(), item.getScore());
+                } else if (item.getClothType().equals(ClothType.Ucloth)) {
+                    uClothStringMap.put(item.getClothBinaryString(), item.getScore());
+                } else {
+                    undefineStringMap.put(item.getClothBinaryString(), item.getScore());
+                }
+            }
+            IGA iga = new IGA();
+            List<String> coats = iga.recommend(coatStringMap);
+            List<String> dress = iga.recommend(dressStringMap);
+            List<String> hDress = iga.recommend(hDressStringMap);
+            List<String> pants = iga.recommend(pantStringMap);
+            List<String> uCloth = iga.recommend(uClothStringMap);
+            //TODO
+            //å¤å¤©ä¸æ¨èå¤–å¥—
+            //æ˜¥ç§‹æ¨èã€Dressã€‘æˆ–ã€HDress+Uclothã€‘æˆ–ã€UCloth+Pantã€‘æˆ–ã€Coat+Pantã€‘
+            //TODO 4ç§æ–¹å¼éšæœºé€‰3ç§ï¼Œæ¯ç§æ–¹å¼ä¸Šä¸‹è¡£å„è‡ªéšæœºé€‰ä¸€ä»¶
+            //TODO å¯¹äºŒè¿›åˆ¶è¡£æœè§£ç  è¾“å‡ºå…³é”®è¯
         }
-        //TODO È¡³öÓÃ»§ÆÀ·ÖÒÂ·şµÄÍ¼Æ¬Êı¾İÊı×éFile[]ÓëµÃ·ÖÊı¾İ
-        //TODO ÒÀ´Î·ÖÎöÍ¼Æ¬Êı¾İµÄÖ÷ÒªÈıÑÕÉ«ÓëÆäÏñËØËùÕ¼±È ´æÈëÊı¾İ¿â
-        //TODO ¶ÁÈ¡ËùÓĞÀúÊ·Êı¾İ£¨DAY1,RED,50,GREEN,80,BLUE,20;Day2 ...£©
-        //TODO ¸ù¾İÒÅÍüÇúÏßË¢ĞÂËùÓĞ<Color,Score>Êı¾İ
-        //TODO ¶ÔËùÓĞ<Color,Score>½øĞĞÍ¶Æ±,È¡³öÆ±Êı×î¸ßµÄÑÕÉ«(¼ÓÈ¨¼ÆËã)£¬ÊÓÎªËûÄ¿Ç°Ï²»¶µÄÑÕÉ«A
-        //(Ë¼¿¼£º¿ÉÒÔÈ¡³ö×óÓÒÑÕÉ«£¬ÀûÓÃÏ²»¶³Ì¶ÈµÄ¸ÅÂÊ¾ØÕó½øĞĞÏÂÒ»²½¼ÆËã£¬Ôİ²»¿¼ÂÇ)
-        //TODO ´ÓÊı¾İ¿â¼ÓÔØ¡¾ÓÃ»§×¨ÊôµÄ¡¿¡¾±íÒ»¡¿£¬Ã»ÓĞ¾Í¼ÓÔØ´óÖÚÑÕÉ«Ï²»¶±í
-        //TODO ¼ÆËã³ö±í¶ş£¬Ï²»¶AÑÕÉ«µ«ÊÇÑ¡ÁËÆäËûÑÕÉ«µÄ¸ÅÂÊ
-        //TODO ÓÉ±íÒ»±í¶ş¼ÆËã³ö±íÈı
-        //TODO ¸ù¾İ±íÈıÀ´Ñ¡ÔñÍÆ¼öµÄÑÕÉ«
-        //TODO °Ñ±íÈıµÄÊı¾İµ¼Èë±íÒ»
+        //TODO å–å‡ºç”¨æˆ·è¯„åˆ†è¡£æœçš„å›¾ç‰‡æ•°æ®æ•°ç»„File[]ä¸å¾—åˆ†æ•°æ®
 
-        //Êä³ö crustal is so amazing.
+//        for (ItemWithTimeAndScore item : user.getItems()) {
+//            for (ClothingImage clothingImage : item.getClothingImages()) {
+//                List<ClothingImageVote> clothingImageVotes =
+//                        analyzeImageVote(clothingImage.getName());
+//            }
+//        }
+        //TODO é€ ä¸€ä¸‹è¯„åˆ†
+//        float beta;
+//        ClothType clothType;
+//        Color color = getForgetEffect(items,beta,clothType);
+//        Color another = FindSuitableColorForYou(Color color);
+        //TODO æ ¹æ®ClothTypeï¼Œç»„åˆå‡ºå…³é”®è¯
+        //TODO å¯¹Clothè§£æè¾“å‡ºæœ€ç»ˆå…³é”®è¯.
+        return new HashMap<>();
+    }
 
+    private ItemWithTimeAndScore analyzeImageVote(String name) {
+        //TODO for liker
+        return null;
+    }
+
+
+    public static void main(String args[]) {
+
+    }
+
+    public void pushToUser(List<Item> items) {
+        //TODO for liker
+    }
+
+
+    //TODO åªèƒ½ä½¿ç”¨ä¸€ç§ClothTypeçš„Items
+    public Color getForgetEffect(List<ItemWithTimeAndScore> items,float beta,ClothType clothType){
+        Color finalColor = new Color();
+        //TODO æ‰¾å‡ºè¯„è®ºæ—¶é—´æœ€å¤§å·®ä¸è¯„è®ºæ—¶é—´å°
+        //TODO æŒ‰ç…§å…¬å¼è®¡ç®—ä¸€ä¸‹
+        //TODO å¯¹æ‰€æœ‰å·²ç»è®¡ç®—çš„Coloråˆ†æ•°æ’åºå¹¶å¾—åˆ°æœ€é«˜çš„é¢œè‰²A
+        //æ ¹æ®Colorä¸åƒç´ æ¯”ä¾‹åˆ¶ä½œæˆè¡¨äºŒï¼ŒChooseColorWhileFavorColorTableï¼ˆï¼‰
+        ChooseColorWhileFavorColorTable t2 = new ChooseColorWhileFavorColorTable();
+//            t2.setChooseColor(A);
+//            t2.getColorProbabilities().add(new ColorProbability(A,0,3f));
+//            t2.getColorProbabilities().add(new ColorProbability(B,0,2f));
+//            t2.getColorProbabilities().add(new ColorProbability(C,0,3f));
+//            t2.getColorProbabilities().add(new ColorProbability(D,0,4f));
+//            t2.getColorProbabilities().add(new ColorProbability(F,0,3f));
+//        PeopleFavorColorTable t1 = new PeopleFavorColorTable();
+//            t1.getColorProbabilities().add(new ColorProbability(A,0,3f));
+//            t1.getColorProbabilities().add(new ColorProbability(A,0,3f));
+//            t1.getColorProbabilities().add(new ColorProbability(A,0,3f));
+//            t1.getColorProbabilities().add(new ColorProbability(A,0,3f));
+//            t1.getColorProbabilities().add(new ColorProbability(A,0,3f));
+        //TODO è®¡ç®—è¡¨ä¸‰
+        ChooseColorWhileFavorColorTable t3 = new ChooseColorWhileFavorColorTable();
+//            P(A) = P<t1>(A) * t2<favor=A>(A) + P<t1>(B) * P<favor=B>(A) + ~~~~~;
+//            t3.getColorProbabilities().add(new ColorProbability(A,?))
+        //TODO æ ¹æ®è¡¨ä¸‰ éšæœºä¸€ä¸ªæ•°ï¼ˆ0-1ï¼‰æ¥æŠ›å‡ºæˆ‘ä»¬è¿™æ¬¡æ¨èçš„é¢œè‰²
+        return finalColor;
+
+        //TODO t3æ•°æ®æ›¿æ¢t1å­˜å‚¨å­˜å…¥æ•°æ®åº“ for liker
     }
 }

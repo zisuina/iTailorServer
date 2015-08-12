@@ -18,6 +18,11 @@ public class ColorProbability {
     private Color color;
     private float probability;
 
+    public ColorProbability(Color color, float probability) {
+        this.color = color;
+        this.probability = probability;
+    }
+
     public ColorProbability() {
     }
 

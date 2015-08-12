@@ -1,5 +1,7 @@
 package hibernate.recommendation;
 
+import enums.*;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -215,4 +217,9 @@ public class BodyStatus {
     public void setMood(int mood) {
         this.mood = mood;
     }
+
+
+
+
+
 }

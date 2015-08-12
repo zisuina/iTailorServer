@@ -19,8 +19,8 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="connection.pool_size">1</property>
-        <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
-        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--<property name="hibernate.hbm2ddl.auto">create-drop</property>-->
         <property name="current_session_context_class">thread</property>
         <!--<mapping class="hibernate.recommendation.User"/>-->
         <!--<mapping class="hibernate.elements.Colors"/>-->
@@ -36,7 +36,6 @@
         <mapping class="hibernate.community.TimeLine"/>
         <mapping class="hibernate.recommendation.User"/>
         <mapping class="hibernate.recommendation.Resource"/>
-        <mapping class="hibernate.recommendation.BodyOperator"/>
         <mapping class="hibernate.recommendation.PreferenceMatrix"/>
         <mapping class="hibernate.recommendation.favors.FavorElement"/>
         <mapping class="hibernate.recommendation.favors.FavorStyle"/>

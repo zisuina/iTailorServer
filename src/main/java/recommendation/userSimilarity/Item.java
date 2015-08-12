@@ -1,6 +1,10 @@
-package crawler;
+package recommendation.userSimilarity;
 
 
+import crawler.ItemMaintainer;
+import crawler.Property;
+import crawler.SkuItem;
+import enums.ClothType;
 import hibernate.recommendation.ClothingImage;
 import util.BaseDAO;
 
@@ -24,6 +28,7 @@ public class Item {
     private String keyName;
     private String shopName;
     private int saleQuantityInAMonth; //Ajax
+    private ClothType clothType = ClothType.Undefine;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "itemServerID_FK")
@@ -55,10 +60,10 @@ public class Item {
         this.itemId = itemId;
     }
 
-    public void maintain() {
-        new ItemMaintainer(this).maintain();
-        new BaseDAO<Item>().create(this);
-    }
+//    public void maintain() {
+//        new ItemMaintainer(this).maintain();
+//        new BaseDAO<Item>().create(this);
+//    }
 
 
     public String getItemId() {
@@ -139,5 +144,18 @@ public class Item {
 
     public void setItemServerID(int itemServerID) {
         this.itemServerID = itemServerID;
+    }
+
+    public ClothType getClothType() {
+        return clothType;
+    }
+
+    public void setClothType(ClothType clothType) {
+        this.clothType = clothType;
+    }
+
+    public ClothBinaryString getClothBinaryString() {
+        //TODO
+        return new ClothBinaryString();
     }
 }

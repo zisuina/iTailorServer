@@ -13,17 +13,18 @@
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/community/TimeLine.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/elements/SearchWord.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/hibernate/recommendation/Resource.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize/AreaByDetectFace.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize/Color.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize/ColorArea.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize/ColorVote.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize/RarPicture.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recognize/Test.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/IGA/IGA.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/IGA/Test.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/NiceColor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/RunRecommendation.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/TxtService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/pickColor/BodyOperator.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/Item.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/NiceColor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/util/CalculateUserDataSimilarity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/util/SimilarDegreeByCos.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/Example.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/service/test.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/resource/tobe/RegistrationResource.java" charset="GBK" />
