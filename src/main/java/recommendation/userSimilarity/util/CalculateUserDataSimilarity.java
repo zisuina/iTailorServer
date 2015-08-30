@@ -13,6 +13,7 @@ public class CalculateUserDataSimilarity {
 
     public static float CalculateAllValueSimilarity(User user1,User user2)
     {
+       // System.out.println("DATA : "+CalculateStringValueSimilarity(user1,user2)+CalculateNumericValueSimilarity(user1,user2));
         return CalculateStringValueSimilarity(user1,user2)+CalculateNumericValueSimilarity(user1,user2);
     }
 

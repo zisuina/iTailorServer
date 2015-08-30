@@ -3,7 +3,6 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/java/crawler/Item.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/SkuItem.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/crawler/TmallSearch.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/demo" charset="GBK" />
@@ -16,12 +15,14 @@
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/IGA/IGA.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/IGA/Test.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/Match/Matching.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/NiceColor.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/RunRecommendation.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/TxtService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/colorTable/GetColorScore.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/colorTable/calcultaTables.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/Item.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/NiceColor.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/test.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/util/CalculateUserDataSimilarity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/recommendation/userSimilarity/util/SimilarDegreeByCos.java" charset="UTF-8" />

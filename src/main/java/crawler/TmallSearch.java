@@ -1,6 +1,7 @@
 package crawler;
 
 import org.apache.log4j.Logger;
+import recommendation.userSimilarity.Item;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -30,7 +31,7 @@ public class TmallSearch implements PageProcessor {
                 Item item = new Item(matcher.group(0).replace("id=", ""));
                 if (count < 3) {
                     logger.debug("One item begins to maintain:[ID]>>>> " + item.getItemId());
-                    item.maintain();
+                    //  TODO item.maintain();
                     count++;
                 }
                 items.add(item);

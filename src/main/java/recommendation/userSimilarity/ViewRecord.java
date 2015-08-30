@@ -1,6 +1,8 @@
 package recommendation.userSimilarity;
 
-import hibernate.recommendation.User;
+
+
+import recommendation.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -40,6 +40,7 @@ public class TxtService {
                 try {
                     session.beginTransaction();
                     session.createSQLQuery("ALTER TABLE colors AUTO_INCREMENT = 1;").executeUpdate();
+                    colors.forEach(hibernate.elements.Color::refresh);
                     colors.forEach(session::persist);
                     session.getTransaction().commit();
                 } catch (Exception e) {
@@ -58,6 +59,10 @@ public class TxtService {
 //            e.printStackTrace();
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        new TxtService().settleColorsIntoDB();
     }
 
     public boolean settleDressesIntoDB() {

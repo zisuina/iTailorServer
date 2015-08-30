@@ -1,6 +1,7 @@
 package crawler;
 
 import org.junit.Test;
+import recommendation.userSimilarity.Item;
 
 import static junit.framework.TestCase.assertEquals;
 

@@ -19,6 +19,7 @@ public class CalculateSimilarity {
         CalculateUserDataSimilarity calculateUserDataSimilarity = new CalculateUserDataSimilarity();
         final_similarity = calculateUserRecordSimilarity.UserRecordSimilarity(user1.getViewRecord(), user2.getViewRecord())
                 + calculateUserDataSimilarity.CalculateAllValueSimilarity(user1, user2);
+      //  System.out.println("final: "+final_similarity);
         return final_similarity;
     }
 
@@ -27,11 +28,11 @@ public class CalculateSimilarity {
         if (users.getUsers().isEmpty()) {
             return null;
         }
-        float a = 0f;
+        float a = GetFinalSimilarity(user, users.getUsers().get(0));
         User res = user;
         for (User one : users.getUsers()) {
             float b = GetFinalSimilarity(user, one);
-            if (a <= b) {
+            if (a >= b) {
                 a = b;
                 res = one;
             }

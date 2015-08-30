@@ -1,6 +1,8 @@
 package hibernate.services;
 
-import crawler.Item;
+
+
+import recommendation.userSimilarity.Item;
 
 import java.util.ArrayList;
 

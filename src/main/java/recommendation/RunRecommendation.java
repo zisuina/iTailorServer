@@ -5,10 +5,12 @@ import enums.*;
 import hibernate.elements.Color;
 import hibernate.recommendation.ClothingImage;
 import recommendation.IGA.IGA;
+import recommendation.colorTable.CalculateTable1;
 import recommendation.colorTable.ChooseColorWhileFavorColorTable;
 import recommendation.colorTable.ColorProbability;
 import recommendation.colorTable.PeopleFavorColorTable;
 import recommendation.userSimilarity.*;
+import util.BaseDAO;
 
 import java.io.File;
 import java.sql.Timestamp;
@@ -126,6 +128,9 @@ public class RunRecommendation {
     //TODO 只能使用一种ClothType的Items
     public Color getForgetEffect(List<ItemWithTimeAndScore> items,float beta,ClothType clothType){
         Color finalColor = new Color();
+        //计算表一
+        CalculateTable1 calculateTable1 = new CalculateTable1();
+        PeopleFavorColorTable peopleFavorColorTable = calculateTable1.CalculateTable1();
         //TODO 找出评论时间最大差与评论时间小
         //TODO 按照公式计算一下
         //TODO 对所有已经计算的Color分数排序并得到最高的颜色A

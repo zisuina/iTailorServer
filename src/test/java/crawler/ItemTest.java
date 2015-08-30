@@ -2,6 +2,7 @@ package crawler;
 
 import org.junit.Before;
 import org.junit.Test;
+import recommendation.userSimilarity.Item;
 
 /**
  * Created by liker on 07/08/2015 0007.
@@ -19,7 +20,7 @@ public class ItemTest {
 
     @Test
     public void testHibernate() throws Exception {
-        item.maintain();
+       // item.maintain();
 //        new BaseDAO<Item>().create(item);
         System.out.println("Please check you database record.");
     }

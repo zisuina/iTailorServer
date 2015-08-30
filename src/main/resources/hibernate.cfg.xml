@@ -62,13 +62,13 @@
         <mapping class="hibernate.elements.SearchWord"/>
         <mapping class="crawler.Property"/>
         <mapping class="crawler.SkuItem"/>
-        <mapping class="crawler.Item"/>
+        <!--<mapping class="crawler.Item"/>-->
         <mapping class="costume.Dress"/>
         <mapping class="costume.HDress"/>
         <mapping class="costume.Coat"/>
         <mapping class="costume.Pant"/>
         <mapping class="costume.UCloth"/>
-        <mapping class="costume.NiceColor"/>
+        <!--<mapping class="costume.NiceColor"/>-->
         <mapping class="recommendation.colorTable.ColorProbability"/>
         <!--<mapping class="crawler.Item"/>-->
     </session-factory>

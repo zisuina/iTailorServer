@@ -66,5 +66,5 @@ public class SimilarDegreeByCos {
         vector2Modulo = Math.sqrt(vector2Modulo);
 
         //返回相似度
-        return (vectorProduct/(vector1Modulo*vector2Modulo));
+        return 1-(vectorProduct/(vector1Modulo*vector2Modulo));
     }}

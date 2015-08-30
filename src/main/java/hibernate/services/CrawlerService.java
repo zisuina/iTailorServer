@@ -1,8 +1,8 @@
 package hibernate.services;
 
-import crawler.Item;
-import crawler.TmallSearch;
 
+import crawler.TmallSearch;
+import recommendation.userSimilarity.Item;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +14,7 @@ public class CrawlerService {
     private ArrayList<Item> items = new ArrayList<>();
     public void onLineSearch(String searchKeys) {
         tmallSearch.search(searchKeys);
-        items = tmallSearch.getItems();
+      //TODO  items = tmallSearch.getItems();
     }
 
     public void filtrationAfterSearch(){

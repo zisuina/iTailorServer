@@ -2,6 +2,7 @@ package recommendation;
 
 import enums.*;
 import hibernate.elements.Color;
+import recommendation.userSimilarity.Item;
 import recommendation.userSimilarity.ItemWithTimeAndScore;
 import recommendation.userSimilarity.ViewRecord;
 

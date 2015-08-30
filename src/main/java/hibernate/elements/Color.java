@@ -1,6 +1,9 @@
 package hibernate.elements;
 
+import util.BaseDAO;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by liker on 25/07/2015 0025.
@@ -236,4 +239,9 @@ public class Color {
 //    hsb[1]= hsbS;
 //    hsb[2]= hsbB;
 //    return hsb;
+
+    public static void main(String[] args) {
+        List<Color> colors =  new BaseDAO<Color>().list("select from Color");
+
+    }
 }

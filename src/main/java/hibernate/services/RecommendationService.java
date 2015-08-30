@@ -1,8 +1,9 @@
 package hibernate.services;
 
-import crawler.Item;
+
 import hibernate.recommendation.User;
 import org.apache.log4j.Logger;
+import recommendation.userSimilarity.Item;
 import util.BaseDAO;
 
 import java.util.ArrayList;
